@@ -1,0 +1,333 @@
+---
+title: 'PY1617: Foundations of R for Statistics and Data Science'
+author: "Dr Abigail Page & Dr James Winters"
+subtitle: Component Notebook
+output:
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
+  html_document:
+    toc: true
+    toc_depth: '3'
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
+    df_print: paged
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+---
+
+```{css, echo=FALSE}
+h1 {
+  color: #F28E7B;  
+  font-weight: 700;
+}
+
+h2 {
+  color: #88B99B;  
+  font-weight: 600;
+}
+
+h3 {
+  color: #D18C74;  
+  font-weight: 500;
+}
+
+h1, h2, h3 {
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+}
+```
+
+# Introduction to R: Week 1
+
+> Welcome to the R component of **PY1617 Employability: Foundations of R for Statistics and Data Science**
+
+This notebook brings together all material for the R component of the module, spanning ten weeks of teaching.
+
+In this first week, the focus is on **orientation**: understanding what R is, why we are using it, how it fits into data science and statistics and getting everything set up correctly on your computer.
+
+---
+
+## Overview of the R Component
+
+This component runs across **ten teaching weeks**, starting from the very basics of using R and progressing to writing functions and simulating data by the end of the term.
+
+Teaching is shared across the module:
+
+  1) **Weeks 1–5** are taught by Dr Abigail Page and focus on foundational R skills, data handling, and visualisation
+  2) **Weeks 7–10** are taught by Dr James Winters and focus on programming concepts and simulation
+
+By the end of the component, you will be able to use R confidently as a tool for working with data in academic, research and workplace contexts.
+
+---
+
+## Aims of the Component
+
+The R component aims to develop **foundational skills in R** that underpin data analysis, statistics and data science.
+
+Specifically, the component aims to:
+  1) Build confidence in using R and RStudio
+  2) Develop good habits for writing clear, reproducible code
+  3) Introduce core data workflows used in statistics and research
+  4) Prepare you for later statistics modules in Years 1 and 2
+  5) Develop digital and data literacy skills valued in the workplace
+
+---
+
+## Learning Objectives
+
+By the end of this component, you should be able to:
+
+  1) Use **R and RStudio** confidently, including scripts, projects and packages  
+  2) Understand and work with **data types, objects and data frames** in R  
+  3) Apply a **tidy data workflow** to clean, transform and reshape data  
+  4) Create and label **new and recoded variables**  
+  5) **Summarise and visualise data** effectively using ggplot2  
+  6) Use basic **programming concepts** (loops and functions) to automate tasks  
+  7) Write **clear, reproducible code** suitable for academic and workplace contexts  
+  8) Use these skills to **simulate data**
+
+---
+
+## What Is Data Science?
+
+Data science is the process of turning data into understanding and insight.
+
+This typically includes:
+
+  1) Managing data  
+  2) Cleaning and preparing data  
+  3) Exploring and visualising data  
+  4) Modelling and interpreting results  
+  5) Communicating findings clearly  
+
+Data science is best thought of as a **workflow**, rather than a single technique.
+
+### The data science workflow
+
+Throughout this module, we will refer to the **data science cycle**, which describes how data are:
+
+  1) Imported: bringing data into R   
+  2) Prepared and transformed: cleaning the data so you can do what you want with it.   
+  3) Explored and visualised: explore patterns and trends   
+  4) Modelled: apply statistical models   
+  4) Communicated: report your results clearly in plots and tables   
+
+![Workflow Diagram from R4DS textbook](workflow.png)
+
+We can think of this as a cycle because you don't do the steps only once, but you loop back and forth. 
+
+This R component focuses primarily on the **foundational stages of this cycle: importing, tidying anf visualising data**. These are the skills that everything else depends on.
+Data modelling and communication will be focused on in other compoments and modules. 
+
+---
+
+## What Is R?
+
+**R** is a programming language designed specifically for **data analysis, statistics and graphics**.  
+It was first developed in 1996 and is now widely used in academia, research and industry.
+
+R is:
+- A **command-driven** language
+- Highly flexible and extensible
+- Widely used for statistical analysis and data visualisation
+
+You may have encountered other statistical software such as SPSS, Stata, or MATLAB. R differs from these in that it is:
+- Script-based rather than menu-driven (you write things rather than click things)
+- Highly customisable
+- Open source and free to use
+
+---
+
+## What Is RStudio?
+
+RStudio is the software environment we will use to work with R.
+
+You can think of:
+- R as the engine which does the work   
+- RStudio as the dashboard which makes it easy to do the work   
+
+RStudio provides:
+- A script editor
+- A console for running code
+- Tools for viewing data, plots and files
+- Integrated help and documentation
+
+Once we have installed RStudio we no longer need to directly access R! 
+
+### Why we use R & RStudio
+
+RStudio is widely used because:
+- It is **free** and open source
+- There is a large and active **R community**
+- Thousands of **packages** extend R’s functionality
+- Solutions to common problems are easy to find online
+- It produces **high-quality, publication-ready graphics**
+
+---
+
+## Challenges of Learning R
+
+Learning R can feel challenging at first, especially if you do not have a programming background.
+
+Common difficulties include:
+- A steep initial learning curve
+- Small errors in code causing unexpected problems (e.g. a missing closing bracket or misplaced comma can be frustrating)
+- Not knowing how to phrase questions when searching for help
+
+This is normal.
+
+> **A useful rule of thumb:**  
+> Knowing what to search for is a large part of working effectively in R. AI tools make this a lot easier!
+
+
+Over time, you will build familiarity with common patterns and solutions.
+
+---
+
+## Installing R and RStudio
+
+Before you can start using R, you need to install **both R and RStudio**.
+
+### Installing R
+
+1. Go to: https://cran.r-project.org  
+2. Select your operating system (Windows, macOS, or Linux)  
+3. Download and install the **latest version** of R  
+
+> Always install R **before** installing RStudio.
+
+---
+
+### Installing RStudio
+
+1. Go to: https://www.rstudio.com/products/rstudio/download/  
+2. Download **RStudio Desktop (free version)**  
+3. Install the latest version for your operating system  
+
+Once installed, you will **open RStudio**, not R itself.  
+
+Opening RStudio automatically starts R in the background.
+
+Finally You will need to download Rtools from Cran: https://cran.r-project.org/bin/windows/Rtools/. 
+Make sure this is installed before moving on. 
+
+---
+
+## First Steps in RStudio
+
+When you open RStudio for the first time, you will see several **panes** (also called panels). Each has a different purpose to help you work efficiently in R.
+
+- The **console** (where code runs) on the left 
+- The **environment** (where objects are stored) on the top right 
+- Panels for plots, files, and help on the bottom right 
+
+### Console
+The **console** is where you **type and run R commands directly**.  We will play around with this at the end of the session. 
+The console executes your commands immediately and shows the results.
+
+### Envrionment and history 
+The Environment tab shows all the objects you have loaded into R or created (variables, data frames, lists, etc.).
+The History tab keeps a record of all the commands you have run in the console. You can click on it and see what you have just done, and re-run it. 
+
+### Files, plots, packages, helps and viewer 
+
+This is were you can view lots of useful pieces of information and access your files: 
+
+  1) Files: Lets you browse files in your project folder. You can import data from here. 
+  2) Plots: Displays graphs and visualisations you create. This pops up automatically when you make a plot. 
+  3) Packages: Displays which R packages are installed and loaded. What you can use to install more packages (we will get to this)
+  4) Help: Shows documentation for functions you search.
+  5) Viewer: Used for HTML outputs and interactive visualisations.
+
+These tabs help you navigate your project, visualize results and find help quickly. We will come to each of these sections in turn. 
+
+First, there is a final section of RStudio which is only viable when you open up a R Script. 
+
+### R scripts 
+
+An R script is a file where you can write, save and edit multiple lines of R code. Like a word document for R code! 
+Scripts have the file extension .R and are saved in a folder on your computer. 
+
+You can either open a blank script: 
+- Go to **File (top left piece of paper with a green plus) → New File → R Script**
+
+This creates a script where you can write and save your code.
+
+OR you can load a pre-made R script which you or someone else have made to run. 
+
+You can download the pre-made R Script for Week 1 session here:  
+
+[Download the R Script](https://brightspace.brunel.ac.uk/d2l/le/lessons/67180/topics/2028425)
+
+
+---
+
+## Basic R Expressions
+
+R uses the **assignment operator** `<-` to store values.
+
+Example:
+
+```{r}
+x <- 10
+x
+
+```
+
+# Workflow in R
+## Files, folders, and projects
+## Working directories
+## R scripts and packages
+
+# Data in R
+## Data types and objects
+## Vectors and data frames
+## Functions in R
+
+#  Data Manipulation in R
+## The tidyverse
+## Recoding and transforming variables
+## Missing data (NAs)
+## Wide and long data
+
+# Data Visualisation in R
+## Summarising data
+## Introduction to ggplot2
+## Interpreting plots
+
+# Conditional Programming
+## Logical values
+## if and else statements
+
+# Pipes and Loops
+## Pipes (%>%)
+## for loops
+## Repeating operations
+
+# Writing Functions from scratch
+## Why write functions?
+## Function structure
+## Writing your first function
+
+# Simulating Data
+## Why simulate data?
+## Generating random data
+## A simple simulation example
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
