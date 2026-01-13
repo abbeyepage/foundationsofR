@@ -1,0 +1,725 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={PY1617: Foundations of R for Statistics and Data Science},
+  pdfauthor={Dr Abigail Page \& Dr James Winters},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{PY1617: Foundations of R for Statistics and Data Science}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Component Notebook}
+\author{Dr Abigail Page \& Dr James Winters}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Introduction to R: Week 1}\label{introduction-to-r-week-1}
+
+\begin{quote}
+Welcome to the R component of \textbf{PY1617 Employability: Foundations
+of R for Statistics and Data Science}
+\end{quote}
+
+This notebook brings together all material for the R component of the
+module, spanning ten weeks of teaching.
+
+In this first week, the focus is on \textbf{orientation}: understanding
+what R is, why we are using it, how it fits into data science and
+statistics and getting everything set up correctly on your computer.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Overview of the R
+Component}\label{overview-of-the-r-component}
+
+This component runs across \textbf{ten teaching weeks}, starting from
+the very basics of using R and progressing to writing functions and
+simulating data by the end of the term.
+
+Teaching is shared across the module:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \textbf{Weeks 1--5} are taught by Dr Abigail Page and focus on
+  foundational R skills, data handling, and visualisation
+\item
+  \textbf{Weeks 7--10} are taught by Dr James Winters and focus on
+  programming concepts and simulation
+\end{enumerate}
+
+By the end of the component, you will be able to use R confidently as a
+tool for working with data in academic, research and workplace contexts.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Aims of the Component}\label{aims-of-the-component}
+
+The R component aims to develop \textbf{foundational skills in R} that
+underpin data analysis, statistics and data science.
+
+Specifically, the component aims to: 1) Build confidence in using R and
+RStudio 2) Develop good habits for writing clear, reproducible code 3)
+Introduce core data workflows used in statistics and research 4) Prepare
+you for later statistics modules in Years 1 and 2 5) Develop digital and
+data literacy skills valued in the workplace
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Learning Objectives}\label{learning-objectives}
+
+By the end of this component, you should be able to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Use \textbf{R and RStudio} confidently, including scripts, projects
+  and packages\\
+\item
+  Understand and work with \textbf{data types, objects and data frames}
+  in R\\
+\item
+  Apply a \textbf{tidy data workflow} to clean, transform and reshape
+  data\\
+\item
+  Create and label \textbf{new and recoded variables}\\
+\item
+  \textbf{Summarise and visualise data} effectively using ggplot2\\
+\item
+  Use basic \textbf{programming concepts} (loops and functions) to
+  automate tasks\\
+\item
+  Write \textbf{clear, reproducible code} suitable for academic and
+  workplace contexts\\
+\item
+  Use these skills to \textbf{simulate data}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{What Is Data Science?}\label{what-is-data-science}
+
+Data science is the process of turning data into understanding and
+insight.
+
+This typically includes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Managing data\\
+\item
+  Cleaning and preparing data\\
+\item
+  Exploring and visualising data\\
+\item
+  Modelling and interpreting results\\
+\item
+  Communicating findings clearly
+\end{enumerate}
+
+Data science is best thought of as a \textbf{workflow}, rather than a
+single technique.
+
+\subsubsection{The data science
+workflow}\label{the-data-science-workflow}
+
+Throughout this module, we will refer to the \textbf{data science cycle
+(Figure 1.1)}, which describes how data are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Imported: bringing data into R\\
+\item
+  Prepared and transformed: cleaning the data so you can do what you
+  want with it.\\
+\item
+  Explored and visualised: explore patterns and trends\\
+\item
+  Modelled: apply statistical models\\
+\item
+  Communicated: report your results clearly in plots and tables
+\end{enumerate}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{workflow.png}}
+\caption{Figure 1.1 Workflow Diagram from R4DS textbook}
+\end{figure}
+
+We can think of this as a cycle because you don't do the steps only
+once, but you loop back and forth.
+
+The first step in any data analysis is importing your data into R. This
+usually involves loading data from a file into a data frame. Without
+access to your data within R, you cannot perform any analysis. Once your
+data is imported, it's important to tidy it. Tidy data has a consistent
+structure where each column represents a variable and each row
+represents an observation and each cell represents a value (Figure 1.2).
+This organization makes it easier to work with the data, allowing you to
+focus on analysis rather than data cleanup.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{tidy-1.png}}
+\caption{Figure 1.2 Variables, observations and values from R4DS
+textbook}
+\end{figure}
+
+After tidying, the next step is often transforming your data.
+Transformations can include filtering for specific observations (e.g.,
+data from a particular participant or year), creating new variables from
+existing ones (e.g., calculating speed from distance and time), or
+computing summary statistics (e.g., counts, averages). The process of
+tidying and transforming data is commonly called data wrangling, because
+getting data into a usable form can be challenging.
+
+With clean and well-structured data, you can begin generating insights
+through visualisation and modelling. These approaches complement each
+other:
+
+\begin{itemize}
+\item
+  Visualisation is a human-centred activity. Well-designed
+  visualisations can reveal unexpected patterns, suggest new questions
+  or indicate that you may need additional data. While visualisations
+  are invaluable for understanding, they rely on human interpretation
+  and don't scale easily to large datasets.
+\item
+  Modelling provides a computational approach. Once your questions are
+  clearly defined, models can answer them efficiently and at scale.
+  However, models operate under assumptions and cannot challenge those
+  assumptions on their own. They are powerful, but inherently limited in
+  their ability to surprise.
+\end{itemize}
+
+Finally, communication is essential. The insights you derive from
+analysis - whether through visualisations, models or summaries --- are
+only useful if you can clearly explain them to others.
+
+Throughout the process, programming supports every step. While you don't
+need to be a programming expert, stronger programming skills allow you
+to automate tasks, work more efficiently and tackle new problems more
+effectively. These tools cover most of what you'll need in a data
+science project/
+
+This R component focuses primarily on the \textbf{foundational stages of
+this cycle: importing, tidying and visualising data}. These are the
+skills that everything else depends on. Data modelling and communication
+will be focused on in other components and modules.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{What Is R?}\label{what-is-r}
+
+\textbf{R} is a programming language designed specifically for
+\textbf{data analysis, statistics and graphics}.\\
+It was first developed in 1996 and is now widely used in academia,
+research and industry.
+
+R is: - A \textbf{command-driven} language - Highly flexible and
+extensible - Widely used for statistical analysis and data visualisation
+
+You may have encountered other statistical software such as SPSS, Stata,
+or MATLAB. R differs from these in that it is: - Script-based rather
+than menu-driven (you write things rather than click things) - Highly
+customisable - Open source and free to use
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{What Is RStudio?}\label{what-is-rstudio}
+
+RStudio is the software environment we will use to work with R.
+
+You can think of: - R as the engine which does the work\\
+- RStudio as the dashboard which makes it easy to do the work
+
+RStudio provides: - A script editor - A console for running code - Tools
+for viewing data, plots and files - Integrated help and documentation
+
+Once we have installed RStudio we no longer need to directly access R!
+
+\subsubsection{Why we use R \& RStudio}\label{why-we-use-r-rstudio}
+
+R \& RStudio is widely used because: - It is \textbf{free} and open
+source - There is a large and active \textbf{R community} - Thousands of
+\textbf{packages} extend R's functionality - Solutions to common
+problems are easy to find online - It produces \textbf{high-quality,
+publication-ready graphics}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Challenges of Learning R}\label{challenges-of-learning-r}
+
+Learning R can feel challenging at first, especially if you do not have
+a programming background.
+
+Common difficulties include: - A steep initial learning curve - Small
+errors in code causing unexpected problems (e.g.~a missing closing
+bracket or misplaced comma can be frustrating) - Not knowing how to
+phrase questions when searching for help
+
+This is normal.
+
+\begin{quote}
+\textbf{A useful rule of thumb:}\\
+Knowing what to search for is a large part of working effectively in R.
+AI tools make this a lot easier!
+\end{quote}
+
+Over time, you will build familiarity with common patterns and
+solutions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Installing R and RStudio}\label{installing-r-and-rstudio}
+
+Before you can start using R, you need to install \textbf{both R and
+RStudio}.
+
+\subsubsection{Installing R}\label{installing-r}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to: \url{https://cran.r-project.org}\\
+\item
+  Select your operating system (Windows, macOS, or Linux)\\
+\item
+  Download and install the \textbf{latest version} of R
+\end{enumerate}
+
+\begin{quote}
+Always install R \textbf{before} installing RStudio.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Installing RStudio}\label{installing-rstudio}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to: \url{https://www.rstudio.com/products/rstudio/download/}\\
+\item
+  Download \textbf{RStudio Desktop (free version)}\\
+\item
+  Install the latest version for your operating system
+\end{enumerate}
+
+Once installed, you will \textbf{open RStudio}, not R itself.
+
+Opening RStudio automatically starts R in the background.
+
+Finally You will need to download Rtools from Cran:
+\url{https://cran.r-project.org/bin/windows/Rtools/}. Make sure this is
+installed before moving on.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{First Steps in RStudio}\label{first-steps-in-rstudio}
+
+When you open RStudio for the first time, you will see several
+\textbf{panes} (also called panels). Each has a different purpose to
+help you work efficiently in R.
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{console} (where code runs) on the left
+\item
+  The \textbf{environment} (where objects are stored) on the top right
+\item
+  Panels for plots, files, and help on the bottom right
+\end{itemize}
+
+\subsubsection{Console}\label{console}
+
+The \textbf{console} is where you \textbf{type and run R commands
+directly}. We will play around with this at the end of the session. The
+console executes your commands immediately and shows the results.
+
+\subsubsection{Envrionment and history}\label{envrionment-and-history}
+
+The Environment tab shows all the objects you have loaded into R or
+created (variables, data frames, lists, etc). The History tab keeps a
+record of all the commands you have run in the console. You can click on
+it and see what you have just done, and re-run it.
+
+\subsubsection{Files, plots, packages, helps and
+viewer}\label{files-plots-packages-helps-and-viewer}
+
+This is were you can view lots of useful pieces of information and
+access your files:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Files: Lets you browse files in your project folder. You can import
+  data from here.
+\item
+  Plots: Displays graphs and visualisations you create. This pops up
+  automatically when you make a plot.
+\item
+  Packages: Displays which R packages are installed and loaded. What you
+  can use to install more packages (we will get to this)
+\item
+  Help: Shows documentation for functions you search.
+\item
+  Viewer: Used for HTML outputs and interactive visualisations.
+\end{enumerate}
+
+These tabs help you navigate your project, visualize results and find
+help quickly. We will come to each of these sections in turn.
+
+First, there is a final section of RStudio which is only viable when you
+open up a R Script.
+
+\subsubsection{R scripts}\label{r-scripts}
+
+An R script is a file where you can write, save and edit multiple lines
+of R code. Like a word document for R code! Scripts have the file
+extension .R and are saved in a folder on your computer.
+
+You can either open a blank script: - Go to File (top left piece of
+paper with a green plus) - New File - R Script
+
+This creates a script where you can write and save your code.
+
+OR you can load a pre-made R script which you or someone else have made
+to run. You can download the pre-made R Script for Week 1 session here:
+
+\href{https://brightspace.brunel.ac.uk/d2l/le/lessons/67180/topics/2028425}{Download
+the R Script}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Basic R Expressions}\label{basic-r-expressions}
+
+You can: - Type directly into the \textbf{console}, or\\
+- Write code in a \textbf{script}, which can be \textbf{saved, shared
+and reproduced}.
+
+\begin{quote}
+💡 Tip: If you write directly in the console, your work is \textbf{not
+saved} when RStudio closes.
+\end{quote}
+
+So while we will show you how to write script directly into the console
+today, in future we will be working with scripts.
+
+\subsubsection{Writing in the console}\label{writing-in-the-console}
+
+In R, \texttt{\textless{}-} is the \textbf{assignment operator} (not
+\texttt{=}).\\
+- Example: \texttt{x\ \textless{}-\ 500} tells R ``x equals 500.''\\
+- Whenever you type \texttt{x}, R will read it as 500.
+
+\textbf{Steps:} 1) In the console (after the \texttt{\textgreater{}}),
+type:\\
+2) ``x \textless- 500'' 3) press enter 4) write x in the next line 5)
+press enter
+
+it will look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{500} 
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 500
+\end{verbatim}
+
+\begin{quote}
+\textbf{Question}: when you select ``x'' what is the output?
+\end{quote}
+
+\begin{quote}
+\textbf{Activity}: practice with different numbers and letters
+\end{quote}
+
+In the top right corner of the console you will see a \textbf{brush}
+icon. If you click on it, it clears your console environment. Do this
+now.
+
+You now have a blank screen so have lost your work. If you go to the
+history tab now you can see your previous code, and doubling clicking it
+will bring it back to the Console for you to re-run!
+
+But because you cannot save your work in the console we recommend you
+always write code in an R script.
+
+\subsubsection{Writing in a script}\label{writing-in-a-script}
+
+Lines starting with \texttt{\#} are \textbf{comments}. These are notes
+you leave for yourself or others to help understand what it is you have
+done
+
+\begin{itemize}
+\tightlist
+\item
+  R \textbf{ignores them}, so they are not run.\\
+\item
+  They can say anything you like
+\item
+  They are essential - you will thank yourself later for a well
+  commented script!
+\end{itemize}
+
+Below is what working in a script looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \CommentTok{\#To run the code below just select the lines and press \textquotesingle{}run\textquotesingle{} above (or control/command + enter). }
+\CommentTok{\# You can run line by line, or select it all at once.}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{10} \CommentTok{\# telling R that x now equals 10  (this FYI is an example of a comment on code {-} the right of the \# is ignored)}
+\FunctionTok{print}\NormalTok{ (x) }\CommentTok{\# printing this in the console}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# so this has done the same as above, but now your work is saved here. }
+
+\NormalTok{y }\OtherTok{\textless{}{-}} \DecValTok{10} \SpecialCharTok{+} \DecValTok{20} \CommentTok{\# telling R that y now equals 10 + 20}
+\FunctionTok{print}\NormalTok{ (y)  }\CommentTok{\# printing this in the console {-} you can run both these lines at once by selecting both. }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 30
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{\textless{}{-}} \StringTok{"hello"} \CommentTok{\# telling R that z now equals "hello"}
+\FunctionTok{print}\NormalTok{(z) }\CommentTok{\# printing this in the console}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hello"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# you can also get R to print by highlighting the text and press enter/run (called auto{-}printing) which is often easier to do!}
+
+\NormalTok{a }\OtherTok{\textless{}{-}} \StringTok{"hello"}
+\NormalTok{b}\OtherTok{\textless{}{-}} \StringTok{"world"}
+\NormalTok{a }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hello"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b   }\CommentTok{\# run all four lines at once }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "world"
+\end{verbatim}
+
+\section{Workflow in R: Week 2}\label{workflow-in-r-week-2}
+
+\subsection{Files, folders, and
+projects}\label{files-folders-and-projects}
+
+\subsection{Working directories}\label{working-directories}
+
+\subsection{R scripts and packages}\label{r-scripts-and-packages}
+
+\section{Data in R: Week 3}\label{data-in-r-week-3}
+
+\subsection{Data types and objects}\label{data-types-and-objects}
+
+\subsection{Vectors and data frames}\label{vectors-and-data-frames}
+
+\subsection{Functions in R}\label{functions-in-r}
+
+\section{Data Manipulation in R: Week
+4}\label{data-manipulation-in-r-week-4}
+
+\subsection{The tidyverse}\label{the-tidyverse}
+
+\subsection{Recoding and transforming
+variables}\label{recoding-and-transforming-variables}
+
+\subsection{Missing data (NAs)}\label{missing-data-nas}
+
+\subsection{Wide and long data}\label{wide-and-long-data}
+
+\section{Data Visualisation in R: Week
+5}\label{data-visualisation-in-r-week-5}
+
+\subsection{Summarising data}\label{summarising-data}
+
+\subsection{Introduction to ggplot2}\label{introduction-to-ggplot2}
+
+\subsection{Interpreting plots}\label{interpreting-plots}
+
+\section{Conditional Programming: Week
+6}\label{conditional-programming-week-6}
+
+\subsection{Logical values}\label{logical-values}
+
+\subsection{if and else statements}\label{if-and-else-statements}
+
+\section{Pipes and Loops: Week 7}\label{pipes-and-loops-week-7}
+
+\subsection{Pipes (\%\textgreater\%)}\label{pipes}
+
+\subsection{for loops}\label{for-loops}
+
+\subsection{Repeating operations}\label{repeating-operations}
+
+\section{Writing Functions from scratch: Week
+8}\label{writing-functions-from-scratch-week-8}
+
+\subsection{Why write functions?}\label{why-write-functions}
+
+\subsection{Function structure}\label{function-structure}
+
+\subsection{Writing your first
+function}\label{writing-your-first-function}
+
+\section{Simulating Data: Week 9}\label{simulating-data-week-9}
+
+\subsection{Why simulate data?}\label{why-simulate-data}
+
+\subsection{Generating random data}\label{generating-random-data}
+
+\subsection{A simple simulation
+example}\label{a-simple-simulation-example}
+
+\end{document}

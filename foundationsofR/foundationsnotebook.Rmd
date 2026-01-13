@@ -115,7 +115,7 @@ Data science is best thought of as a **workflow**, rather than a single techniqu
 
 ### The data science workflow
 
-Throughout this module, we will refer to the **data science cycle**, which describes how data are:
+Throughout this module, we will refer to the **data science cycle (Figure 1.1)**, which describes how data are:
 
   1) Imported: bringing data into R   
   2) Prepared and transformed: cleaning the data so you can do what you want with it.   
@@ -123,12 +123,30 @@ Throughout this module, we will refer to the **data science cycle**, which descr
   4) Modelled: apply statistical models   
   4) Communicated: report your results clearly in plots and tables   
 
-![Workflow Diagram from R4DS textbook](workflow.png)
+![Figure 1.1 Workflow Diagram from R4DS textbook](workflow.png)
 
 We can think of this as a cycle because you don't do the steps only once, but you loop back and forth. 
 
-This R component focuses primarily on the **foundational stages of this cycle: importing, tidying anf visualising data**. These are the skills that everything else depends on.
-Data modelling and communication will be focused on in other compoments and modules. 
+The first step in any data analysis is importing your data into R. This usually involves loading data from a file into a data frame. Without access to your data within R, you cannot perform any analysis.
+Once your data is imported, it’s important to tidy it. Tidy data has a consistent structure where each column represents a variable and each row represents an observation and each cell represents a value (Figure 1.2). This organization makes it easier to work with the data, allowing you to focus on analysis rather than data cleanup.
+
+![Figure 1.2 Variables, observations and values from R4DS textbook](tidy-1.png)
+
+After tidying, the next step is often transforming your data. Transformations can include filtering for specific observations (e.g., data from a particular participant or year), creating new variables from existing ones (e.g., calculating speed from distance and time), or computing summary statistics (e.g., counts, averages). The process of tidying and transforming data is commonly called data wrangling, because getting data into a usable form can be challenging.
+
+With clean and well-structured data, you can begin generating insights through visualisation and modelling. These approaches complement each other:
+
+  - Visualisation is a human-centred activity. Well-designed visualisations can reveal unexpected patterns, suggest new questions or indicate that you may need additional data. While visualisations are invaluable for understanding, they rely on human interpretation and don’t scale easily to large datasets.
+
+  - Modelling provides a computational approach. Once your questions are clearly defined, models can answer them efficiently and at scale. However, models operate under assumptions and cannot challenge those assumptions on their own. They are powerful, but inherently limited in their ability to surprise. 
+  
+Finally, communication is essential. The insights you derive from analysis - whether through visualisations, models or summaries — are only useful if you can clearly explain them to others.
+
+Throughout the process, programming supports every step. While you don’t need to be a programming expert, stronger programming skills allow you to automate tasks, work more efficiently and tackle new problems more effectively.
+These tools cover most of what you’ll need in a data science project/ 
+
+This R component focuses primarily on the **foundational stages of this cycle: importing, tidying and visualising data**. These are the skills that everything else depends on.
+Data modelling and communication will be focused on in other components and modules. 
 
 ---
 
@@ -138,14 +156,14 @@ Data modelling and communication will be focused on in other compoments and modu
 It was first developed in 1996 and is now widely used in academia, research and industry.
 
 R is:
-- A **command-driven** language
-- Highly flexible and extensible
-- Widely used for statistical analysis and data visualisation
+  - A **command-driven** language
+  - Highly flexible and extensible
+  - Widely used for statistical analysis and data visualisation
 
 You may have encountered other statistical software such as SPSS, Stata, or MATLAB. R differs from these in that it is:
-- Script-based rather than menu-driven (you write things rather than click things)
-- Highly customisable
-- Open source and free to use
+  - Script-based rather than menu-driven (you write things rather than click things)
+  - Highly customisable
+  - Open source and free to use
 
 ---
 
@@ -154,25 +172,28 @@ You may have encountered other statistical software such as SPSS, Stata, or MATL
 RStudio is the software environment we will use to work with R.
 
 You can think of:
-- R as the engine which does the work   
-- RStudio as the dashboard which makes it easy to do the work   
+  - R as the engine which does the work   
+  - RStudio as the dashboard which makes it easy to do the work   
 
 RStudio provides:
-- A script editor
-- A console for running code
-- Tools for viewing data, plots and files
-- Integrated help and documentation
+  - A script editor
+  - A console for running code
+  - Tools for viewing data, plots and files
+  - Integrated help and documentation
 
 Once we have installed RStudio we no longer need to directly access R! 
 
 ### Why we use R & RStudio
 
-RStudio is widely used because:
-- It is **free** and open source
-- There is a large and active **R community**
-- Thousands of **packages** extend R’s functionality
-- Solutions to common problems are easy to find online
-- It produces **high-quality, publication-ready graphics**
+R & RStudio is widely used because:
+  - Faster & more accurate than hand calculations: Computers handle repetitive statistical tasks easily. Doing a few calculations by hand helps you understand concepts, but mostly it’s about intuition.
+  - Better than spreadsheets: Excel and similar tools feel familiar but are limited for serious analysis. R is far more flexible and powerful.
+  - Free & open source: No expensive licenses, no student-version traps—R is professional-level software at no cost.
+  - Highly extensible: Thousands of additional packages are freely available, letting you use cutting-edge methods and advanced techniques as you grow.
+  - Learn programming along the way: Using R teaches programming skills, which are essential for modern research, online experiments, automated data collection, AI, and computational methods.
+  - Widely used in research: Learning R gives you access to standard tools in statistics and psychology, putting you closer to advanced, real-world methods.
+
+Bottom line: R can be challenging at first, but its power, flexibility, and relevance make it the best choice for serious data analysis.
 
 ---
 
@@ -181,9 +202,9 @@ RStudio is widely used because:
 Learning R can feel challenging at first, especially if you do not have a programming background.
 
 Common difficulties include:
-- A steep initial learning curve
-- Small errors in code causing unexpected problems (e.g. a missing closing bracket or misplaced comma can be frustrating)
-- Not knowing how to phrase questions when searching for help
+  - A steep initial learning curve
+  - Small errors in code causing unexpected problems (e.g. a missing closing bracket or misplaced comma can be frustrating)
+  - Not knowing how to phrase questions when searching for help
 
 This is normal.
 
@@ -237,7 +258,7 @@ The **console** is where you **type and run R commands directly**.  We will play
 The console executes your commands immediately and shows the results.
 
 ### Envrionment and history 
-The Environment tab shows all the objects you have loaded into R or created (variables, data frames, lists, etc.).
+The Environment tab shows all the objects you have loaded into R or created (variables, data frames, lists, etc).
 The History tab keeps a record of all the commands you have run in the console. You can click on it and see what you have just done, and re-run it. 
 
 ### Files, plots, packages, helps and viewer 
@@ -260,74 +281,197 @@ An R script is a file where you can write, save and edit multiple lines of R cod
 Scripts have the file extension .R and are saved in a folder on your computer. 
 
 You can either open a blank script: 
-- Go to **File (top left piece of paper with a green plus) → New File → R Script**
+  - Go to File (top left piece of paper with a green plus) 
+  - New File 
+  - R Script
 
 This creates a script where you can write and save your code.
 
-OR you can load a pre-made R script which you or someone else have made to run. 
-
-You can download the pre-made R Script for Week 1 session here:  
+OR you can load a pre-made R script which you or someone else have made to run. You can download the pre-made R Script for Week 1 session here:  
 
 [Download the R Script](https://brightspace.brunel.ac.uk/d2l/le/lessons/67180/topics/2028425)
 
 
 ---
 
-## Basic R Expressions
+## Basic R Expressions 
 
-R uses the **assignment operator** `<-` to store values.
+You can:
+  - Type directly into the **console**, or  
+  - Write code in a **script**, which can be **saved, shared and reproduced**.  
 
-Example:
+> 💡 Tip: If you write directly in the console, your work is **not saved** when RStudio closes. 
+
+So while we will show you how to write script directly into the console today, in future we will be working with scripts. 
+
+### Writing in the console
+
+In R, `<-` is the **assignment operator** (not `=`).  
+  - Example: `x <- 500` tells R “x equals 500.”  
+  - Whenever you type `x`, R will read it as 500.  
+
+**Steps:**
+  1) In the console (after the `>`), type:  
+  2) "x <- 500" 
+  3) press enter 
+  4) write x in the next line 
+  5) press enter 
+
+it will look like this: 
 
 ```{r}
-x <- 10
+x <- 500 
 x
 
 ```
 
-# Workflow in R
+> **Question**: when you select "x" what is the output? 
+
+> **Activity**: practice with different numbers and letters
+
+In the top right corner of the console you will see a **brush** icon. If you click on it, it clears your console environment. Do this now. 
+
+You now have a blank screen so have lost your work. If you go to the history tab now you can see your previous code, and doubling clicking it will bring it back to the Console for you to re-run! 
+
+But because you cannot save your work in the console we recommend you always write code in an R script. 
+
+### Writing in a script 
+
+Lines starting with `#` are **comments**.  These are notes you leave for yourself or others to help understand what it is you have done
+
+  - R **ignores them**, so they are not run.  
+  - They can say anything you like
+  - They are essential - you will thank yourself later for a well commented script! 
+  
+Below is what working in a script looks like.  
+
+```{r}
+ #To run the code below just select the lines and press 'run' above (or control/command + enter). 
+# You can run line by line, or select it all at once.
+
+x <- 10 # telling R that x now equals 10  (this FYI is an example of a comment on code - the right of the # is ignored)
+print (x) # printing this in the console
+
+# so this has done the same as above, but now your work is saved here. 
+
+y <- 10 + 20 # telling R that y now equals 10 + 20
+print (y)  # printing this in the console - you can run both these lines at once by selecting both. 
+
+z <- "hello" # telling R that z now equals "hello"
+print(z) # printing this in the console
+
+# you can also get R to print by highlighting the text and press enter/run (called auto-printing) which is often easier to do!
+
+a <- "hello"
+b<- "world"
+a 
+b   # run all four lines at once 
+```
+
+## Working with R: Key things to know
+
+Some final points about R’s behaviour, errors, spacing and “unfinished commands”
+
+### R is literal
+    - R does exactly what you tell it. It has no intuition, no autocorrect and no ability to guess your intent.
+    - Typos matter. For example:
+  
+```{r}
+10 = 20   # gives you an error 
+10 - 20   # produces -10, but may not be what you meant
+
+```
+    - Even simple mistakes can produce wrong answers without errors. Always double-check what you type.  
+    
+### R ignores some spacing
+    - extra spacing usually doesn't matter 
+  
+```{r}
+10 + 20
+10+20    # both work fine
+citation() # gives you reference for citing R in any dissertation or publication! 
+citation ()   # also works
+
+```
+  
+  - but don't split words or function names 
+  - consistent formatting is good practice 
+```{r}
+citat ion()  # will give you an error
+
+```
+
+### R can comestimes detect incomplete commands
+  - If R thinks a command isn't finished, it waits for more input 
+  
+```{r}
+10+     # R waits for the next number
++ 20    # then executes the addition
+[1] 30 
+
+```
+
+  - This also works works for long commands broken over multiple lines 
+
+```{r}
+citation(
++
++
++ )
+
+```
+
+  - To cancel a command mid-typing, press escape to return to the prompt. 
+  
+### Forgetting parentheses can be confusing
+
+  - Typing just the function name (without ()) prints the function’s definition, which can be intimidating for beginners. Don’t panic. Just remember to include parentheses when calling a function:
+  
+```{r}
+citation   # prints the function code
+citation() # executes the function correctly
+
+```
+
+R is a powerful tool, but it’s precise and literal. Be careful with typos, spacing, and parentheses, and remember that errors are part of learning. With practice, reading and understanding R’s responses becomes easier.
+
+# Workflow in R: Week 2 
 ## Files, folders, and projects
 ## Working directories
 ## R scripts and packages
 
-# Data in R
+# Data in R: Week 3
 ## Data types and objects
 ## Vectors and data frames
 ## Functions in R
 
-#  Data Manipulation in R
+#  Data Manipulation in R: Week 4
 ## The tidyverse
 ## Recoding and transforming variables
 ## Missing data (NAs)
 ## Wide and long data
 
-# Data Visualisation in R
+# Data Visualisation in R: Week 5
 ## Summarising data
 ## Introduction to ggplot2
 ## Interpreting plots
 
-# Conditional Programming
+# Conditional Programming: Week 6 
 ## Logical values
 ## if and else statements
 
-# Pipes and Loops
+# Pipes and Loops: Week 7
 ## Pipes (%>%)
 ## for loops
 ## Repeating operations
 
-# Writing Functions from scratch
+# Writing Functions from scratch: Week 8
 ## Why write functions?
 ## Function structure
 ## Writing your first function
 
-# Simulating Data
+# Simulating Data: Week 9 
 ## Why simulate data?
 ## Generating random data
 ## A simple simulation example
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
