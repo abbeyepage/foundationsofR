@@ -11,6 +11,13 @@ output:
     theme: cosmo
     code_folding: none
     highlight: tango
+  word_document:
+    toc: true
+    toc_depth: '3'
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
   html_document:
     toc: true
     toc_depth: '3'
@@ -20,10 +27,6 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
 ---
 
 ```{css, echo=FALSE}
@@ -143,7 +146,7 @@ With clean and well-structured data, you can begin generating insights through v
 Finally, communication is essential. The insights you derive from analysis - whether through visualisations, models or summaries — are only useful if you can clearly explain them to others.
 
 Throughout the process, programming supports every step. While you don’t need to be a programming expert, stronger programming skills allow you to automate tasks, work more efficiently and tackle new problems more effectively.
-These tools cover most of what you’ll need in a data science project/ 
+These tools cover most of what you’ll need in a data science project. 
 
 This R component focuses primarily on the **foundational stages of this cycle: importing, tidying and visualising data**. These are the skills that everything else depends on.
 Data modelling and communication will be focused on in other components and modules. 
@@ -152,15 +155,17 @@ Data modelling and communication will be focused on in other components and modu
 
 ## What Is R?
 
-**R** is a programming language designed specifically for **data analysis, statistics and graphics**.  
+R is a programming language designed specifically for **data analysis, statistics and graphics**.  
 It was first developed in 1996 and is now widely used in academia, research and industry.
 
 R is:
-  - A **command-driven** language
+
+  - A command-driven language
   - Highly flexible and extensible
   - Widely used for statistical analysis and data visualisation
 
 You may have encountered other statistical software such as SPSS, Stata, or MATLAB. R differs from these in that it is:
+
   - Script-based rather than menu-driven (you write things rather than click things)
   - Highly customisable
   - Open source and free to use
@@ -172,10 +177,12 @@ You may have encountered other statistical software such as SPSS, Stata, or MATL
 RStudio is the software environment we will use to work with R.
 
 You can think of:
+
   - R as the engine which does the work   
   - RStudio as the dashboard which makes it easy to do the work   
 
 RStudio provides:
+
   - A script editor
   - A console for running code
   - Tools for viewing data, plots and files
@@ -186,6 +193,7 @@ Once we have installed RStudio we no longer need to directly access R!
 ### Why we use R & RStudio
 
 R & RStudio is widely used because:
+
   - Faster & more accurate than hand calculations: Computers handle repetitive statistical tasks easily. Doing a few calculations by hand helps you understand concepts, but mostly it’s about intuition.
   - Better than spreadsheets: Excel and similar tools feel familiar but are limited for serious analysis. R is far more flexible and powerful.
   - Free & open source: No expensive licenses, no student-version traps—R is professional-level software at no cost.
@@ -202,6 +210,7 @@ Bottom line: R can be challenging at first, but its power, flexibility, and rele
 Learning R can feel challenging at first, especially if you do not have a programming background.
 
 Common difficulties include:
+
   - A steep initial learning curve
   - Small errors in code causing unexpected problems (e.g. a missing closing bracket or misplaced comma can be frustrating)
   - Not knowing how to phrase questions when searching for help
@@ -297,20 +306,23 @@ OR you can load a pre-made R script which you or someone else have made to run. 
 ## Basic R Expressions 
 
 You can:
+
   - Type directly into the **console**, or  
   - Write code in a **script**, which can be **saved, shared and reproduced**.  
 
-> 💡 Tip: If you write directly in the console, your work is **not saved** when RStudio closes. 
+> Tip: If you write directly in the console, your work is **not saved** when RStudio closes. 
 
 So while we will show you how to write script directly into the console today, in future we will be working with scripts. 
 
 ### Writing in the console
 
 In R, `<-` is the **assignment operator** (not `=`).  
+
   - Example: `x <- 500` tells R “x equals 500.”  
   - Whenever you type `x`, R will read it as 500.  
 
 **Steps:**
+
   1) In the console (after the `>`), type:  
   2) "x <- 500" 
   3) press enter 
@@ -346,21 +358,24 @@ Lines starting with `#` are **comments**.  These are notes you leave for yoursel
 Below is what working in a script looks like.  
 
 ```{r}
- #To run the code below just select the lines and press 'run' above (or control/command + enter). 
-# You can run line by line, or select it all at once.
+# THIS IS A COMMENT! 
 
-x <- 10 # telling R that x now equals 10  (this FYI is an example of a comment on code - the right of the # is ignored)
+# To run the code below just select the lines and press 'run' above 
+#(or control/command + enter). You can run line by line, or select it all at once.
+
+x <- 10 # telling R that x now equals 10  
 print (x) # printing this in the console
 
 # so this has done the same as above, but now your work is saved here. 
 
 y <- 10 + 20 # telling R that y now equals 10 + 20
-print (y)  # printing this in the console - you can run both these lines at once by selecting both. 
+print (y)  # printing this in the console 
 
 z <- "hello" # telling R that z now equals "hello"
 print(z) # printing this in the console
 
-# you can also get R to print by highlighting the text and press enter/run (called auto-printing) which is often easier to do!
+# you can also get R to print by highlighting the text and press 
+# enter/run (called auto-printing) which is often easier to do!
 
 a <- "hello"
 b<- "world"
@@ -373,72 +388,450 @@ b   # run all four lines at once
 Some final points about R’s behaviour, errors, spacing and “unfinished commands”
 
 ### R is literal
-    - R does exactly what you tell it. It has no intuition, no autocorrect and no ability to guess your intent.
-    - Typos matter. For example:
+R does exactly what you tell it. It has no intuition, no autocorrect and no ability to guess your intent.
+Typos matter. For example 10 = 20 gives you an error 
   
 ```{r}
-10 = 20   # gives you an error 
 10 - 20   # produces -10, but may not be what you meant
 
 ```
-    - Even simple mistakes can produce wrong answers without errors. Always double-check what you type.  
+Even simple mistakes can produce wrong answers without errors. Always double-check what you type.  
     
 ### R ignores some spacing
-    - extra spacing usually doesn't matter 
+Extra spacing usually doesn't matter 
   
 ```{r}
 10 + 20
 10+20    # both work fine
-citation() # gives you reference for citing R in any dissertation or publication! 
-citation ()   # also works
 
 ```
   
-  - but don't split words or function names 
+  - but don't split words or function names (e.g. you can't say citat ion())
   - consistent formatting is good practice 
-```{r}
-citat ion()  # will give you an error
-
-```
 
 ### R can comestimes detect incomplete commands
   - If R thinks a command isn't finished, it waits for more input 
-  
-```{r}
-10+     # R waits for the next number
-+ 20    # then executes the addition
-[1] 30 
-
-```
-
   - This also works works for long commands broken over multiple lines 
-
-```{r}
-citation(
-+
-+
-+ )
-
-```
-
   - To cancel a command mid-typing, press escape to return to the prompt. 
   
-### Forgetting parentheses can be confusing
-
-  - Typing just the function name (without ()) prints the function’s definition, which can be intimidating for beginners. Don’t panic. Just remember to include parentheses when calling a function:
-  
-```{r}
-citation   # prints the function code
-citation() # executes the function correctly
-
-```
-
 R is a powerful tool, but it’s precise and literal. Be careful with typos, spacing, and parentheses, and remember that errors are part of learning. With practice, reading and understanding R’s responses becomes easier.
 
 # Workflow in R: Week 2 
-## Files, folders, and projects
-## Working directories
-## R scripts and packages
+
+This week focuses on good workflow habits when working with R. These skills may feel minor now, but they are essential for reproducible analysis, collaboration and avoiding frustration later in the course.
+
+## Organising folders on your computer
+
+Before opening RStudio, it is important to think about how your files are organised on your computer. Much confusion and many errors in data analysis come from poorly organised files rather than problems with the code itself.
+
+Some guidance on best practice: 
+
+  - Create a main course folder (e.g. PY1617) and keep all related work inside it
+  - Inside this folder, create sub-folders for different types of files, such as:
+    - `data` – raw and cleaned data files
+    - `scripts` – R scripts you write
+    - `outputs` – plots, tables or processed data created by R
+  - Use clear, informative names that describe what the file contains
+  - Avoid spaces and special characters; use hyphens - or underscores _
+
+Good organisation makes it easier to:
+
+  - Find files quickly
+  - Understand your work weeks or months later
+  - Share work with others
+  - Avoid breaking code that relies on file paths
+
+> **Exercise 2.1** 
+Create a folder structure for this module on your computer. 
+
+> Call the first folder "PY1719", with sub-folders for "analysis", "methods" and "skills". In the **skills folder** include the following folders: 
+  1)	Data
+  2)	Scripts 
+  3)	Outputs 
+
+
+## Object based computing
+
+R is an **object-based programming language**. This means that most of what you do in R involves **creating objects** and then **doing things to those objects**. It is useful to remember that everything in R is an object.
+
+An **object** is simply a way of storing information so that R can use it later.
+
+### What is an object?
+
+An object can store:
+
+  - A single number  
+  - Text (a character string, e.g. "Hello")  
+  - A collection of values  (e.g. 1, 5, 7, 3)
+  - An entire dataset  (rows and columns)
+
+For example, last week we learnt how to store a single number within the 'x' object
+
+```{r}
+x <- 10
+```
+
+Here:
+
+  - x is the object name
+  - <- assigns a value
+  - 10 is the value stored inside the object
+
+Once an object is created, you can reuse it:
+
+```{r}
+x + 5
+```
+
+R remembers what x refers to and uses its stored value to add 5 to 10 = 15 
+
+### Why use objects?
+
+Objects allow you to:
+
+  - Avoid repeating the same values
+  - Work with complex data (such as datasets)
+  - Write clearer, more readable code
+  - Build analyses step by step
+
+For example, instead of repeatedly typing a dataset name or value, you store it once and refer to it when needed.
+
+### Object Names
+
+Object names should be:
+
+  - Short but meaningful
+  - Written in lowercase (as a rule you don't want to be messing around with caps in your code)
+  - Use underscores rather than spaces
+
+Examples of good names:
+
+  - `age`
+  - `survey_data`
+  - `mean_score`
+
+Examples to avoid:
+
+  - `x1` (often the default at importing, so quickly confusing)
+  - `my stuff` (too genric)
+  - `FINALdata` (you will end up with finalfinalFINALdata which is confusing)
+
+Good naming makes your code easier to understand and reduces mistakes.
+
+### Reusing objects 
+
+Once an object exists, it can be:
+  
+  - Used in calculations
+  - Passed into functions
+  - Combined with other objects
+
+```{r}
+y <- x * 2 # Here, y is created multiplying the value stored in x by 2
+```
+
+> Object-based thinking is central to working effectively in R: create objects, then operate on them.
+
+### Activity: Working with objects 
+
+This activity will help you practise creating and using **objects** in R.  
+
+Step 1: make a new script in R 
+Step 2: create the following objects by copying this code into your script
+
+```{r}
+age <- 20
+years <- 5
+name <- "Alex"
+score <- 68
+
+```
+
+> Question 2.1: Check that these objects appear in the Environment pane. Can you see the correct values attributed to the objects? 
+
+Step 3: Create a new object using the objects you already mad 
+
+```{r}
+age_next_year <- age + 1
+
+age_next_year
+
+```
+
+> Question 2.2: What is Alex's age after five years? 
+
+Step 4: R allows you to overwrite objects, so update the age variable 
+
+```{r}
+age <- 25
+
+age
+```
+
+> Question 2.3: what happened to the original value of age? 
+
+**Be careful: once an object is overwritten, the old value is lost unless you saved it elsewhere.** 
+
+Step 5: make a simple single observation dataset to add to your environment 
+
+Firstly, check that all your objects already made appear in your environment pane (name, age, years and score) 
+Now combine these objects into a dataset with one row:
+
+```{r}
+student <- data.frame(
+  name = name,
+  age = age,
+  score = score
+)
+
+# type ‘student’ to view 
+Student 
+
+```
+
+You have created a dataset with one observation! 
+
+> **Reflection**
+1) Which objects currently exist in your Environment?
+2) What happens if you restart RStudio and type age again?
+3) Why does this show the importance of scripts?
+
+
+## Understanding the R environment 
+
+When you work in R, everything you create or load during a session lives in the R environment. The environment is R’s internal workspace, where objects such as data files, variables are stored and easy to access. This becomes very useful the more complicated your analysis. 
+
+### What lives in the environment?
+
+- Data you read in from files (e.g. CSVs)
+- Variables you create (numbers, text, data frames)
+- Objects created by running code in scripts or the console (like we just did) 
+
+For example:
+
+```{r}
+x <- 10 
+y <- 100 
+```
+
+
+Both x and y are now alongside your ‘student’ data and other objects now exist in the environment and can be used by other lines of code.
+
+You can check what objects are in your environment with the `objects()` function 
+
+
+```{r}
+objects()
+```
+
+
+You can remove objects from your environment as well as adding them. In RStudio, the easiest way to remove variables is using the Environment pane.
+
+  - click the brush at the middle of the envionrment pane 
+  - This removes all the objects in your environment, resetting it. 
+  
+**Deleting variables cannot be undone.** Once a variable is removed, it no longer exists in the environment.
+You can also remove variables using code, which is useful if you want to be explicit in a script.
+
+```{r}
+rm(x, y)
+```
+
+
+### The Environment pane
+
+The Environment pane shows:
+
+  - A list of all current objects
+  - Their names and basic information (e.g. size or type)
+
+This pane helps you:
+
+- Check whether your data has loaded correctly
+- See what objects are available to use
+- Avoid re creating objects unnecessarily
+
+If something is not in the Environment, R cannot use it.
+
+### Sessions and memory
+
+  - The environment only exists while RStudio is open
+  - When you close RStudio, the environment is cleared
+  - This is why saving scripts is essential: scripts allow you to recreate the environment by rerunning code
+  - We can also avoid this by using projects…
+  
+## RStudio projects 
+
+An RStudio Project connects RStudio to a specific folder on your computer. Keeping all the files associated with a given project (input data, R scripts, analytical results and figures) together in one directory is such a and common practice that RStudio has built-in support for this via projects. 
+
+### Why use projects?
+  
+  - Automatically sets the correct working directory
+  - Keeps scripts, data, and outputs together
+  - Makes it easier to return to your work later
+
+### Creating a project for this component 
+
+We are now going to make use of your folder structure you made earlier to save our R project in an easy to find location. 
+
+  1.	Open RStudio
+  2.	File → New Project → Existing Directory
+  3.	Select your skills component folder you made earlier 
+  4.	Call your project ‘foundations’ 
+
+![Figure 2.1 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.](projects.png)
+
+
+**Now, quit RStudio**. Inspect the folder associated with your project — notice the .Rproj file. Double-click that file to re-open the project. Notice you get back to where you left off: it’s the same working directory and command history, and all the files you were working on are still open. 
+
+## Working directory 
+
+Once you have made your project you will have a ‘home’ to save all your code and output. This is called the working directory is the folder R looks in straight when reading or saving files. This is like in your computer when you first go to save a word document it first suggests ‘your documents’ folder. 
+
+Basically, now R will default to save everything, and import everything from your project folder you just made! This is super useful to be easily able to find your work. 
+
+### Checking your working directory
+
+RStudio shows your current working directory at the top of the console:
+
+![Figure 2.2 Image o your working directory location at the top of your console. From R4DS.](workingdir.png)
+
+
+And you can print this out in R code by running `getwd()`
+
+```{r}
+getwd()
+
+```
+
+
+If you want to know the associated list of files and/or sub-directories within your working directory you can use `dir()`
+
+```{r}
+dir() 
+```
+
+### Setting your working directory
+
+In a project, this is done automatically. But if you want to change your working directory into a sub-directory (for instance) you can use `setwd()` 
+
+```{r}
+setwd("~/Documents/Teaching/Brunel/PY1617/Data science/
+      R data sci/git/foundationsofR/outputs") # this is over two lines bc its 
+# two wide if not for the screen - R reads it exactly the same! 
+
+# this means R will save everything directly into your outputs folder. 
+
+# NB this is an example of an absolute file path which will only 
+# work on my computer. you will need to specify this yourself. 
+
+```
+
+## Saving scripts and naming files 
+
+**RStudio automatically saves the contents of the script editor when you quit, and automatically reloads it when you re-open**. Nevertheless, it’s a good idea to avoid `Untitled1`,`Untitled2`, `Untitled3`, and so on and instead save your scripts and to give them informative names.
+
+Script files are those with a `.R` file extension. These aren’t data files at all; rather, they’re used to save a collection of commands that you want R to execute later.
+
+It might be tempting to name your files `code.R` or `myscript.R`, but you should think a bit harder before choosing a name for your file. Three important principles for file naming are as follows:
+
+Good file names should:
+
+  - Be machine readable: avoid spaces, punctuation, and special characters
+  - Be human readable: the name should describe what the file does or contains
+  - Sort in a sensible order: numbering files (e.g. 01-, 02-) helps keep work organised
+
+For example, instead of:
+
+  - `code.R`
+  - `final.R`
+  - `temp.R`
+
+Prefer:
+
+  - `01-load-data.R`
+  - `02-exploratory-analysis.R`
+  - `03-clean-data.R`
+
+Clear file names reduce confusion and help others (and your future self) understand your workflow.
+
+> **Exercise 2.2**: At the moment you should have a unamed script you used for the object activity. Please now give it a sensible name (e.g. objects) when you save it. You can save it by pressing the disk icon in the script 
+pane in the top left. This will automatically open up the interface to your working directory. 
+
+## Reading and writing files using relative paths
+
+Once you are working inside an RStudio Project, you should always use relative paths, not absolute paths.
+
+A relative path is written relative to the project’s working directory. For example:
+`data/diamonds.csv`
+
+This is telling R to access the data file (csv) diamonds in the ‘data’ folder which is saved in your R project folder (set by your working directory).
+
+This works on any computer, as long as the file is inside the project folder. This makes your code portable and easy to share (doesn’t have the long file directory with your user name etc which won’t work on other computers) 
+
+An absolute path points to a specific location on one computer, such as:
+
+  - Windows: C:/Users/...
+  - Mac/Linux: /Users/...
+
+You should avoid absolute paths in scripts because no one else will have the same folder structure. This shows you why its so important to have a good folder structure at the start of any project. 
+
+One final detail:
+
+- Windows uses backslashes (\) in file paths
+- Mac and Linux use forward slashes (/)
+
+R can handle both, but backslashes need special treatment and can cause errors. For this reason, always use forward slashes (/) in R, even on Windows.
+
+### Reading in datasets 
+
+So now we know all this we can import data from our data sub-folder into R easily. Comma separated value (CSV) files are those with a `.csv` file extension. These are just regular old text files, and they can be opened with almost any software. It’s quite typical for people to store data in CSV files, precisely because they’re so simple.
+
+We will be using CSV files in this component as a rule. 
+
+```{r}
+
+mydata <- read.csv("data/my_data.csv") # you are telling r what to call the 
+# dataset (mydata) and you are telling R where to find the data (in the data 
+# folder in your project, called my_data.csv) 
+
+```
+
+We can also ask R for some specifics when we are reading in our data. These specific requests are called 'arguments' in R terminology: 
+
+  - The argument `header` is a logical variable indicating whether variable names are included in the top of each column or not.
+  - The argument `nrows` specifies the maximum number of rows to read in.
+
+```{r}
+
+mydata <- read.csv("data/my_data.csv", header=TRUE, nrows=10)
+
+```
+We inspect the data using the function `head()` which presents the first 6 rows of the dataset.
+
+```{r}
+
+head(mydata)
+
+```
+But you can also look at the data in the script viewer, it pops up as a tab next to your script where you can see the entire dataset just like in excel! 
+
+### Writing data 
+
+'Writing' data refers to when we want to export data from R on to our computer. You could otherwise call it saving, like you would in excel. The standard function in R to export data is `write.csv()`. Let's try this with a new dataset. We will now use one of the built in data-sets that R has, called 'iris'. 
+
+R has a couple of in-bulit learning datasets, so we are just going to save this to your computer. We are going to use the relative path so we're sending it to the outputs folder within your working directory. This just means you know where to find it. 
+
+```{r}
+
+write.csv(iris, "outputs/iris.csv") # here we're saying, find the file called 
+# 'iris' then write it to csv. in the outputs folder within the working 
+# directory. Go check this folder now to confirm. 
+
+```
+
+> **Exercise 2.3**: bring together all your skills now and make a dataset with the following objects
+1) your name, 2) your age, 3) your fav colour and 4) your height. The save this as "mydf.csv" in your outputs folder. Then go to this folder and open it in excel. 
 
 # Data in R: Week 3
 ## Data types and objects
