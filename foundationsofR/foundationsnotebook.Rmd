@@ -3,21 +3,13 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
-  word_document:
-    toc: true
-    toc_depth: '3'
   pdf_document:
     toc: true
     toc_depth: 3
     number_sections: true
+  word_document:
+    toc: true
+    toc_depth: '3'
   html_document:
     toc: true
     toc_depth: '3'
@@ -27,28 +19,52 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
 ---
 
 ```{css, echo=FALSE}
+/* Increase overall body font size */
+body {
+  font-size: 18px;   /* default ~16px → +2 sizes */
+  line-height: 1.6;
+}
+
+/* Headings */
 h1 {
-  color: #F28E7B;  
+  color: #F28E7B;
   font-weight: 700;
+  font-size: 2.4em;
 }
 
 h2 {
-  color: #88B99B;  
+  color: #88B99B;
   font-weight: 600;
+  font-size: 2.0em;
 }
 
 h3 {
-  color: #D18C74;  
+  color: #D18C74;
   font-weight: 500;
+  font-size: 1.6em;
 }
 
 h1, h2, h3 {
   margin-top: 1.2em;
   margin-bottom: 0.6em;
 }
+
+/* Optional: make code slightly larger for students */
+pre, code {
+  font-size: 0.95em;
+}
+
 ```
 
 # Introduction to R: Week 1
@@ -126,14 +142,14 @@ Throughout this module, we will refer to the **data science cycle (Figure 1.1)**
   4) Modelled: apply statistical models   
   4) Communicated: report your results clearly in plots and tables   
 
-![Figure 1.1 Workflow Diagram from R4DS textbook](workflow.png)
+![*Figure 1.1 Workflow Diagram from R4DS textbook*](workflow.png)
 
 We can think of this as a cycle because you don't do the steps only once, but you loop back and forth. 
 
 The first step in any data analysis is importing your data into R. This usually involves loading data from a file into a data frame. Without access to your data within R, you cannot perform any analysis.
 Once your data is imported, it’s important to tidy it. Tidy data has a consistent structure where each column represents a variable and each row represents an observation and each cell represents a value (Figure 1.2). This organization makes it easier to work with the data, allowing you to focus on analysis rather than data cleanup.
 
-![Figure 1.2 Variables, observations and values from R4DS textbook](tidy-1.png)
+![*Figure 1.2 Variables, observations and values from R4DS textbook*](tidy-1.png)
 
 After tidying, the next step is often transforming your data. Transformations can include filtering for specific observations (e.g., data from a particular participant or year), creating new variables from existing ones (e.g., calculating speed from distance and time), or computing summary statistics (e.g., counts, averages). The process of tidying and transforming data is commonly called data wrangling, because getting data into a usable form can be challenging.
 
@@ -420,6 +436,8 @@ R is a powerful tool, but it’s precise and literal. Be careful with typos, spa
 
 This week focuses on good workflow habits when working with R. These skills may feel minor now, but they are essential for reproducible analysis, collaboration and avoiding frustration later in the course.
 
+> **Using this notebook**: In the lecture you will workthrough this notebook. You should copy the code segments below into a new R script (instructions given below) to practice and work through the exercises and questions.  
+
 ## Organising folders on your computer
 
 Before opening RStudio, it is important to think about how your files are organised on your computer. Much confusion and many errors in data analysis come from poorly organised files rather than problems with the code itself.
@@ -469,6 +487,8 @@ For example, last week we learnt how to store a single number within the 'x' obj
 
 ```{r}
 x <- 10
+
+x
 ```
 
 Here:
@@ -528,15 +548,17 @@ Once an object exists, it can be:
 
 ```{r}
 y <- x * 2 # Here, y is created multiplying the value stored in x by 2
+y
 ```
 
 > Object-based thinking is central to working effectively in R: create objects, then operate on them.
 
-### Activity: Working with objects 
+### Activity 2.1: Working with objects 
 
 This activity will help you practise creating and using **objects** in R.  
 
-Step 1: make a new script in R 
+Step 1: make a new script in R. Select the paper icon with a green plus on it in the top-left corner and select 'R Script' from the top of the drop-down menu.  
+
 Step 2: create the following objects by copying this code into your script
 
 ```{r}
@@ -547,34 +569,33 @@ score <- 68
 
 ```
 
-> Question 2.1: Check that these objects appear in the Environment pane. Can you see the correct values attributed to the objects? 
+> **Question 2.1**: Check that these objects appear in the Environment pane. Can you see the correct values attributed to the objects? 
 
 Step 3: Create a new object using the objects you already mad 
 
 ```{r}
 age_next_year <- age + 1
 
-age_next_year
 
 ```
 
-> Question 2.2: What is Alex's age after five years? 
+> **Question 2.2**: What is Alex's age after five years? 
 
 Step 4: R allows you to overwrite objects, so update the age variable 
 
 ```{r}
 age <- 25
 
-age
 ```
 
-> Question 2.3: what happened to the original value of age? 
+> **Question 2.3**: what happened to the original value of age? 
 
 **Be careful: once an object is overwritten, the old value is lost unless you saved it elsewhere.** 
 
 Step 5: make a simple single observation dataset to add to your environment 
 
 Firstly, check that all your objects already made appear in your environment pane (name, age, years and score) 
+
 Now combine these objects into a dataset with one row:
 
 ```{r}
@@ -583,9 +604,6 @@ student <- data.frame(
   age = age,
   score = score
 )
-
-# type ‘student’ to view 
-Student 
 
 ```
 
@@ -599,7 +617,7 @@ You have created a dataset with one observation!
 
 ## Understanding the R environment 
 
-When you work in R, everything you create or load during a session lives in the R environment. The environment is R’s internal workspace, where objects such as data files, variables are stored and easy to access. This becomes very useful the more complicated your analysis. 
+When you work in R, everything you create or load during a session lives in the R environment. **The environment is R’s internal workspace, where objects such as data files, variables are stored and easy to access**. This becomes very useful the more complicated your analysis. 
 
 ### What lives in the environment?
 
@@ -635,6 +653,7 @@ You can also remove variables using code, which is useful if you want to be expl
 
 ```{r}
 rm(x, y)
+objects() # re-run the check on objects to confirm they are gone. 
 ```
 
 
@@ -651,7 +670,7 @@ This pane helps you:
 - See what objects are available to use
 - Avoid re creating objects unnecessarily
 
-If something is not in the Environment, R cannot use it.
+*If something is not in the Environment, R cannot use it.*
 
 ### Sessions and memory
 
@@ -670,31 +689,31 @@ An RStudio Project connects RStudio to a specific folder on your computer. Keepi
   - Keeps scripts, data, and outputs together
   - Makes it easier to return to your work later
 
-### Creating a project for this component 
+### Activity 2.2: Creating a project for this component 
 
-We are now going to make use of your folder structure you made earlier to save our R project in an easy to find location. 
+We are now going to make use of your folder structure you made earlier to save our R project in an easy to find location. Please follow these steps: 
 
   1.	Open RStudio
   2.	File → New Project → Existing Directory
   3.	Select your skills component folder you made earlier 
   4.	Call your project ‘foundations’ 
 
-![Figure 2.1 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.](projects.png)
+![*Figure 2.1 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.*](projects.png)
 
 
-**Now, quit RStudio**. Inspect the folder associated with your project — notice the .Rproj file. Double-click that file to re-open the project. Notice you get back to where you left off: it’s the same working directory and command history, and all the files you were working on are still open. 
+**Now, quit RStudio**. Inspect the folder associated with your project — notice the `.Rproj` file. Double-click that file to re-open the project. Notice you get back to where you left off: it’s the same working directory and command history, and all the files you were working on are still open. 
 
 ## Working directory 
 
 Once you have made your project you will have a ‘home’ to save all your code and output. This is called the working directory is the folder R looks in straight when reading or saving files. This is like in your computer when you first go to save a word document it first suggests ‘your documents’ folder. 
 
-Basically, now R will default to save everything, and import everything from your project folder you just made! This is super useful to be easily able to find your work. 
+Basically, now **R will default to save everything, and import everything from your project folder you just made!** This is super useful to be easily able to find your work. 
 
 ### Checking your working directory
 
 RStudio shows your current working directory at the top of the console:
 
-![Figure 2.2 Image o your working directory location at the top of your console. From R4DS.](workingdir.png)
+![*Figure 2.2 Image of your working directory location at the top of your console. From R4DS.*](workingdir.png)
 
 
 And you can print this out in R code by running `getwd()`
@@ -711,21 +730,6 @@ If you want to know the associated list of files and/or sub-directories within y
 dir() 
 ```
 
-### Setting your working directory
-
-In a project, this is done automatically. But if you want to change your working directory into a sub-directory (for instance) you can use `setwd()` 
-
-```{r}
-setwd("~/Documents/Teaching/Brunel/PY1617/Data science/
-      R data sci/git/foundationsofR/outputs") # this is over two lines bc its 
-# two wide if not for the screen - R reads it exactly the same! 
-
-# this means R will save everything directly into your outputs folder. 
-
-# NB this is an example of an absolute file path which will only 
-# work on my computer. you will need to specify this yourself. 
-
-```
 
 ## Saving scripts and naming files 
 
@@ -755,26 +759,25 @@ Prefer:
 
 Clear file names reduce confusion and help others (and your future self) understand your workflow.
 
-> **Exercise 2.2**: At the moment you should have a unamed script you used for the object activity. Please now give it a sensible name (e.g. objects) when you save it. You can save it by pressing the disk icon in the script 
+> **Exercise 2.2**: At the moment you should have a unamed script you have been using for this weeks content. Please now give it a sensible name (e.g. week2) when you save it. You can save it by pressing the disk icon in the script 
 pane in the top left. This will automatically open up the interface to your working directory. 
 
 ## Reading and writing files using relative paths
 
 Once you are working inside an RStudio Project, you should always use relative paths, not absolute paths.
 
-A relative path is written relative to the project’s working directory. For example:
-`data/diamonds.csv`
+*A relative path is written relative to the project’s working directory*. For example: `data/diamonds.csv`
 
-This is telling R to access the data file (csv) diamonds in the ‘data’ folder which is saved in your R project folder (set by your working directory).
+This is telling R to access the data file (.csv) diamonds in the ‘data’ folder which is saved in your R project folder (set by your working directory).
 
-This works on any computer, as long as the file is inside the project folder. This makes your code portable and easy to share (doesn’t have the long file directory with your user name etc which won’t work on other computers) 
+This works on any computer, as long as the file is inside the project folder. This makes your code portable and easy to share (doesn’t have the long file directory with your user name etc. which won’t work on other computers) 
 
 An absolute path points to a specific location on one computer, such as:
 
   - Windows: C:/Users/...
   - Mac/Linux: /Users/...
 
-You should avoid absolute paths in scripts because no one else will have the same folder structure. This shows you why its so important to have a good folder structure at the start of any project. 
+*You should avoid absolute paths in scripts* because no one else will have the same folder structure. This shows you why its so important to have a good folder structure at the start of any project. 
 
 One final detail:
 
@@ -791,47 +794,126 @@ We will be using CSV files in this component as a rule.
 
 ```{r}
 
-mydata <- read.csv("data/my_data.csv") # you are telling r what to call the 
-# dataset (mydata) and you are telling R where to find the data (in the data 
-# folder in your project, called my_data.csv) 
+mydata <- read.csv("data/mydata.csv") 
+
+# you are telling r what to call the  # dataset (mydata) and you are telling R 
+# where to find the data (in the data folder, called my_data.csv) 
 
 ```
 
 We can also ask R for some specifics when we are reading in our data. These specific requests are called 'arguments' in R terminology: 
 
   - The argument `header` is a logical variable indicating whether variable names are included in the top of each column or not.
-  - The argument `nrows` specifies the maximum number of rows to read in.
+
 
 ```{r}
 
-mydata <- read.csv("data/my_data.csv", header=TRUE, nrows=10)
+mydata <- read.csv("data/mydata.csv", header = TRUE)
 
 ```
+
 We inspect the data using the function `head()` which presents the first 6 rows of the dataset.
 
 ```{r}
 
-head(mydata)
+head(mydata) # it's a single variable of height 
+
 
 ```
-But you can also look at the data in the script viewer, it pops up as a tab next to your script where you can see the entire dataset just like in excel! 
 
 ### Writing data 
 
 'Writing' data refers to when we want to export data from R on to our computer. You could otherwise call it saving, like you would in excel. The standard function in R to export data is `write.csv()`. Let's try this with a new dataset. We will now use one of the built in data-sets that R has, called 'iris'. 
 
-R has a couple of in-bulit learning datasets, so we are just going to save this to your computer. We are going to use the relative path so we're sending it to the outputs folder within your working directory. This just means you know where to find it. 
+R has a couple of in-built learning datasets, so we are just going to save this to your computer. We are going to use the relative path so we're sending it to the outputs folder within your working directory. This just means you know where to find it. 
 
 ```{r}
 
-write.csv(iris, "outputs/iris.csv") # here we're saying, find the file called 
+write.csv(iris, "outputs/iris.csv") 
+
+# here we're saying, find the file called 
 # 'iris' then write it to csv. in the outputs folder within the working 
 # directory. Go check this folder now to confirm. 
 
 ```
 
-> **Exercise 2.3**: bring together all your skills now and make a dataset with the following objects
-1) your name, 2) your age, 3) your fav colour and 4) your height. The save this as "mydf.csv" in your outputs folder. Then go to this folder and open it in excel. 
+> **Exercise 2.3**: bring together all your skills now and make a dataset with the following objects 1) your name, 2) your age, 3) your fav colour and 4) your height. The save this as "mydf.csv" in your outputs folder. Then go to this folder and open it in excel. 
+
+## Functions and Arguments
+
+Just before we wrap up this week we are going to introduce formally a last few key things in R: functions, arguments and packages. 
+
+R works by creating objects, applying functions to objects to make them doing specific things and controlling behaviour using arguments.
+
+### Functions
+
+Functions perform actions on objects. We saw this actually just above with the `read.csv()` which is the function, and the argument of `header=TRUE`. To give another example using the data we just read into R. 
+
+```{r}
+# the mydata is just one variable - 'height' so lets compute the mean for this 
+
+mean(mydata$height) 
+
+# we will learn more about dataframes next week, but the 
+# way I have called the object has changed slightly to mydata$height 
+# this is because height is a variable within the dataset, so i'm asking R to 
+# look into the object dataset [mydata] to find the object variable [height]
+# but we will come back to this
+
+```
+
+This function here is `mean()` and it calculates the average of the values stored in x. Rather than calculating the sum of your numbers and dividing manually every time, you can use the mean function, which performs this calculation for you with a single command. This makes your work easier and more efficient. Later in the module, you’ll learn how to write your own functions to perform custom calculations automatically. 
+
+However, here the function to compute the 'mean' hasn't worked because it has returned the result `NA`. This is because R cannot compute a mean if there are NAs in the dataset (which there is if you look at the `mydata` tab in the viewer) and you haven't told R how to handle these NAs. You need an **argument** to do this. 
+
+### Arguments
+
+After the functions comes the **arguments** - the content of the brackets. Arguments change how a function behaves:
+
+
+```{r}
+
+mean(mydata$height, na.rm = TRUE) 
+
+# na.rm means 'remove NAs' so your telling R
+# just to compute the mean igroning the NAs. 
+
+```
+
+So here: 
+
+  - `mydata$height` is the object
+  - `mean()` is the function
+  - `na.rm = TRUE` is an argument telling R how to handle missing values (telling R to remove all missing values when you are calculating the mean)
+  
+Understanding this pattern — **objects → functions → arguments** — is key to reading and writing R code.
+
+## Packages
+
+A package is basically just a big collection of functions, data sets and other R objects that are all grouped together under a common name. Some packages are already installed when you put R on your computer, but the vast majority of them of R packages are out there on the internet, waiting for you to download, install and use them.
+
+R packages are basically add-ons to base R. Base R does a number of simple functions, but thanks to the open-source ethos behind R the R community has built a large number of packages (over 14,000 on the CRAN where you downloaded R from) to solve common problems or offer new analysis techniques. This is the reason why R is so great. A package brings new functionality in the form of data, code, documentation and tests. 
+
+Generally, when you open up R, only a few of these packages (about 7 or 8) are actually loaded. Basically what it boils down to is this:
+
+  - **A package must be installed before it can be loaded.**
+  - **A package must be loaded before it can be used.**
+
+### Installing packages  
+
+**You only need to install packages once**. To so you need to use the install packages command `install.packages("tidyverse")`
+
+This is the R command that does all the work. R then goes oﬀ to the internet, has a conversation with CRAN, downloads some stuﬀ, and installs it on your computer. Here we are downloading the tidyverse package which has many of the functions we will be using in the coming weeks. 
+
+### Loading packages 
+
+Loading makes it available for use. You will need to do this every session, unless you are saving your environment. Most scripts you will see start with the required packages at the top, in addition to any required data (we will review scripts set-up in more detail next week). **It is good practice to specify which packages your project requires at the start of any script** as they are unloaded when you re-start R and chunks of code won't work if you don't re-install them (and its way too easy to forget which chunk uses which package).
+
+```{r}
+library(tidyverse)
+```
+
+The tidyverse is actually a group of core packages. You can seem them listed above. We will be making use of dplyr, ggplot2 and readr in the coming weeks. 
 
 # Data in R: Week 3
 ## Data types and objects
