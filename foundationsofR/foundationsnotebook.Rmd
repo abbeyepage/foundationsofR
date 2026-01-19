@@ -3,13 +3,21 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
+  word_document:
+    toc: true
+    toc_depth: '3'
   pdf_document:
     toc: true
     toc_depth: 3
     number_sections: true
-  word_document:
-    toc: true
-    toc_depth: '3'
   html_document:
     toc: true
     toc_depth: '3'
@@ -19,14 +27,6 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
 ---
 
 ```{css, echo=FALSE}
@@ -916,9 +916,292 @@ library(tidyverse)
 The tidyverse is actually a group of core packages. You can seem them listed above. We will be making use of dplyr, ggplot2 and readr in the coming weeks. 
 
 # Data in R: Week 3
-## Data types and objects
-## Vectors and data frames
-## Functions in R
+
+This week builds on the workflow foundations from Week 2. We will focus on **how to write good scripts** and introduce the **core data structures** used in R. These skills are central to working efficiently, reproducibly and confidently with real data.
+
+
+## R Scripts in more detail 
+Before working with data, it is important to develop good coding habits. These habits will save you time, reduce errors and make your work understandable to others.
+
+We started using a script last week but this script had no formatting. You just copied and pasted code from this notebook into it. What this means is that it can be hard to come back to the document and work out what meant what, or where you left off. We have to add structure to our script, just like we have titles and headers in a word document to make it easier to understand. 
+
+### Structuring your script from the very top
+
+Every script you write should **start with a clear header**. This makes it immediately obvious what the file is for and when it was last worked on.
+
+A good script header usually includes:
+
+  - A short title describing the purpose of the script
+  - Your name and any co-authors 
+  - The date (or date range) of work
+
+```{r}
+# ============================================================
+# Script: week3_practice.R -----------------------------------
+# Purpose: Working with scripts and data frames
+# Author: Your Name
+# Date: 2026-02-01
+# ============================================================
+```
+
+This header does not affect how the code runs, but it is extremely valuable for organisation and reproducibility. It will always sit at the top of your script. 
+
+### Start with packages and data
+
+The first functional section of your script should deal with **anything that must be available before the rest of the code can run**. This usually includes:
+
+  - R packages that need to be loaded (assuming they are installed)
+  - Data files that need to be read into R
+
+Placing these steps at the top means that:
+
+  - Errors appear early, not halfway through your analysis
+  - Anyone running your script knows exactly what they need
+
+A typical structure looks like this:
+
+```{r}
+# ============================================================
+# Script: week3_practice.R -----------------------------------
+# Purpose: Working with scripts and data frames
+# Author: Your Name
+# Date: 2026-02-01
+# ============================================================
+
+
+# 1.0 Setup ------------------------------------------------------
+
+## 1.1 Packages   ------------------------------------------------
+library(tidyverse)
+
+## 1.2 Data import ------------------------------------------------
+iris_data <- iris # if working  from a pre installed dataset.   
+mydata <- read.csv("data/mydata.csv") # importing from your project 
+
+### 1.2.1 Data inspection --------------------------------------------
+head(mydata)
+
+```
+
+Note that I have started numbering the sections, again this is just good practice for when you start having really long processing and analysis scripts to help you work out where you are. 
+
+### Using # and ## for the RStudio document outline
+
+RStudio provides a document outline / drop-down menu (at the bottom right of the script pane) that allows you to jump between sections of a script. This becomes increasingly useful the longer your script gets. You can click on it to quickly move between different sections - kind of like a table of contents. 
+
+RStudio recognises comment-based headers using hashes and dashes:
+
+```{r}
+ # creates a top-level section ---------------------------------
+ ## creates a subsection ---------------------------------------
+ ### creates a sub-subsection ----------------------------------
+```
+
+
+For main section headings you use four dashes after a single #. If you use two ## or ### they become nested subheadings underneath the main heading. 
+
+Example:
+
+```{r}
+# 2. Data import -----------------------------------------------------
+## 2.1 Reading files -------------------------------------------------
+### 2.1.1 Inspecting the data ----------------------------------------
+
+```
+
+These  headers will appear in the RStudio drop-down menu, allowing you to quickly navigate large scripts.
+
+> Good practice: Use top-level headers (#) sparingly for major stages of your workflow, and sub-headers (##, ###) for detail.
+
+If you use separators without text you will get untitled in the drop-down menu which helps you navigate the script quickly. 
+e.g. 
+
+```{r}
+# ------------------------------------------------------------
+```
+
+RStudio sees this as a section with no name, so it shows up as “<untitled>”.
+
+### Activity 3.1: Create a new R script for this weeks material and structure it as follows:
+
+  - A header with title and date
+  - A packages section (installing tidyverse) 
+  - A data import section (importing data xxx) 
+  - Add in the following structure: 
+
+TBC..... 
+
+We will populate this structure as we work through the rest of the workbook. As will last week, copy the code chunks into the script. 
+
+Finally make sure you save it to a folder in your R project, with a sensible name. 
+
+## Data types
+
+In R, every object has a type (also called its class). The type determines what kind of values the object can store and what operations make sense.
+
+### Common data types in R
+
+The most frequently used data types are:
+  - Character: text values, e.g. names or labels: "a", "hello"
+  - Numeric: real numbers with decimals: 2.1, pi
+  - Integer: whole numbers: 1, 2, 3 etc. 
+  - Logical: TRUE or FALSE values
+  - Factor: categorical variables with fixed levels
+
+let's make some now: 
+```{r}
+char_example <- "statistics" 
+num_example <- 3.14 
+int_example <- 10
+log_example <- TRUE
+```
+
+Now we can check what data type each of these objects are by using the ‘class’ function which calls the objects we just made in the brackets: 
+
+```{r}
+class(char_example) 
+class(num_example) 
+class(int_example) # telling you it’s a numeric value, which is wrong! 
+class(log_example) 
+```
+
+Although numeric and integer values often behave similarly, they are stored differently in memory. Factors will be discussed in more detail later once we have covered vectors, as they are especially important for statistical modelling.
+
+> **Exercise 3.1**: create four variables of the correct types for the following variable names: name[“Alex”], score[“72.65”], age [“30”] and passed [TRUE/FALSE]
+
+> **Exercise 3.2**: using the class() fuction to check the data type. Are any wrong ? Comment in your script using # if any are wrong.    
+
+### Coercion between types
+
+You can coerce values into different types. R automatically reads an interger as numeric. So you have to tell it. You can either add an L at the end or change it’s class: 
+
+```{r}
+int_example <- 10L
+int_example  <- as.integer(int_example) # note that I have used the object 
+# assignment operator again here. If I didn’t R wouldn’t save your changes 
+
+# likewise, you can coerce it back to numeric
+int_example  <- as.numeric(int_example) 
+
+```
+
+
+you can do the same with factors  with as.factor (but we’re coming back to this)
+
+> **Exercise 3.3**: use as.integer() function to coerce “age” into an integer and save the result. Re-check it using class(). 
+ 
+## Vectors
+
+Vectors are the fundamental data structure in R. A vector stores multiple values of the same type in a single object. For instance, a numeric vector comprises of a list of numbers (e.g. [1, 2, 6, 6, 3, 6, 2] is a vector of integers) . In this section we will examine various ways to construct and subset a numeric vector. 
+
+### Creating vectors
+
+The simplest way to create a vector is with the c() (combine) function.
+
+```{r}
+
+vec1 <- c(1, 2, 3, 4, 5) 
+vec2 <- c(6, 7, 8, 9, 10)
+vec1 
+vec2 
+
+```
+
+
+Two vectors can also be joined into the same vector using the c() command. The two smaller vectors will appear in the new one in the order you specify:
+
+```{r}
+vec3 <- c(vec1, vec2) vec3
+```
+
+
+### Vectors are ordered
+
+Vectors are ordered, meaning the position of each element matters. The first element is position 1, the second is position 2, and so on. When you reference a vector by position, you get exactly the element in that position.
+
+```{r}
+my_vector <- c(10, 20, 30, 40) 
+my_vector
+# the second element is 20 
+```
+
+
+Ordering also matters for calculations and operations. For example, if you add two vectors together, R adds them element-wise based on their positions:
+
+```{r}
+v1 <- c(1, 2, 3)
+v2 <- c(10, 20, 30) 
+v1 + v2 
+
+```
+
+
+Changing the order of elements changes the results of any operation that relies on position.
+
+```{r}
+rev_vector <- rev(my_vector) # reverses the order - note it is saved under 
+# a new object name (rev_vector) 
+```
+
+> Key takeaway: Always be aware of the order of elements in a vector. Many mistakes in data analysis happen when positions are assumed incorrectly.
+
+> **Exercise 3.4**: Create a vector of 5 numbers representing daily sales. 
+
+### Indexing vectors
+Square brackets [] are used to extract elements from vectors. This is how we can check the ordering. 
+
+If we want to extract the nth (e.g. 5th) element of a vector, specify n within the square brackets:
+
+```{r}
+my_vector <- c(12, 16, 1, 9, 0) 
+my_vector[5] 
+```
+
+This feature can be extended to extract multiple elements from a vector. For instance if we wanted to select the first and second elements of the vector "my.vector", we would do so in the following way:
+
+```{r}
+my_vector[1:2]
+```
+
+> **Excerise 3.5**: Use indexing to find the sales for day 3. Then reverse the vector and check which sale is now in the second position. 
+
+### Removing values 
+We are also able to remove the nth element from a vector, we can do so using the '-' command within the square brackets.
+
+```{r}
+
+my.vector[-2]
+
+my.vector[-c(1:2)]
+
+```
+Remember, hwoever than you will need to re-save the vector (ideally with a different object name to avoiding overwriting. 
+```{r}
+my.vector # does it still include the 2nd element? 
+My.vector2 <- my.vector[-2]  # what about now? 
+```
+
+Missing values in R are represented by NA. 
+
+```{r}
+vec_with_na <- c(1, 2, NA, 4)
+```
+
+Many functions return NA when missing values are present. You can explicitly remove them using indexing. 
+
+```{r}
+Mean(vec_with_na) # not working 
+my.vector2 <- c(1,2,3,NA,4,5)
+my.vector2 <- my.vector2[!is.na(my.vector2)]
+my.vector2
+Mean(my.vector2) # working 
+```
+> **Exercise 3.6**:  Create a numeric vector containing at least two NA values. Compute the mean with and without removing missing values.
+
+### text vectors 
+## Factors
+## Data frames
+
 
 #  Data Manipulation in R: Week 4
 ## The tidyverse
