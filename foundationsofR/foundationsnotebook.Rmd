@@ -3,21 +3,6 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
-  word_document:
-    toc: true
-    toc_depth: '3'
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
   html_document:
     toc: true
     toc_depth: '3'
@@ -27,6 +12,21 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
+  word_document:
+    toc: true
+    toc_depth: '3'
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
 ---
 
 ```{css, echo=FALSE}
@@ -1086,7 +1086,7 @@ int_example  <- as.numeric(int_example)
 ```
 
 
-you can do the same with factors  with as.factor (but we’re coming back to this)
+you can do the same with factors with as.factor (but we’re coming back to this)
 
 > **Exercise 3.3**: use as.integer() function to coerce “age” into an integer and save the result. Re-check it using class(). 
  
@@ -1108,10 +1108,11 @@ vec2
 ```
 
 
-Two vectors can also be joined into the same vector using the c() command. The two smaller vectors will appear in the new one in the order you specify:
+Two vectors can also be joined into the same vector using the `c()` command. The two smaller vectors will appear in the new one in the order you specify:
 
 ```{r}
-vec3 <- c(vec1, vec2) vec3
+vec3 <- c(vec1, vec2)
+vec3 
 ```
 
 
@@ -1170,38 +1171,123 @@ We are also able to remove the nth element from a vector, we can do so using the
 
 ```{r}
 
-my.vector[-2]
+my_vector[-2]
 
-my.vector[-c(1:2)]
+my_vector[-c(1:2)]
 
 ```
-Remember, hwoever than you will need to re-save the vector (ideally with a different object name to avoiding overwriting. 
+Remember, however than you will need to re-save the vector (ideally with a different object name to avoiding overwriting). 
 ```{r}
-my.vector # does it still include the 2nd element? 
-My.vector2 <- my.vector[-2]  # what about now? 
+my_vector # does it still include the 2nd element? 
+My_vector2 <- my_vector[-2]  # what about now? 
 ```
 
-Missing values in R are represented by NA. 
+### Text vectors and factors
 
-```{r}
-vec_with_na <- c(1, 2, NA, 4)
-```
-
-Many functions return NA when missing values are present. You can explicitly remove them using indexing. 
+Vectors can be also made up of `strings` (i.e. words) instead of numbers. We simply have to
+enclose the characters/strings by quotation marks like in the following example:
 
 ```{r}
-Mean(vec_with_na) # not working 
-my.vector2 <- c(1,2,3,NA,4,5)
-my.vector2 <- my.vector2[!is.na(my.vector2)]
-my.vector2
-Mean(my.vector2) # working 
-```
-> **Exercise 3.6**:  Create a numeric vector containing at least two NA values. Compute the mean with and without removing missing values.
+country <- c("Japan", "USA", "France")
+country
 
-### text vectors 
-## Factors
+```
+
+In many situations, a sequence of strings masks realizations from categorical variables such as religion,
+political party and blood type. This is the `character` data type. R offers an efficient way to store these sequences as `factors`. 
+
+Factors are the last variable type in R, otherwise known as categorical, nominal or ordinal variables. These are variables which are groupings with no clear order (e.g. apple, banana, orange - two apples are not the same as one orange), or if ordinal then groupings with an order but you don't know the size of the space between the levels (e.g. 1st, 2nd and 3rd in a race. You know that the 1st person is quicker, but you don't know by how much). 
+
+```{r}
+blood <- c("A", "B", "O", "AB", "A", "B", "O", "O", "AB", "B") # make a vector of characters 
+blood 
+class(blood)  # check the class is 'character 
+```
+
+In the first line we made a string list the blood type of 10 observations. This doesn't necessarily make a factor, however. A factor must have levels (e.g. the groups - A, B, AB, O) specified to 'lump' together these observations (e.g. 2 observations of A, 3 obervations of 0 and 2 observations of AB) 
+
+So, we force the vector of characters to be factor using the function `as.factor`. By doing this that R recognises that blood is made up of a limited (4) number of possible values (A, AB, B and 0) which become the levels. when you print `blood` now it tells you the observations in the first line, and the number of levels in the second.  
+
+```{r}
+blood <- as.factor(blood)
+blood
+```
+
+You can also ask R to just tell you the levels using the function `levels()` and the number of levels using `nlevels()`
+
+```{r}
+levels(blood)
+## [1] "A" "AB" "B" "O"
+nlevels(blood)
+```
+
+Factors can also be comprised of numbers. Sometimes, in data entry, rather than write 'man', 'woman' or 'non-binary' researchers will code these observations to '1', '2' and '3'. Some people just prefer this in data process and analysis. In this case, you just need to tell R that these numbers need to be handled as a factor. 
+
+### Activity 3.2: Making a factor. 
+
+To make a `gender` factor please do the following steps: 
+
+ - Make a new object called `gender` based on a vector of 15 integers 
+ - The observations should be a combination of 1 for men, 2 for women and 3 for non-binary. You can pick the distribution of numbers 
+ - Check it's class. Is it numeric or character? 
+ - Force it to be a factor. 
+ - Check it's class again. What is it now? 
+ - How many levels does it have? 
+ - What happens to the `gender` variable now if you try to add 2 to it (e.g. gender + 2) - why? 
+
+Following this exercise, you will notice really quick that how easy it will be to forget what 1, 2 and 3 mean. You come back to this analysis in 6 months and I promise you, you won't remember who was a man and who was a woman. So we are going to want to change the labels of the levels (e.g. what we call the levels)
+
+What we need to do is assign meaningful labels to the diﬀerent levels of each factor. Here I'm giving an example of different treatment groups is a de-stress study. Group 1 is mindfulness treatment, group 2 is relaxation and group 3 is CBT therapy. 
+
+Note, that this time, while I'm using integers to denote the groups, I have used the " " on either side of them. This means that R automatically reads them in as 'characters'. You can check this with the `class` function. But we will still need to tell R it's a factor to get the levels: 
+
+```{r}
+
+participantgroup <- c("1", "1", "1", "1", "2", "2", "2", "2", "3", "3", "3", "3")
+class(participantgroup) 
+participantgroup <- as.factor(participantgroup) 
+levels(participantgroup) # 1, 2, 3 
+
+# So lets re-name the levels to something we will remember
+levels(participantgroup) <- c("mindfulness", "relaxation", "CBT")
+
+print(participantgroup)
+
+```
+
+Now, when we print `participantgroup` se can see the levels have been re-named, and so have each of the observations. This is much better. 
+
+Factors are very useful things, and we’ll use them a lot in this module: they’re the main way to represent a nominal scale variable so you have to make sure you are handelling them correctly in R. 
+
+### Ordered factors 
+
+If you are working with an ordinal variable (e.g. educational level or class, in which some levels are greater than others) you will need to tell R their order because it will not necessarily know. You have to tell R in the argument of the function that it is ordered using `ordered = TRUE` 
+
+```{r}
+educ <- c("Prim", "Ter", "Sec", "Sec", "Ter", "Prim")
+educ <- factor(educ, ordered=TRUE)
+educ
+```
+
+In fact, with strings, R orders them automatically alphabetically. This worked for the above example between Primary education is alphebitcally before secondary etc. But what this means it that it will assume that A-levels (for instance) is 'before' GSCE, while we know this is not the case. In this case, you need to tell R which comes first. This requires one more argument in your code: 
+
+```{r}
+# Example vector of education levels
+edu <- c("UNIVERSITY", "GCSE", "POSTGRAD", "ALEVEL", "GCSE", "UNIVERSITY", "ALEVEL")
+
+# Convert to ordered factor with the desired order in the argument 
+edu_ordered <- factor(edu,
+            levels = c("GCSE", "ALEVEL", "UNIVERSITY", "POSTGRAD"),
+                            ordered = TRUE)
+
+# Check the result
+edu_ordered
+```
+
+
 ## Data frames
-
+ 
+ TBC 
 
 #  Data Manipulation in R: Week 4
 ## The tidyverse

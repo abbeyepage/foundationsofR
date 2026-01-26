@@ -1,0 +1,138 @@
+---
+# NB - ONLY CHANGE THE LINES WHICH HAVE BEEN HIGHIGHTED WITH COMMENTS 
+# TO DO SO - LIKE THIS 
+
+title: "TITLE OF THE STUDY HERE" # CHANGE THIS 
+poster_height: "48in"
+poster_width: "36in"
+font_family: "Rasa"
+
+author:
+  - name: "Student Name" # CHANGE THIS 
+    affil: 1
+    main: true
+    email: "student@brunel.ac.uk" # CHANGE THIS 
+
+affiliation:
+  - num: 1
+    address: "Department of Psychology, Brunel University of London"
+
+primary_colour: "#008080"
+secondary_colour: "#0b4545"
+accent_colour: "#cc0000"
+
+main_fontfamily: "Special Elite"
+main_textcol: "#FFFFFF90"
+main_textsize: "170px"
+main_findings: "ONE SENTENCE MAIN TAKE AWAY OF YOUR STUDY." # CHANGE THIS 
+
+body_bgcol: "#FFFFFF"
+body_textsize: "45px"
+body_textcol: "#000000"
+
+title_textsize: "125pt"
+author_textsize: "1.17em"
+authorextra_textsize: "35px"
+affiliation_textsize: "25px"
+affiliation_textcol: "#00000060"
+
+caption_textsize: "20pt"
+reference_textsize: "20px"
+
+output:
+  posterdown::posterdown_betterport:
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required packages
+library(tidyverse) 
+# INCLUDE ANY OTHER PACAKGES YOU REQUIRE
+
+# load required dats 
+mydata <- read_csv("mydata.csv") # WILL BE PROVIDED TO YOU  
+
+```
+<br>
+
+ ----- NB EVERYTHING ELSE BELOW CAN BE CHANGED EXPECT FOR THE R SETUP CODE IN EACH
+CODE CHUNK - DON'T TOUCH THAT ----------------------------
+
+# Introduction
+THREE SENTENCE SUMMARY OF YOUR THE RESEARCH TOPIC, QUESTION AND MOTIVATION. KEEP IT SHORT.  
+
+<br>
+
+# Methods
+## Participants and Data
+WHO WAS THE PARTICIPANTS, WHAT VARIABLES DID YOU GET IN YOUR DATASET. WHERE THERE NAs?  
+
+## Data Preparation
+HOW DID YOU TIDY THE DATA (CHANGE NAMES, HANDLE MISSINGNESS)? HOW DID YOU TRANSFORM THE DATA (MAKE NEW VARIABLES?)
+
+```{r, echo=TRUE, background="#f0f0f0", size="large"}
+
+# THIS CODE CHUNK WILL BE SHOWN IN THE POSTER AS EVIDENCE OF YOUR CODING. MAKE SURE IT IS CLEAR AND WELL COMMENTED. 
+# INLCUDE CODE FOR WHAT YOU DID TO TRANSFORM/TIDY THE DATA PRIOR TO ANALYSIS.
+
+
+```
+
+## Descriptive Statistics
+WHAT DESCRIPTIVE STATS DID YOU COMPUTE? WHAT PLOTS DID YOU DECIDE WHERE BEST? 
+
+## Linear Regression 
+EXPLAIN THE LINEAR REGRESSION, CHECKING MODEL ASSUMPTIONS HOW YOU REPORTED IT AND ANY VISALUSATION OF IT.
+YOU MAY PROVIDE THE EQUATION HERE.
+
+<br>
+
+# Results
+ONE SENTENCE ABOUT THE DESCRIPTIVE STATS SUMMARYING THE TABLE BELOW. 
+
+```{r, echo=FALSE}
+# Summary table of the  main variables 
+```
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=5}
+# PLOTS OF THE DESCRIPTIVE STATS 
+
+```
+
+ONE - TWO SENTENCE SUMMARY OF THE PLOTS AND IMPLICATIONS. 
+
+2-3 SENTENCE SUMMARY OF THE LINEAR REGRESSION RESULTS WITH INTERPRETION FOLLOWING APA GUIDLINES. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Fit linear regression model
+
+# Create a simple coefficients table (you might want to round numbers!) 
+
+# Show the table
+
+
+```
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=5, message=FALSE, warning=FALSE}
+# PLOT TO VISUALISE THE RELATIONSHIP BETWEEN MAIN VARIABLES TO SUPPORT YOU 
+# LINEAR REGRESSION. 
+
+```
+
+USING THE FORMULA ABOVE, TELL US WHAT IS THE PREDICTED VALUE OF THE DEPENDENT VARIABLE FOR THE MEAN OF THE INDEPENDENT VARIABLE
+
+CONFIRM YOU DID THE MODEL ASSUMPTION CHECKS AND IF THERE WERE ISSUES OR NOT. IF SPACE (OPTIONAL) INCLUDE AN PLOT/OUTPUT OF THE ASSUMPTION CHECKS. BUT YOU MIGHT WANT TO FOCUS ON THE ABOVE RESULTS. 
+
+```{r, echo=FALSE, fig.width=11, fig.height=5}
+# EG. Q-Q PLOTS 
+```
+<br>
+
+# Conclusion 
+
+THREE LINE SUMMARY OF YOUR FINDINGS AND IMPLICATIONS 

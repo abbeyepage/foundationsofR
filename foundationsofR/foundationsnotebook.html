@@ -3725,12 +3725,16 @@ location at the top of your console. From R4DS.</em></div>
 sub-directories within your working directory you can use
 <code>dir()</code></p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">dir</span>() </span></code></pre></div>
-<pre><code>##  [1] &quot;data&quot;                        &quot;example script.R&quot;           
-##  [3] &quot;foundationsnotebook.html&quot;    &quot;foundationsnotebook.nb.html&quot;
-##  [5] &quot;foundationsnotebook.pdf&quot;     &quot;foundationsnotebook.Rmd&quot;    
-##  [7] &quot;foundationsofR.Rproj&quot;        &quot;outputs&quot;                    
-##  [9] &quot;projects.png&quot;                &quot;tidy-1.png&quot;                 
-## [11] &quot;workflow.png&quot;                &quot;workingdir.png&quot;</code></pre>
+<pre><code>##  [1] &quot;brunel_logo.png&quot;             &quot;data&quot;                       
+##  [3] &quot;dev_data.csv&quot;                &quot;example script.R&quot;           
+##  [5] &quot;foundationsnotebook.html&quot;    &quot;foundationsnotebook.nb.html&quot;
+##  [7] &quot;foundationsnotebook.pdf&quot;     &quot;foundationsnotebook.Rmd&quot;    
+##  [9] &quot;foundationsofR.Rproj&quot;        &quot;foundationsposter.html&quot;     
+## [11] &quot;foundationsposter.pdf&quot;       &quot;foundationsposter.Rmd&quot;      
+## [13] &quot;outputs&quot;                     &quot;projects.png&quot;               
+## [15] &quot;saveaspdf.R&quot;                 &quot;STUDENTTEMPLATE.Rmd&quot;        
+## [17] &quot;tidy-1.png&quot;                  &quot;workflow.png&quot;               
+## [19] &quot;workingdir.png&quot;</code></pre>
 </div>
 </div>
 <div id="saving-scripts-and-naming-files" class="section level2" number="2.6">
@@ -4113,32 +4117,311 @@ follows:</h3>
 <li>A packages section (installing tidyverse)</li>
 <li>A data import section (importing data xxx)</li>
 <li>Add in the following structure:</li>
-<li><h2 id="data-types">Data types</h2>
-<ul>
-<li><h3 id="section"></h3></li>
-</ul></li>
-<li><h2 id="vectors">vectors</h2>
-<ul>
-<li><h3 id="section-1"></h3></li>
-</ul></li>
-<li><h2 id="data-frames">data frames</h2>
-<ul>
-<li><h3 id="section-2"></h3></li>
-</ul></li>
 </ul>
+<p>TBC…..</p>
 <p>We will populate this structure as we work through the rest of the
 workbook. As will last week, copy the code chunks into the script.</p>
 <p>Finally make sure you save it to a folder in your R project, with a
 sensible name.</p>
 </div>
 </div>
-<div id="data-types-1" class="section level2" number="3.2">
+<div id="data-types" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Data types</h2>
+<p>In R, every object has a type (also called its class). The type
+determines what kind of values the object can store and what operations
+make sense.</p>
+<div id="common-data-types-in-r" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Common data types
+in R</h3>
+<p>The most frequently used data types are: - Character: text values,
+e.g. names or labels: “a”, “hello” - Numeric: real numbers with
+decimals: 2.1, pi - Integer: whole numbers: 1, 2, 3 etc. - Logical: TRUE
+or FALSE values - Factor: categorical variables with fixed levels</p>
+<p>let’s make some now:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>char_example <span class="ot">&lt;-</span> <span class="st">&quot;statistics&quot;</span> </span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>num_example <span class="ot">&lt;-</span> <span class="fl">3.14</span> </span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>int_example <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>log_example <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<p>Now we can check what data type each of these objects are by using
+the ‘class’ function which calls the objects we just made in the
+brackets:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="fu">class</span>(char_example) </span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">class</span>(num_example) </span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">class</span>(int_example) <span class="co"># telling you it’s a numeric value, which is wrong! </span></span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">class</span>(log_example) </span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>Although numeric and integer values often behave similarly, they are
+stored differently in memory. Factors will be discussed in more detail
+later once we have covered vectors, as they are especially important for
+statistical modelling.</p>
+<blockquote>
+<p><strong>Exercise 3.1</strong>: create four variables of the correct
+types for the following variable names: name[“Alex”], score[“72.65”],
+age [“30”] and passed [TRUE/FALSE]</p>
+</blockquote>
+<blockquote>
+<p><strong>Exercise 3.2</strong>: using the class() fuction to check the
+data type. Are any wrong ? Comment in your script using # if any are
+wrong.</p>
+</blockquote>
 </div>
-<div id="vectors-1" class="section level2" number="3.3">
+<div id="coercion-between-types" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Coercion between
+types</h3>
+<p>You can coerce values into different types. R automatically reads an
+interger as numeric. So you have to tell it. You can either add an L at
+the end or change it’s class:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>int_example <span class="ot">&lt;-</span> <span class="dv">10</span><span class="dt">L</span></span>
+<span id="cb65-2"><a href="#cb65-2" tabindex="-1"></a>int_example  <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(int_example) <span class="co"># note that I have used the object </span></span>
+<span id="cb65-3"><a href="#cb65-3" tabindex="-1"></a><span class="co"># assignment operator again here. If I didn’t R wouldn’t save your changes </span></span>
+<span id="cb65-4"><a href="#cb65-4" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="#cb65-5" tabindex="-1"></a><span class="co"># likewise, you can coerce it back to numeric</span></span>
+<span id="cb65-6"><a href="#cb65-6" tabindex="-1"></a>int_example  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(int_example) </span></code></pre></div>
+<p>you can do the same with factors with as.factor (but we’re coming
+back to this)</p>
+<blockquote>
+<p><strong>Exercise 3.3</strong>: use as.integer() function to coerce
+“age” into an integer and save the result. Re-check it using
+class().</p>
+</blockquote>
+</div>
+</div>
+<div id="vectors" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Vectors</h2>
+<p>Vectors are the fundamental data structure in R. A vector stores
+multiple values of the same type in a single object. For instance, a
+numeric vector comprises of a list of numbers (e.g. [1, 2, 6, 6, 3, 6,
+2] is a vector of integers) . In this section we will examine various
+ways to construct and subset a numeric vector.</p>
+<div id="creating-vectors" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Creating
+vectors</h3>
+<p>The simplest way to create a vector is with the c() (combine)
+function.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) </span>
+<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a>vec1 </span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>vec2 </span></code></pre></div>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<p>Two vectors can also be joined into the same vector using the
+<code>c()</code> command. The two smaller vectors will appear in the new
+one in the order you specify:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a>vec3 <span class="ot">&lt;-</span> <span class="fu">c</span>(vec1, vec2)</span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>vec3 </span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
-<div id="data-frames-1" class="section level2" number="3.4">
+<div id="vectors-are-ordered" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Vectors are
+ordered</h3>
+<p>Vectors are ordered, meaning the position of each element matters.
+The first element is position 1, the second is position 2, and so on.
+When you reference a vector by position, you get exactly the element in
+that position.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>) </span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a>my_vector</span></code></pre></div>
+<pre><code>## [1] 10 20 30 40</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="co"># the second element is 20 </span></span></code></pre></div>
+<p>Ordering also matters for calculations and operations. For example,
+if you add two vectors together, R adds them element-wise based on their
+positions:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>) </span>
+<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a>v1 <span class="sc">+</span> v2 </span></code></pre></div>
+<pre><code>## [1] 11 22 33</code></pre>
+<p>Changing the order of elements changes the results of any operation
+that relies on position.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a>rev_vector <span class="ot">&lt;-</span> <span class="fu">rev</span>(my_vector) <span class="co"># reverses the order - note it is saved under </span></span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a><span class="co"># a new object name (rev_vector) </span></span></code></pre></div>
+<blockquote>
+<p>Key takeaway: Always be aware of the order of elements in a vector.
+Many mistakes in data analysis happen when positions are assumed
+incorrectly.</p>
+</blockquote>
+<blockquote>
+<p><strong>Exercise 3.4</strong>: Create a vector of 5 numbers
+representing daily sales.</p>
+</blockquote>
+</div>
+<div id="indexing-vectors" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Indexing
+vectors</h3>
+<p>Square brackets [] are used to extract elements from vectors. This is
+how we can check the ordering.</p>
+<p>If we want to extract the nth (e.g. 5th) element of a vector, specify
+n within the square brackets:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">0</span>) </span>
+<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a>my_vector[<span class="dv">5</span>] </span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>This feature can be extended to extract multiple elements from a
+vector. For instance if we wanted to select the first and second
+elements of the vector “my.vector”, we would do so in the following
+way:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a>my_vector[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 12 16</code></pre>
+<blockquote>
+<p><strong>Excerise 3.5</strong>: Use indexing to find the sales for day
+3. Then reverse the vector and check which sale is now in the second
+position.</p>
+</blockquote>
+</div>
+<div id="removing-values" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Removing
+values</h3>
+<p>We are also able to remove the nth element from a vector, we can do
+so using the ‘-’ command within the square brackets.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a>my_vector[<span class="sc">-</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 12  1  9  0</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a>my_vector[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code></pre></div>
+<pre><code>## [1] 1 9 0</code></pre>
+<p>Remember, however than you will need to re-save the vector (ideally
+with a different object name to avoiding overwriting).</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>my_vector <span class="co"># does it still include the 2nd element? </span></span></code></pre></div>
+<pre><code>## [1] 12 16  1  9  0</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>My_vector2 <span class="ot">&lt;-</span> my_vector[<span class="sc">-</span><span class="dv">2</span>]  <span class="co"># what about now? </span></span></code></pre></div>
+</div>
+<div id="text-vectors-and-factors" class="section level3" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Text vectors and
+factors</h3>
+<p>Vectors can be also made up of <code>strings</code> (i.e. words)
+instead of numbers. We simply have to enclose the characters/strings by
+quotation marks like in the following example:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;France&quot;</span>)</span>
+<span id="cb89-2"><a href="#cb89-2" tabindex="-1"></a>country</span></code></pre></div>
+<pre><code>## [1] &quot;Japan&quot;  &quot;USA&quot;    &quot;France&quot;</code></pre>
+<p>In many situations, a sequence of strings masks realizations from
+categorical variables such as religion, political party and blood type.
+This is the <code>character</code> data type. R offers an efficient way
+to store these sequences as <code>factors</code>.</p>
+<p>Factors are the last variable type in R, otherwise known as
+categorical, nominal or ordinal variables. These are variables which are
+groupings with no clear order (e.g. apple, banana, orange - two apples
+are not the same as one orange), or if ordinal then groupings with an
+order but you don’t know the size of the space between the levels
+(e.g. 1st, 2nd and 3rd in a race. You know that the 1st person is
+quicker, but you don’t know by how much).</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a>blood <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;B&quot;</span>) <span class="co"># make a vector of characters </span></span>
+<span id="cb91-2"><a href="#cb91-2" tabindex="-1"></a>blood </span></code></pre></div>
+<pre><code>##  [1] &quot;A&quot;  &quot;B&quot;  &quot;O&quot;  &quot;AB&quot; &quot;A&quot;  &quot;B&quot;  &quot;O&quot;  &quot;O&quot;  &quot;AB&quot; &quot;B&quot;</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a><span class="fu">class</span>(blood)  <span class="co"># check the class is &#39;character </span></span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>In the first line we made a string list the blood type of 10
+observations. This doesn’t necessarily make a factor, however. A factor
+must have levels (e.g. the groups - A, B, AB, O) specified to ‘lump’
+together these observations (e.g. 2 observations of A, 3 obervations of
+0 and 2 observations of AB)</p>
+<p>So, we force the vector of characters to be factor using the function
+<code>as.factor</code>. By doing this that R recognises that blood is
+made up of a limited (4) number of possible values (A, AB, B and 0)
+which become the levels. when you print <code>blood</code> now it tells
+you the observations in the first line, and the number of levels in the
+second.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a>blood <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(blood)</span>
+<span id="cb95-2"><a href="#cb95-2" tabindex="-1"></a>blood</span></code></pre></div>
+<pre><code>##  [1] A  B  O  AB A  B  O  O  AB B 
+## Levels: A AB B O</code></pre>
+<p>You can also ask R to just tell you the levels using the function
+<code>levels()</code> and the number of levels using
+<code>nlevels()</code></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="fu">levels</span>(blood)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot;  &quot;AB&quot; &quot;B&quot;  &quot;O&quot;</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a><span class="do">## [1] &quot;A&quot; &quot;AB&quot; &quot;B&quot; &quot;O&quot;</span></span>
+<span id="cb99-2"><a href="#cb99-2" tabindex="-1"></a><span class="fu">nlevels</span>(blood)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Factors can also be comprised of numbers. Sometimes, in data entry,
+rather than write ‘man’, ‘woman’ or ‘non-binary’ researchers will code
+these observations to ‘1’, ‘2’ and ‘3’. Some people just prefer this in
+data process and analysis. In this case, you just need to tell R that
+these numbers need to be handled as a factor.</p>
+</div>
+<div id="activity-3.2-making-a-factor." class="section level3" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Activity 3.2:
+Making a factor.</h3>
+<p>To make a <code>gender</code> factor please do the following
+steps:</p>
+<ul>
+<li>Make a new object called <code>gender</code> based on a vector of 15
+integers</li>
+<li>The observations should be a combination of 1 for men, 2 for women
+and 3 for non-binary. You can pick the distribution of numbers</li>
+<li>Check it’s class. Is it numeric or character?</li>
+<li>Force it to be a factor.</li>
+<li>Check it’s class again. What is it now?</li>
+<li>How many levels does it have?</li>
+<li>What happens to the <code>gender</code> variable now if you try to
+add 2 to it (e.g. gender + 2) - why?</li>
+</ul>
+<p>Following this exercise, you will notice really quick that how easy
+it will be to forget what 1, 2 and 3 mean. You come back to this
+analysis in 6 months and I promise you, you won’t remember who was a man
+and who was a woman. So we are going to want to change the labels of the
+levels (e.g. what we call the levels)</p>
+<p>What we need to do is assign meaningful labels to the diﬀerent levels
+of each factor. Here I’m giving an example of different treatment groups
+is a de-stress study. Group 1 is mindfulness treatment, group 2 is
+relaxation and group 3 is CBT therapy.</p>
+<p>Note, that this time, while I’m using integers to denote the groups,
+I have used the ” ” on either side of them. This means that R
+automatically reads them in as ‘characters’. You can check this with the
+<code>class</code> function. But we will still need to tell R it’s a
+factor to get the levels:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a>participantgroup <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>)</span>
+<span id="cb101-2"><a href="#cb101-2" tabindex="-1"></a><span class="fu">class</span>(participantgroup) </span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a>participantgroup <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(participantgroup) </span>
+<span id="cb103-2"><a href="#cb103-2" tabindex="-1"></a><span class="fu">levels</span>(participantgroup) <span class="co"># 1, 2, 3 </span></span></code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="co"># So lets re-name the levels to something we will remember</span></span>
+<span id="cb105-2"><a href="#cb105-2" tabindex="-1"></a><span class="fu">levels</span>(participantgroup) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;mindfulness&quot;</span>, <span class="st">&quot;relaxation&quot;</span>, <span class="st">&quot;CBT&quot;</span>)</span>
+<span id="cb105-3"><a href="#cb105-3" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="#cb105-4" tabindex="-1"></a><span class="fu">print</span>(participantgroup)</span></code></pre></div>
+<pre><code>##  [1] mindfulness mindfulness mindfulness mindfulness relaxation  relaxation 
+##  [7] relaxation  relaxation  CBT         CBT         CBT         CBT        
+## Levels: mindfulness relaxation CBT</code></pre>
+<p>Now, when we print <code>participantgroup</code> se can see the
+levels have been re-named, and so have each of the observations. This is
+much better.</p>
+<p>Factors are very useful things, and we’ll use them a lot in this
+module: they’re the main way to represent a nominal scale variable so
+you have to make sure you are handelling them correctly in R.</p>
+</div>
+<div id="ordered-factors" class="section level3" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Ordered
+factors</h3>
+<p>If you are working with an ordinal variable (e.g. educational level
+or class, in which some levels are greater than others) you will need to
+tell R their order because it will not necessarily know. You have to
+tell R in the argument of the function that it is ordered using
+<code>ordered = TRUE</code></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a>educ <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Prim&quot;</span>, <span class="st">&quot;Ter&quot;</span>, <span class="st">&quot;Sec&quot;</span>, <span class="st">&quot;Sec&quot;</span>, <span class="st">&quot;Ter&quot;</span>, <span class="st">&quot;Prim&quot;</span>)</span>
+<span id="cb107-2"><a href="#cb107-2" tabindex="-1"></a>educ <span class="ot">&lt;-</span> <span class="fu">factor</span>(educ, <span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
+<span id="cb107-3"><a href="#cb107-3" tabindex="-1"></a>educ</span></code></pre></div>
+<pre><code>## [1] Prim Ter  Sec  Sec  Ter  Prim
+## Levels: Prim &lt; Sec &lt; Ter</code></pre>
+<p>In fact, with strings, R orders them automatically alphabetically.
+This worked for the above example between Primary education is
+alphebitcally before secondary etc. But what this means it that it will
+assume that A-levels (for instance) is ‘before’ GSCE, while we know this
+is not the case. In this case, you need to tell R which comes first.
+This requires one more argument in your code:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a><span class="co"># Example vector of education levels</span></span>
+<span id="cb109-2"><a href="#cb109-2" tabindex="-1"></a>edu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;UNIVERSITY&quot;</span>, <span class="st">&quot;GCSE&quot;</span>, <span class="st">&quot;POSTGRAD&quot;</span>, <span class="st">&quot;ALEVEL&quot;</span>, <span class="st">&quot;GCSE&quot;</span>, <span class="st">&quot;UNIVERSITY&quot;</span>, <span class="st">&quot;ALEVEL&quot;</span>)</span>
+<span id="cb109-3"><a href="#cb109-3" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="#cb109-4" tabindex="-1"></a><span class="co"># Convert to ordered factor with the desired order in the argument </span></span>
+<span id="cb109-5"><a href="#cb109-5" tabindex="-1"></a>edu_ordered <span class="ot">&lt;-</span> <span class="fu">factor</span>(edu,</span>
+<span id="cb109-6"><a href="#cb109-6" tabindex="-1"></a>            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;GCSE&quot;</span>, <span class="st">&quot;ALEVEL&quot;</span>, <span class="st">&quot;UNIVERSITY&quot;</span>, <span class="st">&quot;POSTGRAD&quot;</span>),</span>
+<span id="cb109-7"><a href="#cb109-7" tabindex="-1"></a>                            <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb109-8"><a href="#cb109-8" tabindex="-1"></a></span>
+<span id="cb109-9"><a href="#cb109-9" tabindex="-1"></a><span class="co"># Check the result</span></span>
+<span id="cb109-10"><a href="#cb109-10" tabindex="-1"></a>edu_ordered</span></code></pre></div>
+<pre><code>## [1] UNIVERSITY GCSE       POSTGRAD   ALEVEL     GCSE       UNIVERSITY ALEVEL    
+## Levels: GCSE &lt; ALEVEL &lt; UNIVERSITY &lt; POSTGRAD</code></pre>
+</div>
+</div>
+<div id="data-frames" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Data frames</h2>
 </div>
 </div>

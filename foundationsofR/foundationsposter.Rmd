@@ -1,0 +1,177 @@
+---
+title: "Children's emotional regulation"
+poster_height: "48in"
+poster_width: "36in"
+font_family: "Rasa"
+
+author:
+  - name: "Student Name" 
+    affil: 1
+    main: true
+    email: "student@brunel.ac.uk"
+
+affiliation:
+  - num: 1
+    address: "Department of Psychology, Brunel University of London"
+
+primary_colour: "#008080"
+secondary_colour: "#0b4545"
+accent_colour: "#cc0000"
+
+main_fontfamily: "Special Elite"
+main_textcol: "#FFFFFF90"
+main_textsize: "170px"
+main_findings: "Older children show stronger emotional regulation than younger children."
+
+
+body_bgcol: "#FFFFFF"
+body_textsize: "45px"
+body_textcol: "#000000"
+
+title_textsize: "125pt"
+author_textsize: "1.17em"
+authorextra_textsize: "35px"
+affiliation_textsize: "25px"
+affiliation_textcol: "#00000060"
+
+caption_textsize: "20pt"
+reference_textsize: "20px"
+
+output:
+  posterdown::posterdown_betterport:
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required packages
+library(tidyverse)
+
+# load required dats 
+dev_data <- read_csv("dev_data.csv")
+```
+<br>
+
+# Introduction
+Children’s ability to regulate emotions improves as they grow, but the pace and patterns of this development vary.
+This study examines how emotional regulation scores differ across age groups in a sample of children aged 5–12.
+Results show that older children demonstrate stronger emotional control, highlighting developmental trends in self-regulation.
+
+<br>
+
+# Methods
+## Participants and Data
+Data were collected from a sample of children aged 60–150 months, each of whom completed an emotional regulation assessment. The dataset included children’s age in months and an emotional regulation score. Any missing values were removed prior to analysis.
+
+## Data Preparation
+Age in months was converted into years (including decimal points) to make results easier to interpret. After conversion, the dataset was cleaned by removing any remaining missing values.
+
+```{r, echo=TRUE, background="#f0f0f0", size="large"}
+
+hello <- "Hello" 
+
+# new variable 
+# data tidy - remove NAs 
+
+```
+
+## Descriptive Statistics
+Descriptive statistics were computed for both variables. These were summarized in a table and histograms.
+
+## Linear Regression 
+A simple linear regression was conducted to examine whether age predicted emotional regulation. A scatterplot with 95% confidence intervals were included to provide a measure of uncertainty around this prediction. Model assumptions were assessed using standard diagnostic plots.
+
+The linear regression equation predicting emotional regulation from age is:
+
+$$
+{Y} = \beta_0 + \beta_1 * X
+$$
+
+Where:  
+- \(Y\) = predicted emotional regulation score  
+- \(\beta_0\) = intercept  
+- \(\beta_1\) = slope for age  
+- \(X\) = age in years
+
+<br>
+
+# Results
+The dataset included 20 children aged 5–12 years (mean age = 8.25 years, SD = 2.38). Emotional regulation scores ranged from 3.5 to 12.0, with a mean of 8.44 (SD = 2.10).
+
+```{r, echo=FALSE}
+# Summary table of the two main variables
+dev_data %>%
+  summarise(
+    Mean_Age = mean(age),
+    SD_Age = sd(age),
+    Mean_ER = mean(emotional_regulation),
+    SD_ER = sd(emotional_regulation),
+  ) %>%
+  knitr::kable(
+    digits = 2,
+    caption = "Descriptive statistics"
+  )
+```
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=5}
+# ⃣ Density plot of Age
+ggplot(dev_data, aes(x = age)) +
+  geom_density(fill = "#008080", alpha = 0.7) +
+  labs(x = "Age (years)", y = "Density", title = "Figure 1: Distribution of Age") +
+  theme_minimal(base_size = 14)
+
+# ⃣ Density plot of Emotional Regulation
+ggplot(dev_data, aes(x = emotional_regulation)) +
+  geom_density(fill = "#cc0000", alpha = 0.7) +
+  labs(x = "Figure 2: Emotional Regulation Score", y = "Density", title = "Distribution of Emotional Regulation") +
+  theme_minimal(base_size = 14)
+```
+
+Density plots of the two variables show that age was approximately normally distributed, while emotional regulation scores were slightly positively skewed, with most children scoring between 6 and 10.
+
+A simple linear regression was conducted to examine whether age predicts emotional regulation in children aged 5–12. The model was significant, F(1, 18) = 28.71, p < .001, and explained a substantial portion of the variance in emotional regulation, R² = .61. Age was a significant positive predictor of emotional regulation, B = 0.80, SE = 0.15, t = 5.36, p < .001, indicating that older children tended to have higher emotional regulation scores.
+
+```{r, echo=FALSE}
+# Fit linear regression model
+model <- lm(emotional_regulation ~ age, data = dev_data)
+
+# Create a simple coefficients table and round numbers
+coef_table <- as.data.frame(round(summary(model)$coefficients, 2))
+
+# Show the table
+coef_table
+
+```
+
+
+```{r, echo=FALSE, fig.width=11, fig.height=5, message=FALSE, warning=FALSE}
+# Scatter plot of Age vs Emotional Regulation
+ggplot(dev_data, aes(x = age, y = emotional_regulation)) +
+  geom_point(color = "#0b4545", size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", color = "#008080", se = TRUE) +
+  labs(x = "Age (years)", y = "Emotional Regulation Score",
+       title = "Figure 3: Relationship Between Age and Emotional Regulation") +
+  theme_minimal(base_size = 14)
+```
+
+At the mean age of 8.25 years, the predicted emotional regulation score is:
+
+$$
+Y = 1.517 + 0.8389 * 8.25 = 8.44
+$$
+
+Residuals were checked for normality and constant variance. Q–Q plots showed approximate normality, and residuals versus fitted values indicated homoscedasticity.
+
+```{r, echo=FALSE, fig.width=11, fig.height=5}
+qqnorm(residuals(model))
+qqline(residuals(model), col = "#008080", lwd = 2)
+```
+<br>
+
+# Conclusion 
+
+This study demonstrates that emotional regulation improves with age in children aged 5–12.
+Older children showed stronger self-regulation compared to younger children, consistent with typical developmental trends.
+These findings highlight the importance of supporting emotional skills in early childhood to promote healthy development.
