@@ -3,6 +3,21 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
+  word_document:
+    toc: true
+    toc_depth: '3'
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
   html_document:
     toc: true
     toc_depth: '3'
@@ -12,21 +27,6 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
-  word_document:
-    toc: true
-    toc_depth: '3'
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
 ---
 
 ```{css, echo=FALSE}
@@ -265,8 +265,8 @@ Once installed, you will **open RStudio**, not R itself.
 
 Opening RStudio automatically starts R in the background.
 
-Finally You will need to download Rtools from Cran: https://cran.r-project.org/bin/windows/Rtools/. 
-Make sure this is installed before moving on. 
+Finally you will need to download Rtools from Cran: https://cran.r-project.org/bin/windows/Rtools/. 
+> Make sure this is installed before moving on. 
 
 ---
 
@@ -349,11 +349,10 @@ it will look like this:
 
 ```{r}
 x <- 500 
-x
 
 ```
 
-> **Question**: when you select "x" what is the output? 
+> **Question**: when you select "x" and press enter what is the output? 
 
 > **Activity**: practice with different numbers and letters
 
@@ -1092,11 +1091,11 @@ you can do the same with factors with as.factor (but we’re coming back to this
  
 ## Vectors
 
-Vectors are the fundamental data structure in R. A vector stores multiple values of the same type in a single object. For instance, a numeric vector comprises of a list of numbers (e.g. [1, 2, 6, 6, 3, 6, 2] is a vector of integers) . In this section we will examine various ways to construct and subset a numeric vector. 
+Vectors are the fundamental data structure in R. A vector stores multiple values of the same type in a single object. For instance, a numeric vector comprises of a list of numbers (e.g. `[1, 2, 6, 6, 3, 6, 2]` is a vector of integers) . In this section we will examine various ways to construct and subset a numeric vector. 
 
 ### Creating vectors
 
-The simplest way to create a vector is with the c() (combine) function.
+The simplest way to create a vector is with the `c()` (combine) function.
 
 ```{r}
 
@@ -1149,7 +1148,7 @@ rev_vector <- rev(my_vector) # reverses the order - note it is saved under
 > **Exercise 3.4**: Create a vector of 5 numbers representing daily sales. 
 
 ### Indexing vectors
-Square brackets [] are used to extract elements from vectors. This is how we can check the ordering. 
+Square brackets `[]` are used to extract elements from vectors. This is how we can check the ordering. 
 
 If we want to extract the nth (e.g. 5th) element of a vector, specify n within the square brackets:
 
@@ -1184,18 +1183,13 @@ My_vector2 <- my_vector[-2]  # what about now?
 
 ### Text vectors and factors
 
-Vectors can be also made up of `strings` (i.e. words) instead of numbers. We simply have to
-enclose the characters/strings by quotation marks like in the following example:
+Vectors can be also made up of `strings` (i.e. words) instead of numbers. We simply have to enclose the characters/strings by quotation marks like in the following example:
 
 ```{r}
 country <- c("Japan", "USA", "France")
 country
 
 ```
-
-In many situations, a sequence of strings masks realizations from categorical variables such as religion,
-political party and blood type. This is the `character` data type. R offers an efficient way to store these sequences as `factors`. 
-
 Factors are the last variable type in R, otherwise known as categorical, nominal or ordinal variables. These are variables which are groupings with no clear order (e.g. apple, banana, orange - two apples are not the same as one orange), or if ordinal then groupings with an order but you don't know the size of the space between the levels (e.g. 1st, 2nd and 3rd in a race. You know that the 1st person is quicker, but you don't know by how much). 
 
 ```{r}
@@ -1223,7 +1217,7 @@ nlevels(blood)
 
 Factors can also be comprised of numbers. Sometimes, in data entry, rather than write 'man', 'woman' or 'non-binary' researchers will code these observations to '1', '2' and '3'. Some people just prefer this in data process and analysis. In this case, you just need to tell R that these numbers need to be handled as a factor. 
 
-### Activity 3.2: Making a factor. 
+### Activity 3.2: Making a factor 
 
 To make a `gender` factor please do the following steps: 
 
@@ -1287,7 +1281,379 @@ edu_ordered
 
 ## Data frames
  
- TBC 
+So far, we have made lists of single variables (e.g. gender or education). However, when working with real data, we usually have multiple variables measured on multiple observations. In R, **this is a data frame**, which stores this information in a rectangular structure. 
+
+This is the main format of data you will be working with and we already covered how to import it last week [i.e. mydata <- read.csv("data/mydata.csv")]. 
+
+This week we will discuss how to explore an imported data frame, how to change the name of variables, and how to sub-set a data frame. 
+
+### Exploring a data frame 
+
+Before any data analysis, it is good to know the details about the dataset you are using, e.g. number of variables, sample size, etc.
+
+We will use the built-in iris dataset.
+
+```{r}
+#--- Look at the dataset (note the capitalisation in View - R is case sensitive!) in the viewer 
+View(iris)
+
+```
+
+the `View()` function makes an excel like spreadsheet pop up which is useful to work from. 
+
+```{r}
+
+names(iris) # this tells you the names of the columns. 
+# In this case, the columns are the variables included 
+# in the Iris dataset. This is probably the most useful 
+# function for checking your dataset. 
+
+ncol(iris) # this tells you how many columns the Iris 
+# data set has (e.g. variables)
+
+nrow(iris) # this tells you how many rows there are. 
+# In this case this is the total sample size (e.g. observations)
+
+```
+
+There are a number of ways to get to know a dataset. Begin by looking at the first part of a dataset using the `head()` function. 
+
+```{r}
+head(iris) # head() displays the first 6 items of an dataframe 
+```
+
+All these functions allow you to quickly understand the size and structure of the dataset.
+
+> **Question 3.1**: How many observations does the iris dataset contain? How many variables? 
+
+To look at individual columns or variables you can use the `$` sign. The object before the `$` is the data frame (e.g. `iris`) and the object after is the variable name in the dataset (e.g. `Sepal.Length`) 
+
+```{r}
+iris$Sepal.Length
+```
+
+So we can use some of the functions we learnt earlier like `class()` in the context of the data frame on a specific variable
+
+```{r}
+class(iris$Sepal.Length)
+class(iris$Species)
+
+```
+
+### Sub-setting data frames 
+
+Subsetting allows you to focus on specific parts of a dataset. It basically is asking R to take only specific variables forward to a smaller dataframe. 
+
+Subsetting datasets can be really helpful when you want to work with certain variables, especially when you have a large number of variables - imagine a dataframe with 100 columns! This is too many to work with, you will want to cut it down to just the 4-5 you need to work with. 
+
+To subset dataframes in R, we use square brackets `[ ]`. Inside the square brackets, we need to specify what subset we want to extract. These will be either specific rows or columns, or both. 
+
+> Rows are specified first followed by a comma then columns are specified. **This is always the case in R**.
+
+If you want to subset columns only, i.e. keep all rows, you can simply not specify anything before the comma (and vice versa). Let's subset the Iris data to include the first column only.
+
+Let’s practice this now. 
+
+#### Sub-setting by column (e.g. variables with all observations)
+
+```{r}
+names(iris) # to see the column names to write them correctly. 
+
+# specific the column by name 
+Iris2 <- iris[,"Sepal.Length"] 
+# specify the column name AFTER the comma. 
+# note I’m saving this as a new data-frame called Iris2 
+
+Iris2 # view 
+
+# specify the column on by its position
+Iris2 <-  iris[,1] 
+# this is useful when you don’t know the names,
+# or don’t what to type them. 
+# Here R will just take the 1st column, regardless of what it’s called. 
+
+Iris2 # view 
+
+```
+
+Just like before, if you want to take multiple columns forward in the new dataset (e.g. `Sepal.Length` and `Petal.Length`) you need to use the `c()` function to make a list of them. 
+
+```{r}
+# with names 
+Iris2 <- iris[,c("Sepal.Length","Petal.Length")] 
+# note the entire list of columns within the c() function 
+# comes after the comma to specify that it’s a column. 
+
+# check the new dataframe 
+ncol(Iris2)
+names(Iris2)
+View(Iris2)
+
+
+# with numbers 
+Iris2 <- iris[,c(1,3)] 
+# exactly the same with numbers rather than names. 
+
+# check the new dataframe 
+ncol(Iris2)
+names(Iris2)
+View(Iris2)
+
+```
+#### Sub-setting by Row 
+
+To subset the Iris data to contain specific rows (e.g. observations), you need to include the row numbers. This must be done before the comma now, as you are working with ROWS not COLUMNS. 
+
+> Remember, rows are where the observations (per participant), columns are the variables. 
+
+```{r}
+# subset rows with numbers 
+Iris2 <- iris[c(4,7,17),]
+# rows don't have names! 
+
+# check the new dataframe 
+ncol(Iris2)
+names(Iris2)
+View(Iris2)
+
+```
+
+#### Subsetting by row AND column 
+
+We have to include the row numbers because rows do not have names, unlike columns. 
+Similarly, you can subset by both rows and columns by including BOTH information before (rows) and after (columns) the comma inside the square brackets.
+
+```{r}
+# subsetting numbers for rows, and names for columns 
+Iris2 <- iris[c(1,2,3,4), c("Sepal.Length", "Sepal.Width")]
+
+# subsetting by numbers for both rows and columns 
+Iris2 <-  iris[c(1,2,3,4),c(1,2)]
+
+# note, if you have sequential row and/or column numbers you can use a colon instead of c() which saves you much typing. 
+
+Iris2 <-  iris[1:4,1:2] 
+# this returns exactly the same as the previous line
+
+
+```
+
+> It is always advisable to do less typing in your coding. Less room for error. So 1:4 is preferable to c(1, 2, 3, 4). It is also eaiser to read and understand. 
+
+Based on this final subset of Iris answer the following questions
+
+> **Question 3.2**: How many observations does the Iris2 dataset contain? How many variables? 
+
+### Comparison operators 
+
+We can also subset by condition (e.g. greater than, equal to, less than). But before we do this **we need to know about comparison operators**.
+
+In R, we often want to compare values in our data. R provides several comparison operators that return TRUE or FALSE depending on whether a condition is met. Here are the main ones:
+
+| Operator | Meaning                     | Example                  |
+|----------|-----------------------------|--------------------------|
+| `<`      | Less than                   | `5 < 10` returns `TRUE` |
+| `>`      | Greater than                | `5 > 10` returns `FALSE`|
+| `<=`     | Less than or equal to       | `5 <= 5` returns `TRUE` |
+| `>=`     | Greater than or equal to    | `5 >= 10` returns `FALSE`|
+| `==`     | Equal to                    | `5 == 5` returns `TRUE` |
+| `!=`     | Not equal to                | `5 != 5` returns `FALSE`|
+
+> In R, the command `!` always indicates logical negation: i.e. the opposite (!= 5 means show me everything that isn’t 5 in the dataset). 
+
+In R, you can apply these comparisons to vectors or columns in a data frame. This is like asking questions from the data, which will give you logical responses (TRUE/FALSE). For example, using the iris dataset:
+
+```{r}
+# Which Sepal.Length values are less than 5?
+iris$Sepal.Length < 5
+
+# Which Sepal.Width values are greater than or equal to 3.5?
+iris$Sepal.Width >= 3.5
+
+# Check if Species is equal to "versicolor"
+iris$Species == "versicolor"
+
+# Check which Species are NOT "setosa"
+iris$Species != "setosa"
+
+```
+Each of these commands returns a logical vector (TRUE or FALSE) for each row, which we can use to subset data. To do this we just combine the logical questions with the subset formula we learnt above! 
+
+```{r}
+Iris2 <- iris[iris$Sepal.Width < 2.5,]
+Iris2 <- iris[iris$Sepal.Width > 4.0,]
+Iris2 <- iris[iris$Sepal.Width == 4.0,]
+Iris2 <- iris[iris$Species == "setosa",]
+
+
+```
+Logical conditions are especially useful when filtering large datasets. So far, we’ve used one condition at a time, often, however, we want to apply more than one condition at the same time.
+
+#### Using AND (`&`) to combine conditions
+
+The AND operator (&) is used when all conditions must be true for a row to be kept.
+Example: two conditions must both be true
+
+```{r}
+Iris2 <- iris[
+  iris$Sepal.Width < 2.5 & iris$Species == "setosa",
+]
+
+# here I am use multiuple lines to make the code easier to understand 
+# as it gets more complex. 
+```
+
+This code keeps rows where: `Sepal.Width` is less than 2.5 AND `Species` is "setosa". You can read this as: “Keep the rows where `Sepal.Width` is less than 2.5 and the `species` is setosa.”
+
+### Activity 3.3  
+
+Task: Using all your skills above in viewing, exploring and subsetting dataframes Create a subset of the iris data that *includes 1) `Sepal.Width`, `Species` and `Petal Length` and 2) only versicolor plants with Petal.Length is greater than 4*. Rename the dataframe `iris_subset`. 
+
+Then answer the following questions: 
+
+> **Question 3.3**: how many columns are in your dataset?  
+
+> **Question 3.4**: how many observations? 
+
+> **Question 3.4**: What are the names of the variables in your dataset? 
+
+## Re-labelling variables 
+
+Clear and consistent variable names make your code easier to read and prevent errors. R is case-sensitive, which means `Sepal.Length` is different from `sepal.length`. A common approach is to use all lowercase letters and replace dots or spaces with underscores.
+
+> I find it simpler never to use caps in R then I never need to wonder if anything isn't working because I did, or didn't use caps. 
+
+The dplyr package provides a convenient `rename()` function we are going to use
+
+
+
+```{r}
+# load the dplyr package 
+library(dplyr)
+
+# Rename Sepal.Length to sepal_len
+Iris2 <- iris %>%
+  rename(sepal_len = Sepal.Length)
+
+# Check the result
+names(Iris2)
+
+```
+
+You can see the first variable has now been renamed. We can do this with all the variables when we hate caps. 
+
+```{r}
+Iris2<- iris %>%
+  rename(
+    sepal_length = Sepal.Length,
+    sepal_width  = Sepal.Width,
+    petal_length = Petal.Length,
+    petal_width  = Petal.Width,
+    species      = Species
+  )
+
+names(Iris2) 
+
+```
+
+NB – dplyr has a nice function where it will automtically remove the caps on all variables! Let's use this to save typing
+
+```{r}
+# Convert all column names in iris to lowercase
+Iris2 <- iris %>%
+  rename_with(tolower)
+
+# Check the result
+names(Iris2) 
+
+#NB*2 – you can also do this for annoying dots with underscores. You can do this with gsub() inside rename_with()
+
+Iris2 <- iris %>%
+  rename_with(~ gsub("\\.", "_", .))
+
+# Check the result
+names(Iris2) 
+
+
+```
+
+## Introducing pipes
+
+In the above code you will notice we introduced the `%>%` character for the first time. **This is called a pipe**. 
+
+When we work with data in R, we often do multiple operations in a sequence. For example, we might:
+
+  - Take a dataset
+  - Select certain columns
+  - Filter rows
+  - Calculate a summary
+
+Without pipes, we would need to do this bit by bit, like we have above : 
+
+```{r}
+# Without pipes
+iris_subset <- subset(iris, Species == "versicolor")
+iris_subset <- iris_subset[, c("Sepal.Length", "Petal.Length")]
+head(iris_subset)
+
+```
+
+This is what we have been doing so far. It’s fine, it works – but it quickly gets messy and hard to read for longer sequences. We can use pipes to improve this! 
+
+### What is a pipe? 
+
+The pipe operator `%>%`, from the `dplyr` package, passes the output of one step directly into the next step. Think of it as saying:
+
+“Take this, and then do that next.” *all in one code line* 
+
+It allows us to write sequences of operations in a readable, left-to-right way.
+
+```{r}
+# Using pipes to do the same thing as above
+iris %>%
+  filter(Species == "versicolor") %>%   # Step 1: Keep only versicolor rows
+  select(Sepal.Length, Petal.Length) %>% # Step 2: Keep only these two columns
+  head()                                  # Step 3: Show first few rows
+
+```
+The advantages of this are: 
+
+- **Readable**: You can read it top-to-bottom, like a list of instructions.
+- **No temporary variables needed**: No need to create iris_subset first.
+- **Easy to extend**: You can add more steps at the end without changing the earlier code.
+
+### Activity 3.4 re-do subsetting with pipes 
+
+So, if we we’re to re-do your subsetting with pipes for versicolor plants with Petal.Length > 4 it would look like below where: 
+
+  - `filter()` selects rows based on conditions.
+  - `&` means AND – both conditions must be true.
+  - The pipe `%>%` passes iris into `filter()` function. 
+
+
+```{r}
+library(dplyr)
+
+# Example using pipes
+iris_subset <- iris %>%
+  filter(Species == "versicolor" & Petal.Length > 4)
+
+# View the first few rows
+head(versicolor_subset)
+
+```
+
+Now, please try a new subset using pipes: Create a subset of the iris dataset that includes setosa plants with Sepal.Width > 3.5.
+
+  - Use `filter()` and `%>%`.
+  - Optionally, use `head()` to check the first few rows.
+
+Hints:
+
+  - Combine your conditions with `&`.
+  - Start the pipe with iris `%>%`
+  - Remember: `Species == "setosa"` and `Sepal.Width > 3.5`
+
 
 #  Data Manipulation in R: Week 4
 ## The tidyverse
