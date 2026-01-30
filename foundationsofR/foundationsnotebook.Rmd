@@ -3,21 +3,6 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
-  word_document:
-    toc: true
-    toc_depth: '3'
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
   html_document:
     toc: true
     toc_depth: '3'
@@ -27,6 +12,21 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
+  word_document:
+    toc: true
+    toc_depth: '3'
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
 ---
 
 ```{css, echo=FALSE}
@@ -64,6 +64,7 @@ h1, h2, h3 {
 pre, code {
   font-size: 0.95em;
 }
+
 
 ```
 
@@ -435,7 +436,9 @@ R is a powerful tool, but it’s precise and literal. Be careful with typos, spa
 
 This week focuses on good workflow habits when working with R. These skills may feel minor now, but they are essential for reproducible analysis, collaboration and avoiding frustration later in the course.
 
-> **Using this notebook**: In the lecture you will workthrough this notebook. You should copy the code segments below into a new R script (instructions given below) to practice and work through the exercises and questions.  
+> **Using this notebook**: In the lecture you will workthrough this notebook. You should copy the code segments below into a new R script (instructions given below) to practice and work through the exercises and questions. To *make a new script in R*: select the paper icon with a green plus on it in the top-left corner and select 'R Script' from the top of the drop-down menu. You now have a blank page in front of you. You will make a new script each week.    
+
+![*Figure 2.1 To create new script: click the sheet with the green plus button.*](newscript.png)
 
 ## Organising folders on your computer
 
@@ -484,9 +487,11 @@ An object can store:
 
 For example, last week we learnt how to store a single number within the 'x' object
 
-```{r}
+```{r object}
+# make x = 10 
 x <- 10
 
+# print x 
 x
 ```
 
@@ -498,8 +503,10 @@ Here:
 
 Once an object is created, you can reuse it:
 
-```{r}
+```{r reuse object}
+# add 5 to x 
 x + 5
+
 ```
 
 R remembers what x refers to and uses its stored value to add 5 to 10 = 15 
@@ -545,22 +552,26 @@ Once an object exists, it can be:
   - Passed into functions
   - Combined with other objects
 
-```{r}
+```{r objects in cal}
+# y = x*2 
 y <- x * 2 # Here, y is created multiplying the value stored in x by 2
+
+# print y 
 y
 ```
+NB - if you don't save the output as a new object, R prints it automatically. If you save it as a new object (like y here) then you will need to ask R to print it to view and confirm. 
 
 > Object-based thinking is central to working effectively in R: create objects, then operate on them.
 
 ### Activity 2.1: Working with objects 
 
-This activity will help you practise creating and using **objects** in R.  
+This activity will help you practise creating and using **objects** in R. 
 
-Step 1: make a new script in R. Select the paper icon with a green plus on it in the top-left corner and select 'R Script' from the top of the drop-down menu.  
-
-Step 2: create the following objects by copying this code into your script
+**Step 1**: Create the following objects in your script under a commented header # Activity 2.1 by copying this code into your script
 
 ```{r}
+# Activity 2.1 
+
 age <- 20
 years <- 5
 name <- "Alex"
@@ -570,9 +581,10 @@ score <- 68
 
 > **Question 2.1**: Check that these objects appear in the Environment pane. Can you see the correct values attributed to the objects? 
 
-Step 3: Create a new object using the objects you already mad 
+**Step 2**: Create a new object using the objects you already made:   
 
 ```{r}
+# add 1 to age
 age_next_year <- age + 1
 
 
@@ -580,9 +592,10 @@ age_next_year <- age + 1
 
 > **Question 2.2**: What is Alex's age after five years? 
 
-Step 4: R allows you to overwrite objects, so update the age variable 
+**Step 3**: R allows you to overwrite objects, so update the age variable 
 
 ```{r}
+# overwrite age with 25 
 age <- 25
 
 ```
@@ -591,18 +604,18 @@ age <- 25
 
 **Be careful: once an object is overwritten, the old value is lost unless you saved it elsewhere.** 
 
-Step 5: make a simple single observation dataset to add to your environment 
-
-Firstly, check that all your objects already made appear in your environment pane (name, age, years and score) 
-
-Now combine these objects into a dataset with one row:
+**Step 4**: make a simple single observation dataset to add to your environment. First, check that all your objects already made appear in your environment pane (name, age, years and score). Now combine these objects into a dataset with one row. The dataset is called 'student':
 
 ```{r}
-student <- data.frame(
-  name = name,
-  age = age,
-  score = score
+# make a dataframe called 'student
+student <- data.frame( # function is data.frame()
+  name = name, # includes name called the same as before 
+  age = age, # age 
+  score = score # score 
 )
+
+# name = name means bring the 'name' variable across and call it 'name' 
+# in the new dataframe. 
 
 ```
 
@@ -626,11 +639,11 @@ When you work in R, everything you create or load during a session lives in the 
 
 For example:
 
-```{r}
+```{r x and y}
+# make x = 10 and y = 100
 x <- 10 
 y <- 100 
 ```
-
 
 Both x and y are now alongside your ‘student’ data and other objects now exist in the environment and can be used by other lines of code.
 
@@ -638,6 +651,7 @@ You can check what objects are in your environment with the `objects()` function
 
 
 ```{r}
+# check the objects in your environment 
 objects()
 ```
 
@@ -648,11 +662,14 @@ You can remove objects from your environment as well as adding them. In RStudio,
   - This removes all the objects in your environment, resetting it. 
   
 **Deleting variables cannot be undone.** Once a variable is removed, it no longer exists in the environment.
-You can also remove variables using code, which is useful if you want to be explicit in a script.
+You can also remove variables using code, which is useful if you want to be explicit in a script.You do this with the `rm()` function: 
 
 ```{r}
+# remove x and y variables 
 rm(x, y)
-objects() # re-run the check on objects to confirm they are gone. 
+
+# re-check 
+objects() 
 ```
 
 
@@ -697,7 +714,7 @@ We are now going to make use of your folder structure you made earlier to save o
   3.	Select your skills component folder you made earlier 
   4.	Call your project ‘foundations’ 
 
-![*Figure 2.1 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.*](projects.png)
+![*Figure 2.2 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.*](projects.png)
 
 
 **Now, quit RStudio**. Inspect the folder associated with your project — notice the `.Rproj` file. Double-click that file to re-open the project. Notice you get back to where you left off: it’s the same working directory and command history, and all the files you were working on are still open. 
@@ -712,12 +729,13 @@ Basically, now **R will default to save everything, and import everything from y
 
 RStudio shows your current working directory at the top of the console:
 
-![*Figure 2.2 Image of your working directory location at the top of your console. From R4DS.*](workingdir.png)
+![*Figure 2.3 Image of your working directory location at the top of your console. From R4DS.*](workingdir.png)
 
 
 And you can print this out in R code by running `getwd()`
 
-```{r}
+```{r WD}
+# check working directory
 getwd()
 
 ```
@@ -725,7 +743,8 @@ getwd()
 
 If you want to know the associated list of files and/or sub-directories within your working directory you can use `dir()`
 
-```{r}
+```{r contents}
+# check what's in your WD 
 dir() 
 ```
 
@@ -791,8 +810,9 @@ So now we know all this we can import data from our data sub-folder into R easil
 
 We will be using CSV files in this component as a rule. 
 
-```{r}
+```{r read}
 
+# import (read) a dataframe 
 mydata <- read.csv("data/mydata.csv") 
 
 # you are telling r what to call the  # dataset (mydata) and you are telling R 
@@ -805,8 +825,8 @@ We can also ask R for some specifics when we are reading in our data. These spec
   - The argument `header` is a logical variable indicating whether variable names are included in the top of each column or not.
 
 
-```{r}
-
+```{r read with header}
+# read with header 
 mydata <- read.csv("data/mydata.csv", header = TRUE)
 
 ```
@@ -814,7 +834,7 @@ mydata <- read.csv("data/mydata.csv", header = TRUE)
 We inspect the data using the function `head()` which presents the first 6 rows of the dataset.
 
 ```{r}
-
+# check the first 6 rows 
 head(mydata) # it's a single variable of height 
 
 
@@ -826,8 +846,8 @@ head(mydata) # it's a single variable of height
 
 R has a couple of in-built learning datasets, so we are just going to save this to your computer. We are going to use the relative path so we're sending it to the outputs folder within your working directory. This just means you know where to find it. 
 
-```{r}
-
+```{r write}
+# save iris to your 'outputs' folder 
 write.csv(iris, "outputs/iris.csv") 
 
 # here we're saying, find the file called 
@@ -848,7 +868,7 @@ R works by creating objects, applying functions to objects to make them doing sp
 
 Functions perform actions on objects. We saw this actually just above with the `read.csv()` which is the function, and the argument of `header=TRUE`. To give another example using the data we just read into R. 
 
-```{r}
+```{r function}
 # the mydata is just one variable - 'height' so lets compute the mean for this 
 
 mean(mydata$height) 
@@ -870,8 +890,8 @@ However, here the function to compute the 'mean' hasn't worked because it has re
 After the functions comes the **arguments** - the content of the brackets. Arguments change how a function behaves:
 
 
-```{r}
-
+```{r argument}
+# add the na.rm argument 
 mean(mydata$height, na.rm = TRUE) 
 
 # na.rm means 'remove NAs' so your telling R
@@ -908,7 +928,8 @@ This is the R command that does all the work. R then goes oﬀ to the internet, 
 
 Loading makes it available for use. You will need to do this every session, unless you are saving your environment. Most scripts you will see start with the required packages at the top, in addition to any required data (we will review scripts set-up in more detail next week). **It is good practice to specify which packages your project requires at the start of any script** as they are unloaded when you re-start R and chunks of code won't work if you don't re-install them (and its way too easy to forget which chunk uses which package).
 
-```{r}
+```{r install}
+# install tidyverse once downloaded 
 library(tidyverse)
 ```
 
@@ -934,7 +955,7 @@ A good script header usually includes:
   - Your name and any co-authors 
   - The date (or date range) of work
 
-```{r}
+```{r header}
 # ============================================================
 # Script: week3_practice.R -----------------------------------
 # Purpose: Working with scripts and data frames
@@ -959,7 +980,7 @@ Placing these steps at the top means that:
 
 A typical structure looks like this:
 
-```{r}
+```{r header and set up}
 # ============================================================
 # Script: week3_practice.R -----------------------------------
 # Purpose: Working with scripts and data frames
@@ -990,7 +1011,7 @@ RStudio provides a document outline / drop-down menu (at the bottom right of the
 
 RStudio recognises comment-based headers using hashes and dashes:
 
-```{r}
+```{r levels}
  # creates a top-level section ---------------------------------
  ## creates a subsection ---------------------------------------
  ### creates a sub-subsection ----------------------------------
@@ -1001,7 +1022,7 @@ For main section headings you use four dashes after a single #. If you use two #
 
 Example:
 
-```{r}
+```{r numbered levels }
 # 2. Data import -----------------------------------------------------
 ## 2.1 Reading files -------------------------------------------------
 ### 2.1.1 Inspecting the data ----------------------------------------
@@ -1015,22 +1036,27 @@ These  headers will appear in the RStudio drop-down menu, allowing you to quickl
 If you use separators without text you will get untitled in the drop-down menu which helps you navigate the script quickly. 
 e.g. 
 
-```{r}
+```{r separator}
 # ------------------------------------------------------------
 ```
 
 RStudio sees this as a section with no name, so it shows up as “<untitled>”.
 
-### Activity 3.1: Create a new R script for this weeks material and structure it as follows:
+### Activity 3.1: Create a new R script for this weeks material and structure it as follows (copying the code section about for the first three sections:
 
-  - A header with title and date
-  - A packages section (installing tidyverse) 
-  - A data import section (importing data xxx) 
+  - A header with title and date with 1) set up for packages and data 
   - Add in the following structure: 
+    - 2) Data types 
+    - 3) Vectors 
+    - 4) Data frames 
+    - 5) re-labelling variables 
+    - 6) Pipes 
 
-TBC..... 
+> We will populate this structure with sub-headings as we work through the rest of the workbook. As will last week, copy the code chunks into the script. Eg here: 
 
-We will populate this structure as we work through the rest of the workbook. As will last week, copy the code chunks into the script. 
+![**Figure 3.1 The header and set-up.**](header.png)
+
+![**Figure 3.2 The subheadings starting to be filled up as you work through the next section.**](subheadings.png)
 
 Finally make sure you save it to a folder in your R project, with a sensible name. 
 
@@ -1048,7 +1074,9 @@ The most frequently used data types are:
   - Factor: categorical variables with fixed levels
 
 let's make some now: 
-```{r}
+```{r make objects}
+
+# Make the four objects of different types 
 char_example <- "statistics" 
 num_example <- 3.14 
 int_example <- 10
@@ -1057,7 +1085,8 @@ log_example <- TRUE
 
 Now we can check what data type each of these objects are by using the ‘class’ function which calls the objects we just made in the brackets: 
 
-```{r}
+```{r check class}
+# check the class of objects 
 class(char_example) 
 class(num_example) 
 class(int_example) # telling you it’s a numeric value, which is wrong! 
@@ -1066,26 +1095,33 @@ class(log_example)
 
 Although numeric and integer values often behave similarly, they are stored differently in memory. Factors will be discussed in more detail later once we have covered vectors, as they are especially important for statistical modelling.
 
-> **Exercise 3.1**: create four variables of the correct types for the following variable names: name[“Alex”], score[“72.65”], age [“30”] and passed [TRUE/FALSE]
+> **Exercise 3.1**: create four variables of the correct types for the following variable names: name[“Alex”], score[“72.65”], age [30] and passed [TRUE/FALSE]
 
 > **Exercise 3.2**: using the class() fuction to check the data type. Are any wrong ? Comment in your script using # if any are wrong.    
 
 ### Coercion between types
 
-You can coerce values into different types. R automatically reads an interger as numeric. So you have to tell it. You can either add an L at the end or change it’s class: 
+You can coerce values into different types. R automatically reads an interger (whole number) as numeric (as we saw above!). So you have to tell it. You can either add an L at the end or change it’s class: 
 
-```{r}
-int_example <- 10L
-int_example  <- as.integer(int_example) # note that I have used the object 
-# assignment operator again here. If I didn’t R wouldn’t save your changes 
+```{r, coerce to interger}
+# Using L
+int_example1 <- 10L
+class(int_example1) # r now knows this is a integer
 
-# likewise, you can coerce it back to numeric
+# Forcing it by changing the class 
+int_example2  <- as.integer(int_example)
+class(int_example2) 
+
+# note that I have used the object assignment operator here. 
+# If I didn’t R wouldn’t save your changes 
+
+#  coerce it back to numeric
 int_example  <- as.numeric(int_example) 
-
+# check the class 
+class(int_example) 
 ```
 
-
-you can do the same with factors with as.factor (but we’re coming back to this)
+You can do the same with factors with as.factor (but we’re coming back to this)
 
 > **Exercise 3.3**: use as.integer() function to coerce “age” into an integer and save the result. Re-check it using class(). 
  
@@ -1097,10 +1133,13 @@ Vectors are the fundamental data structure in R. A vector stores multiple values
 
 The simplest way to create a vector is with the `c()` (combine) function.
 
-```{r}
+```{r vectors}
 
+# make 2 vectors 
 vec1 <- c(1, 2, 3, 4, 5) 
 vec2 <- c(6, 7, 8, 9, 10)
+
+# print the vectors
 vec1 
 vec2 
 
@@ -1109,109 +1148,145 @@ vec2
 
 Two vectors can also be joined into the same vector using the `c()` command. The two smaller vectors will appear in the new one in the order you specify:
 
-```{r}
+```{r combine vec}
+# Combine vectors
 vec3 <- c(vec1, vec2)
 vec3 
 ```
-
+> NB - this is different to ADDING vectors, as we will see below! 
 
 ### Vectors are ordered
 
 Vectors are ordered, meaning the position of each element matters. The first element is position 1, the second is position 2, and so on. When you reference a vector by position, you get exactly the element in that position.
 
-```{r}
+```{r ordered}
+# make the vector and print 
 my_vector <- c(10, 20, 30, 40) 
 my_vector
-# the second element is 20 
-```
 
+```
+The second element in this vector is the number 20, the third is 30. This will always be the case unless you force a change. 
 
 Ordering also matters for calculations and operations. For example, if you add two vectors together, R adds them element-wise based on their positions:
 
-```{r}
+```{r adding vectors }
+# make two vectors 
 v1 <- c(1, 2, 3)
-v2 <- c(10, 20, 30) 
+v2 <- c(10, 20, 30)
+
+# add the vectors together 
 v1 + v2 
 
 ```
 
 
-Changing the order of elements changes the results of any operation that relies on position.
+Changing the order of elements changes the results of any operation that relies on position - like adding.
 
-```{r}
-rev_vector <- rev(my_vector) # reverses the order - note it is saved under 
-# a new object name (rev_vector) 
+```{r reversing vector}
+# reverse the order of the vector 
+rev_v1 <- rev(v1) 
+# now saved under a new object name (rev_v1) 
+
+# add rev_v1 AND V2 together  again 
+rev_v1 + v2 
+
+# how different is the result? 
 ```
 
 > Key takeaway: Always be aware of the order of elements in a vector. Many mistakes in data analysis happen when positions are assumed incorrectly.
 
-> **Exercise 3.4**: Create a vector of 5 numbers representing daily sales. 
+> **Exercise 3.4**: Create a vector of 5 numbers representing scores of five different assessments (0-100). Please give them five unique numbers.  
 
 ### Indexing vectors
 Square brackets `[]` are used to extract elements from vectors. This is how we can check the ordering. 
 
 If we want to extract the nth (e.g. 5th) element of a vector, specify n within the square brackets:
 
-```{r}
+```{r indexing}
+# make a vector 
 my_vector <- c(12, 16, 1, 9, 0) 
+
+# find out the 5th element in this vector
 my_vector[5] 
 ```
 
 This feature can be extended to extract multiple elements from a vector. For instance if we wanted to select the first and second elements of the vector "my.vector", we would do so in the following way:
 
-```{r}
+```{r multi index}
+# extract elements 1 to 2 
 my_vector[1:2]
 ```
 
-> **Excerise 3.5**: Use indexing to find the sales for day 3. Then reverse the vector and check which sale is now in the second position. 
+> **Excerise 3.5**: Use indexing to the score of your third assessment. Then reverse the vector and check which position this is in.  
 
 ### Removing values 
 We are also able to remove the nth element from a vector, we can do so using the '-' command within the square brackets.
 
-```{r}
-
+```{r removing values}
+# remove element 2 from the vector 
 my_vector[-2]
 
+# remove elements 1 to 2 from the vector 
 my_vector[-c(1:2)]
 
 ```
 Remember, however than you will need to re-save the vector (ideally with a different object name to avoiding overwriting). 
-```{r}
+```{r renaming vectors}
+
+# print the vector again 
 my_vector # does it still include the 2nd element? 
+
+# remove the second element and assign it to a new object 'my_vector2' 
 My_vector2 <- my_vector[-2]  # what about now? 
+
+# print to confirm 
+My_vector2
 ```
 
 ### Text vectors and factors
 
 Vectors can be also made up of `strings` (i.e. words) instead of numbers. We simply have to enclose the characters/strings by quotation marks like in the following example:
 
-```{r}
+```{r text vector}
+
+# make a vector based on text and print 
 country <- c("Japan", "USA", "France")
 country
 
 ```
 Factors are the last variable type in R, otherwise known as categorical, nominal or ordinal variables. These are variables which are groupings with no clear order (e.g. apple, banana, orange - two apples are not the same as one orange), or if ordinal then groupings with an order but you don't know the size of the space between the levels (e.g. 1st, 2nd and 3rd in a race. You know that the 1st person is quicker, but you don't know by how much). 
 
-```{r}
-blood <- c("A", "B", "O", "AB", "A", "B", "O", "O", "AB", "B") # make a vector of characters 
+```{r text vector to factor}
+# make a vector of characters 
+blood <- c("A", "B", "O", "AB", "A", "B", "O", "O", "AB", "B") 
+
+# print  
 blood 
-class(blood)  # check the class is 'character 
+
+# check class 
+class(blood)  
 ```
 
 In the first line we made a string list the blood type of 10 observations. This doesn't necessarily make a factor, however. A factor must have levels (e.g. the groups - A, B, AB, O) specified to 'lump' together these observations (e.g. 2 observations of A, 3 obervations of 0 and 2 observations of AB) 
 
 So, we force the vector of characters to be factor using the function `as.factor`. By doing this that R recognises that blood is made up of a limited (4) number of possible values (A, AB, B and 0) which become the levels. when you print `blood` now it tells you the observations in the first line, and the number of levels in the second.  
 
-```{r}
+```{r as factor}
+# Froce blood to be a factor 
 blood <- as.factor(blood)
+
+# print 
 blood
 ```
 
 You can also ask R to just tell you the levels using the function `levels()` and the number of levels using `nlevels()`
 
-```{r}
+```{r check levels}
+# check levels 
 levels(blood)
 ## [1] "A" "AB" "B" "O"
+
+# count number of levels 
 nlevels(blood)
 ```
 
@@ -1235,16 +1310,23 @@ What we need to do is assign meaningful labels to the diﬀerent levels of each 
 
 Note, that this time, while I'm using integers to denote the groups, I have used the " " on either side of them. This means that R automatically reads them in as 'characters'. You can check this with the `class` function. But we will still need to tell R it's a factor to get the levels: 
 
-```{r}
-
+```{r renaming levels}
+# make the vector 
 participantgroup <- c("1", "1", "1", "1", "2", "2", "2", "2", "3", "3", "3", "3")
-class(participantgroup) 
-participantgroup <- as.factor(participantgroup) 
-levels(participantgroup) # 1, 2, 3 
 
-# So lets re-name the levels to something we will remember
+# check the class
+class(participantgroup)
+
+# make it a factor 
+participantgroup <- as.factor(participantgroup) 
+
+# check the levels 
+levels(participantgroup) 
+
+# re-name the levels to something we will remember
 levels(participantgroup) <- c("mindfulness", "relaxation", "CBT")
 
+# print 
 print(participantgroup)
 
 ```
@@ -1257,15 +1339,15 @@ Factors are very useful things, and we’ll use them a lot in this module: they�
 
 If you are working with an ordinal variable (e.g. educational level or class, in which some levels are greater than others) you will need to tell R their order because it will not necessarily know. You have to tell R in the argument of the function that it is ordered using `ordered = TRUE` 
 
-```{r}
+```{r ordered factor}
 educ <- c("Prim", "Ter", "Sec", "Sec", "Ter", "Prim")
 educ <- factor(educ, ordered=TRUE)
 educ
 ```
 
-In fact, with strings, R orders them automatically alphabetically. This worked for the above example between Primary education is alphebitcally before secondary etc. But what this means it that it will assume that A-levels (for instance) is 'before' GSCE, while we know this is not the case. In this case, you need to tell R which comes first. This requires one more argument in your code: 
+In fact, with strings, R orders them automatically alphabetically. This worked for the above example between Primary education is before secondary etc. But what this means it that it will assume that A-levels (for instance) is 'before' GSCE, while we know this is not the case. In this case, you need to tell R which comes first. This requires one more argument in your code: 
 
-```{r}
+```{r changing order}
 # Example vector of education levels
 edu <- c("UNIVERSITY", "GCSE", "POSTGRAD", "ALEVEL", "GCSE", "UNIVERSITY", "ALEVEL")
 
@@ -1293,26 +1375,23 @@ Before any data analysis, it is good to know the details about the dataset you a
 
 We will use the built-in iris dataset.
 
-```{r}
-#--- Look at the dataset (note the capitalisation in View - R is case sensitive!) in the viewer 
-View(iris)
+```{r head }
+# Look at the top of the dataset
+head(iris)
 
 ```
 
-the `View()` function makes an excel like spreadsheet pop up which is useful to work from. 
+```{r exploring df}
 
-```{r}
+# what are the names of the columns 
+names(iris) 
 
-names(iris) # this tells you the names of the columns. 
-# In this case, the columns are the variables included 
-# in the Iris dataset. This is probably the most useful 
-# function for checking your dataset. 
+# how many columns are there?  
+ncol(iris) # e.g. variables 
 
-ncol(iris) # this tells you how many columns the Iris 
-# data set has (e.g. variables)
+# how many rows are there 
 
-nrow(iris) # this tells you how many rows there are. 
-# In this case this is the total sample size (e.g. observations)
+nrow(iris) # e.g. observations 
 
 ```
 
@@ -1368,11 +1447,8 @@ Iris2 # view
 
 # specify the column on by its position
 Iris2 <-  iris[,1] 
-# this is useful when you don’t know the names,
-# or don’t what to type them. 
 # Here R will just take the 1st column, regardless of what it’s called. 
 
-Iris2 # view 
 
 ```
 
@@ -1387,7 +1463,7 @@ Iris2 <- iris[,c("Sepal.Length","Petal.Length")]
 # check the new dataframe 
 ncol(Iris2)
 names(Iris2)
-View(Iris2)
+head(Iris2)
 
 
 # with numbers 
@@ -1397,7 +1473,7 @@ Iris2 <- iris[,c(1,3)]
 # check the new dataframe 
 ncol(Iris2)
 names(Iris2)
-View(Iris2)
+head(Iris2)
 
 ```
 #### Sub-setting by Row 
@@ -1414,7 +1490,7 @@ Iris2 <- iris[c(4,7,17),]
 # check the new dataframe 
 ncol(Iris2)
 names(Iris2)
-View(Iris2)
+head(Iris2)
 
 ```
 
@@ -1639,7 +1715,7 @@ iris_subset <- iris %>%
   filter(Species == "versicolor" & Petal.Length > 4)
 
 # View the first few rows
-head(versicolor_subset)
+head(iris_subset)
 
 ```
 
