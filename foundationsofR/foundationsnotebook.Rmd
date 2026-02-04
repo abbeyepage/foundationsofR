@@ -3,6 +3,21 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
+  word_document:
+    toc: true
+    toc_depth: '3'
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
   html_document:
     toc: true
     toc_depth: '3'
@@ -12,21 +27,6 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
-  word_document:
-    toc: true
-    toc_depth: '3'
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
 ---
 
 ```{css, echo=FALSE}
@@ -710,9 +710,11 @@ An RStudio Project connects RStudio to a specific folder on your computer. Keepi
 We are now going to make use of your folder structure you made earlier to save our R project in an easy to find location. Please follow these steps: 
 
   1.	Open RStudio
-  2.	File → New Project → Existing Directory
-  3.	Select your skills component folder you made earlier 
+  2.	File → New Project 
+  3.	In browse select your skills component folder you made earlier 
   4.	Call your project ‘foundations’ 
+  
+  NB - R saves the project in its own folder, you can delete this and just copy and paste the 'foundations' project into your 'Skills' folder. 
 
 ![*Figure 2.2 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.*](projects.png)
 
@@ -813,10 +815,11 @@ We will be using CSV files in this component as a rule.
 ```{r read}
 
 # import (read) a dataframe 
-mydata <- read.csv("data/mydata.csv") 
+mydata <- read.csv("data/mydata.csv") # note that if you called your folder 'Data'
+# you will need to use the capitalised Data, not my 'data'. 
 
 # you are telling r what to call the  # dataset (mydata) and you are telling R 
-# where to find the data (in the data folder, called my_data.csv) 
+# where to find the data (in the data folder, called mydata.csv) 
 
 ```
 
@@ -827,7 +830,7 @@ We can also ask R for some specifics when we are reading in our data. These spec
 
 ```{r read with header}
 # read with header 
-mydata <- read.csv("data/mydata.csv", header = TRUE)
+mydata <- read.csv("data/mydata.csv", header = TRUE) 
 
 ```
 

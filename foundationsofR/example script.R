@@ -1,33 +1,21 @@
-#===================================
-#PY1617: Foundations of R for Statistics and Data Science
-#Week 3: Working with data 
-#Author: Abigail Page & James Winters
-#Date: 16 January 2026
-#===================================
+# ============================================================
+# Script: week3_practice.R -----------------------------------
+# Purpose: Working with scripts and data frames
+# Author: Your Name
+# Date: 2026-02-01
+# ============================================================
 
-#-----------------------------
-#Packages
-#-----------------------------
+
+# 1.0 Setup ------------------------------------------------------
+
+## 1.1 Packages   ------------------------------------------------
 library(tidyverse)
 
-#-----------------------------
-#Data import
-#-----------------------------
+## 1.2 Data import ------------------------------------------------
+iris_data <- iris #from a preinstalled one  
+mydata <- read.csv("data/mydata.csv")
 
-iris_data <- iris (from a preinstalled one) 
-mydata <- read.csv(mydata) # from last week 
+### 1.2.1 Data inspection --------------------------------------------
+head(mydata)
 
 
-#-----------------------------
-#Data exploration
-#-----------------------------
-
-# creates a top-level section
-## creates a subsection
-### creates a sub-subsection
-
-  
-  # Data exploration
-  ## Structure of the data
-  ### Summary statistics
-  
