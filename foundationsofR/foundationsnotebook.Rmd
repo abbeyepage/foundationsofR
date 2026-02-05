@@ -3,21 +3,6 @@ title: 'PY1617: Foundations of R for Statistics and Data Science'
 author: "Dr Abigail Page & Dr James Winters"
 subtitle: Component Notebook
 output:
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
-    theme: cosmo
-    code_folding: none
-    highlight: tango
-  word_document:
-    toc: true
-    toc_depth: '3'
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
   html_document:
     toc: true
     toc_depth: '3'
@@ -27,6 +12,21 @@ output:
     code_folding: none
     highlight: tango
     df_print: paged
+  word_document:
+    toc: true
+    toc_depth: '3'
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    code_folding: none
+    highlight: tango
 ---
 
 ```{css, echo=FALSE}
@@ -1308,35 +1308,6 @@ To make a `gender` factor please do the following steps:
  - How many levels does it have? 
  - What happens to the `gender` variable now if you try to add 2 to it (e.g. gender + 2) - why? 
 
-Following this exercise, you will notice really quick that how easy it will be to forget what 1, 2 and 3 mean. You come back to this analysis in 6 months and I promise you, you won't remember who was a man and who was a woman. So we are going to want to change the labels of the levels (e.g. what we call the levels)
-
-What we need to do is assign meaningful labels to the diﬀerent levels of each factor. Here I'm giving an example of different treatment groups is a de-stress study. Group 1 is mindfulness treatment, group 2 is relaxation and group 3 is CBT therapy. 
-
-Note, that this time, while I'm using integers to denote the groups, I have used the " " on either side of them. This means that R automatically reads them in as 'characters'. You can check this with the `class` function. But we will still need to tell R it's a factor to get the levels: 
-
-```{r renaming levels}
-# make the vector 
-participantgroup <- c("1", "1", "1", "1", "2", "2", "2", "2", "3", "3", "3", "3")
-
-# check the class
-class(participantgroup)
-
-# make it a factor 
-participantgroup <- as.factor(participantgroup) 
-
-# check the levels 
-levels(participantgroup) 
-
-# re-name the levels to something we will remember
-levels(participantgroup) <- c("mindfulness", "relaxation", "CBT")
-
-# print 
-print(participantgroup)
-
-```
-
-Now, when we print `participantgroup` se can see the levels have been re-named, and so have each of the observations. This is much better. 
-
 Factors are very useful things, and we’ll use them a lot in this module: they’re the main way to represent a nominal scale variable so you have to make sure you are handelling them correctly in R. 
 
 ### Ordered factors 
@@ -1421,105 +1392,7 @@ class(iris$Species)
 
 ```
 
-### Sub-setting data frames 
-
-Subsetting allows you to focus on specific parts of a dataset. It basically is asking R to take only specific variables forward to a smaller dataframe. 
-
-Subsetting datasets can be really helpful when you want to work with certain variables, especially when you have a large number of variables - imagine a dataframe with 100 columns! This is too many to work with, you will want to cut it down to just the 4-5 you need to work with. 
-
-To subset dataframes in R, we use square brackets `[ ]`. Inside the square brackets, we need to specify what subset we want to extract. These will be either specific rows or columns, or both. 
-
-> Rows are specified first followed by a comma then columns are specified. **This is always the case in R**.
-
-If you want to subset columns only, i.e. keep all rows, you can simply not specify anything before the comma (and vice versa). Let's subset the Iris data to include the first column only.
-
-Let’s practice this now. 
-
-#### Sub-setting by column (e.g. variables with all observations)
-
-```{r subsetting by col}
-
-# subset column by name 
-Iris2 <- iris[,"Sepal.Length"] 
-
-# specify the column name AFTER the comma. 
-# note I’m saving this as a new data-frame called Iris2 
-
-# print 
-Iris2  
-
-# subset column  by its position
-Iris2 <-  iris[,1] 
-# Here R will just take the 1st column, regardless of what it’s called. 
-
-
-```
-
-Just like before, if you want to take multiple columns forward in the new dataset (e.g. `Sepal.Length` and `Petal.Length`) you need to use the `c()` function to make a list of them. 
-
-```{r mulitple cols}
-# subset multi variables with names 
-Iris2 <- iris[,c("Sepal.Length","Petal.Length")] 
-
-# check the new dataframe 
-ncol(Iris2)
-names(Iris2)
-
-# subset multi variables with numbers 
-Iris2 <- iris[,c(1,3)] 
-# exactly the same with numbers rather than names. 
-
-# check the new dataframe 
-ncol(Iris2)
-names(Iris2)
-
-```
-#### Sub-setting by Row 
-
-To subset the Iris data to contain specific rows (e.g. observations), you need to include the row numbers. This must be done before the comma now, as you are working with ROWS not COLUMNS. 
-
-> Remember, rows are where the observations (per participant), columns are the variables. 
-
-```{r subset ny row}
-# subset rows with numbers 
-Iris2 <- iris[c(4,7,17),]
-# rows don't have names! 
-
-# check the new dataframe 
-ncol(Iris2)
-names(Iris2)
-
-```
-
-#### Subsetting by row AND column 
-
-We have to include the row numbers because rows do not have names, unlike columns. 
-Similarly, you can subset by both rows and columns by including BOTH information before (rows) and after (columns) the comma inside the square brackets.
-
-```{r subset by row and col}
-# subsetting numbers for rows, and names for columns 
-Iris2 <- iris[c(1,2,3,4), c("Sepal.Length", "Sepal.Width")]
-
-# subsetting by numbers for both rows and columns 
-Iris2 <-  iris[c(1,2,3,4),c(1,2)]
-
-# note, if you have sequential row and/or column numbers you 
-# can use a colon instead of c() which saves you much typing. 
-
-# subset with sequential numbers 
-Iris2 <-  iris[1:4,1:2] 
-
-
-
-```
-
-> It is always advisable to do less typing in your coding. Less room for error. So 1:4 is preferable to c(1, 2, 3, 4). It is also eaiser to read and understand. 
-
-Based on this final subset of Iris answer the following questions
-
-> **Question 3.2**: How many observations does the Iris2 dataset contain? How many variables? 
-
-### Comparison operators 
+### Exploring with comparison operators 
 
 We can also subset by condition (e.g. greater than, equal to, less than). But before we do this **we need to know about comparison operators**.
 
@@ -1549,49 +1422,8 @@ iris$Sepal.Width >= 3.5
 iris$Species == "versicolor"
 
 ```
-Each of these commands returns a logical vector (TRUE or FALSE) for each row, which we can use to subset data. To do this we just combine the logical questions with the subset formula we learnt above! 
 
-```{r subsetting with comparison}
-
-# subset based on observation values 
-Iris2 <- iris[iris$Sepal.Width < 2.5,] # width less than 2.5 
-Iris2 <- iris[iris$Sepal.Width > 4.0,] # width more than 4 
-Iris2 <- iris[iris$Sepal.Width == 4.0,] # width equal 4 
-Iris2 <- iris[iris$Species == "setosa",] # name is setosa 
-
-
-```
-Logical conditions are especially useful when filtering large datasets. So far, we’ve used one condition at a time, often, however, we want to apply more than one condition at the same time.
-
-#### Using AND (`&`) to combine conditions
-
-The AND operator (&) is used when all conditions must be true for a row to be kept.
-Example: two conditions must both be true
-
-```{r two conditions}
-
-# subset on two conditions 
-Iris2 <- iris[
-  iris$Sepal.Width < 2.5 & iris$Species == "setosa",
-]
-
-# here I am use multiple lines to make the code easier to understand 
-
-```
-
-This code keeps rows where: `Sepal.Width` is less than 2.5 AND `Species` is "setosa". You can read this as: “Keep the rows where `Sepal.Width` is less than 2.5 and the `species` is setosa.”
-
-### Activity 3.3  
-
-Task: Using all your skills above in viewing, exploring and subsetting dataframes Create a subset of the iris data that *includes 1) `Sepal.Width`, `Species` and `Petal Length` and 2) only versicolor plants with Petal.Length is greater than 4*. Rename the dataframe `iris_subset`. 
-
-Then answer the following questions: 
-
-> **Question 3.3**: how many columns are in your dataset?  
-
-> **Question 3.4**: how many observations? 
-
-> **Question 3.4**: What are the names of the variables in your dataset? 
+Each of these commands returns a logical vector (TRUE or FALSE) for each row.
 
 ## Re-labelling variables 
 
@@ -1600,8 +1432,6 @@ Clear and consistent variable names make your code easier to read and prevent er
 > I find it simpler never to use caps in R then I never need to wonder if anything isn't working because I did, or didn't use caps. 
 
 The dplyr package provides a convenient `rename()` function we are going to use
-
-
 
 ```{r renaming}
 # load the dplyr package 
@@ -1659,84 +1489,677 @@ names(Iris2)
 
 In the above code you will notice we introduced the `%>%` character for the first time. **This is called a pipe**. 
 
-When we work with data in R, we often do multiple operations in a sequence. For example, we might:
-
-  - Take a dataset
-  - Select certain columns
-  - Filter rows
-  - Calculate a summary
-
-Without pipes, we would need to do this bit by bit, like we have above : 
-
-```{r no pipes}
-# Without pipes
-iris_subset <- subset(iris, Species == "versicolor")
-iris_subset <- iris_subset[, c("Sepal.Length", "Petal.Length")]
-head(iris_subset)
-
-```
-
-This is what we have been doing so far. It’s fine, it works – but it quickly gets messy and hard to read for longer sequences. We can use pipes to improve this! 
-
-### What is a pipe? 
-
 The pipe operator `%>%`, from the `dplyr` package, passes the output of one step directly into the next step. Think of it as saying:
 
 “Take this, and then do that next.” *all in one code line* 
 
 It allows us to write sequences of operations in a readable, left-to-right way.
 
-```{r pipes}
-# Using pipes to do the same thing as above
-iris %>%
-  filter(Species == "versicolor") %>%   # Step 1: Keep only versicolor rows
-  select(Sepal.Length, Petal.Length) %>% # Step 2: Keep only these two columns
-  head()                                  # Step 3: Show first few rows
-
-```
-The advantages of this are: 
-
 - **Readable**: You can read it top-to-bottom, like a list of instructions.
 - **No temporary variables needed**: No need to create iris_subset first.
 - **Easy to extend**: You can add more steps at the end without changing the earlier code.
 
-### Activity 3.4 re-do subsetting with pipes 
+We will learn more about pipes next week and in future weeks as we start using them more! 
 
-So, if we we’re to re-do your subsetting with pipes for versicolor plants with Petal.Length > 4 it would look like below where: 
+#  Data Manipulation in R: Week 4
 
-  - `filter()` selects rows based on conditions.
-  - `&` means AND – both conditions must be true.
-  - The pipe `%>%` passes iris into `filter()` function. 
+This week we move from organising data to actively manipulating it. Real datasets are rarely ready for analysis: variables need to be recoded, summaries created, formats changed and missing data handled.
 
+## Overview: Why do we need data manipulation?
 
-```{r subset with pipes}
+In an ideal world, every dataset would arrive perfectly organised, with clear variable names, no missing values, and exactly the structure needed for analysis. In reality, this almost never happens.
+Data manipulation refers to all the steps we take to reshape, clean and transform raw data into a form that can actually answer our research questions. It sits between importing data and analysing data.
 
-# Example using pipes
-iris_subset <- iris %>%
-  filter(Species == "versicolor" & Petal.Length > 4)
+### Raw data are rarely analysis-ready
 
-# View the first few rows
-head(iris_subset)
+Real datasets often contain problems such as:
+  
+  -	Variables stored in the wrong format (e.g. numbers saved as text)
+  - Several measurements spread across multiple columns
+  - Categories with confusing labels (e.g. `1 = male`, `2 = female`, `3 = other`)
+  - Missing values coded as `-99` or blank cells
+  - Five response categories where two have only one participant (small sample sizes because there are too many categories)
+  - Separate files for different time points or conditions
+
+Before we can run even a simple analysis, like calculating a mean or making a plot, these issues must be resolved.
+
+### What counts as “manipulation”?
+
+Typical manipulation tasks include:
+  
+  -	Creating new variables from existing ones
+  - Recoding categories into clearer labels
+  - Combining several items into a scale score
+  - Reshaping data from wide to long format
+  - Handling missing values correctly
+  - Producing summaries by group
+
+> These steps do not change the meaning of the data - they make the data usable.
+
+### Manipulation is part of thinking
+
+Data manipulation is not just technical work; it is part of the research process. For example:
+
+  - Deciding to combine “very satisfied” and “satisfied” into one group reflects a theoretical judgement about what distinctions matter.
+  - Choosing to average three height measures assumes they represent the same underlying construct.
+  - Collapsing a 5-level variable into 3 levels may be necessary because small groups would make statistical results unreliable.
+
+Good manipulation therefore requires both coding skills and research reasoning.
+
+### From workflow to analysis
+
+This week we move to a more powerful approach using the `tidyverse` (an extra package in R we installed before), which allows us to express manipulation steps in a clear, readable sequence.
+By the end of this week you should be able to:
+
+  - Use core tidyverse 'verbs' (`mutate, group_by, summarise, select, filter`)
+  - Convert data between wide and long formats
+  - Recode variables and create new ones
+  - Set reference levels for factors
+  - Rename variables consistently
+  - Round numbers appropriately
+ - Handle missing values (`NA`) safely
+
+## What is tidy and clean data?
+
+### Tidy data
+
+A dataset is tidy when:
+
+  - Each row = one observation
+  - Each column = one variable
+  - Each cell = one value
+
+Example of tidy structure:
+
+| id | height | weight | gender |
+|----|--------|--------|--------|
+| 1  | 172    | 68     | F      |
+| 2  | 181    | 75     | M      |
+
+Untidy data mixes measurements across columns or repeats variables across rows.
+
+### Clean data
+
+Even tidy data may not be clean. Clean data usually means:
+
+  - Correct variable types (numeric / factor / character)
+  - Informative factor labels
+  - Sensible categories (no tiny groups of n=1)
+  - Missing data handled explicitly
+
+## The tidyverse: transforming variables and datasets
+
+The tidyverse is not a single package but a collection of packages designed to work together for data science in R. The core idea is that data analysis should be:
+
+  - readable like plain language
+  - consistent across different tasks
+  - based on tidy, well-structured data
+  - easy to combine into step-by-step workflows
+
+Instead of learning dozens of unrelated functions with different rules, the tidyverse gives you a unified grammar for working with data frames. Most of what we do—cleaning data, creating variables, calculating summaries—can be expressed using a small set of verbs that behave in predictable ways.
+
+We installed it last week, but make sure its loaded: 
+
+```{r}
+library(tidyverse)
+```
+
+### What packages are inside the tidyverse?
+
+When you run: library(tidyverse) R actually loads several packages: 
+
+| Package  | Main purpose                         |
+|----------|--------------------------------------|
+| dplyr    | Data manipulation (select, filter, mutate, summarise) |
+| ggplot2  | Data visualisation                   |
+| readr    | Importing data                       |
+| tidyr    | Reshaping data (wide ↔ long)        |
+| tibble   | Modern version of data frames        |
+| stringr  | Working with text                    |
+| forcats  | Working with factors                 |
+
+For now we will be working with the dplyr, ggplot2 and tidyr packages. 
+
+### Thinking in “verbs”
+The tidyverse provides a set of functions (often called verbs) designed specifically for working with data frames. Each verb does one clear job, and verbs can be combined using pipes to create readable workflows.
+
+The most important verbs are:
+
+| Verb          | What it does         | Everyday meaning           |
+|---------------|----------------------|----------------------------|
+| `select()`    | Choose columns       | “Keep these variables”     |
+| `filter()`    | Choose rows          | “Keep these observations”  |
+| `arrange()`   | Reorder rows         | “Sort the data”            |
+| `mutate()`    | Create new variables | “Add or transform columns” |
+| `summarise()` | Calculate summaries  | “Reduce to statistics”     |
+| `group_by()`  | Work within groups   | “Do this per category”     |
+
+We talked about pipes a bit last week, but going to re-cap now as fundamental in tidyverse. It means:
+
+> Take the thing on the left and use it as the first argument of the function on the right.
+
+ The pipe lets us write data analysis the same way across different functions/verbs. 
+
+Together these verbs allow you to express almost any data manipulation in plain, logical steps. Today we will be covering all but arrange(). 
+
+So, for today we will practice some tidyverse verbs on a simulated  dataframe about student scores.  Please download the dataframe from week 4 Brightspace material. 
+
+```{r set up}
+# import the dataset from Brightspace 
+df <- read_csv("data/tidyversedf.csv")
+
+# check it
+names(df)
+nrow(df)
+ncol(df)
 
 ```
 
-Now, please try a new subset using pipes: Create a subset of the iris dataset that includes setosa plants with Sepal.Width > 3.5.
+> **Remember**: make sure the df is saved in your data folder. Remember, to change the code if your ‘data’ folder is called ‘**D**ata’. 
 
-  - Use `filter()` and `%>%`.
-  - Optionally, use `head()` to check the first few rows.
+This dataset is of 200 observations of 17 variables collected from students. Each student has a unique `student_id`. The students are allocated to three groups (A = psychology, B = anthropology and C = sociology in the `group` variable). There final mark on their stats exam is in the `mark` column. The proportion of sessions attended is in the `attendance` column. Their gender is stored under `gender_code`. Their height was measured three times to reduce measurement error and captured in variables `h1, h2 and h3`. There we asked a 5-point Likert scale on how satified they were with the teaching on the module (variable `lik1`) and finally answered 7 questions of the GAD-7 psychometric scale to estimate their anxiety prior to the exam. The 7 questions for GAD-7 are stored under `gad1 to gad7` variables.
 
-Hints:
+We will do a number of transformations to this dataset now using tidyverse verbs
 
-  - Combine your conditions with `&`.
-  - Start the pipe with iris `%>%`
-  - Remember: `Species == "setosa"` and `Sepal.Width > 3.5`
+### `filter()` – choosing rows in a dataset 
+
+One of the most common tasks in data analysis is to focus only on the observations you care about but reducing down the dataset. You might want to:
+
+  - look only at students from one tutorial group
+  - analyse only people who passed the exam
+  - remove participants with very low attendance
+  - focus on data from one year, one country, or one condition
+
+`filter()` keeps rows that meet a logical condition and discards the rest. SO you can read:
+
+`filter(mark >= 40)`
+
+as: “Keep only the rows where mark is greater than or equal to 40.”
+
+This is very different from `select()`, which chooses columns. Let's give this a go now:  
+
+```{r filter on mark }
+df %>% # pipe so = take the df (on the left of the %>%) and 
+  filter(mark >= 40) # do a filter by mark equal to or higher than 40
+```
+
+This returns only students who achieved at least 40 which is n = 195. Remember, in R does not save the changes you made as a new object (or overwrite the existing one) unless you tell it to. For now, the original `df` is unchanged, R just printed the changes. You can check this by checking the number of observsations in the `df`. 
+
+```{r nrow}
+# check number of rows (observations)
+
+nrow(df) # should be n = 195
+```
+
+So we need to save it as a new object. As a rule you should be overwriting your df, but making a new one 
+
+```{r saving subset}
+passed_students <- df %>%
+  filter(mark >= 40)
+
+nrow(passed_students)
+```
+
+You now have a new dataset containing only those 195 students who passed.
+
+#### Using more than one condition
+
+Most real analyses require multiple rules at once. Now you need to use the AND (`&`) condition which means BOTH things must be TRUE for the observation to be selected. 
+
+```{r filter AND }
+
+# filter on group A AND mark more than or equal to 60 
+df %>%
+  filter(group == "A" & mark >= 60)
+
+```
+ > Question 4.1: what is the number of rows now in the df? 
+ 
+You can also use the OR (`|`) when either or can be TRUE 
+
+```{r filter OR}
+# filter on mark OR attendance 
+df %>%
+  filter(mark >= 70 | attendance >= 90)
+```
+
+So this keeps students who either had a high mark (70 or above), or had high attendance, or both. 
+
+**Key take-aways for `filter()`**
+
+  - `filter()` works on rows (observations)
+  - you have to tell it to save a new data frame
+  - Conditions must evaluate to `TRUE/FALSE`
+  - You can combine rules with `&` and `|`
+  
+### `select()` – choosing columns
+
+While `filter()` chooses rows (observations), the verb `select()` chooses columns (variables). This is useful when:
+
+  - your dataset has many variables but you only need a few
+  - you want to simplify a table before analysis
+  - you want to create a cleaner dataset for sharing
+
+> You can think of `select()` = “keep these variables, drop the rest”
+
+#### Keeping columns 
+
+Using our student dataset if we want to just cut it down to three columns/variables (id, group and mark) we can type; 
+
+```{r select col}
+
+# select id, group and mark 
+df %>%
+  select(student_id, group, mark)
+
+# This returns a new data frame containing only those three columns.
+# To save it as a new df: 
+
+df_small <- df %>%
+  select(student_id, group, mark) 
+
+# check the top 6 lines of the new smaller df 
+head(df_small)
+
+```
+
+#### Removing columns
+
+Removing columns is just as easy with select() - you just use the minus sign: 
+
+```{r}
+
+# to keeps everything except attendance.
+df2 <- df %>%
+  select(-attendance)
+
+# view the new df 
+head(df2)
+
+# You can drop several variable just add to the list using
+# the vector function you learnt last week (c())
+
+# drop attendance and mark
+df3 <- df %>%
+  select(-c(attendance, mark))
+
+# view the new df 
+head(df3)
+
+```
+
+Whether you select columns to keep or remove just depends the number you want to remove from the original data frame. If you want to keep lots then use 'remove', only a few, then use 'keep' - just saves on your typing. 
+
+### `mutate()` – creating and recoding variables
+
+In psychology we almost never analyse raw variables exactly as they were entered. We usually need to:
+
+  - add items together to create scale scores
+  - convert raw measurements into meaningful indicators
+  - recode numeric codes into labels people can understand
+  - collapse small groups to avoid unstable statistics
+
+The tidyverse verb `mutate()` is the main tool for doing all of this - it creates new columns or change existing ones.
+
+You can think of:
+`Mutate()` = “add a new variable based on what is already there”
+
+It always:
+
+  - keeps the original data
+  - adds new variables at the end
+  - can use existing variables in calculations
+
+Rather than editing the raw data in Excel, we create new variables inside R so the process is reproducible. We will now go through some key examples you will need to use in psychology.
+
+#### `mutate()` to % or logical TRUE/FALSE
+
+Psychologists often need to create relative scores (%) from absolute numbers as well as create indicator variables:
+
+  - clinical cut-offs
+  - high vs low groups  
+  - passed vs failed
+
+Let’s practice this now with our student dataset.   
+
+```{r make % and pass}
+
+# in the original df make two new variables 
+df %>%
+  mutate(
+    mark_percent = mark / 100, # mark as a % 
+    passed = mark >= 40 # TRUE/FALSE if passed 
+  )
+
+# has it saved? 
+head(df)
+```
+
+This creates two new columns:
+
+  - mark_percent – the original mark divided by 100-
+  - passed – `TRUE/FALSE` depending on the mark being above 40 (pass) or not (Fail). 
+
+> **Question 4.2** - what do you need to do to save these new variables in the df? Do this now. 
+
+> **Question 4.3** - How do you check the class of the two new variables you made? What are they? 
+
+#### Creating Psychometric Scale Scores
+
+Most questionnaires measure constructs (e.g., anxiety, depression and well-being) using multiple items, like the GAD-7. We normally need to combine (sum) these into a single score. We can also do this with `mutate()`
+
+This will be highly useful because psychological constructs are rarely measured by one question
 
 
-#  Data Manipulation in R: Week 4
-## The tidyverse
-## Recoding and transforming variables
-## Missing data (NAs)
+```{r sum mutate}
+
+# compute total GAD7 score from several items
+df <- df %>%
+  mutate(total = gad1 + gad2 + gad3 + gad4 + gad5 + gad6 + gad7)
+
+# note as we're just adding new variables we don't need to give the df a new name 
+
+# check df variable names
+names(df)
+
+# NB – if you want to type less you can tell row to sum between gad1-gad7 
+df <- df %>%
+  mutate(total = rowSums(across(gad1:gad7)))
+
+# check df variable names
+names(df)
+
+```
+
+> **Question 4.4** - is `total` the best name for this new variable? Why not? 
+
+What this code does: 
+
+  - Adds a new variable called total
+  - For each participant it adds their responses to items gad1-7
+  - The original item variables stay unchanged
+
+> Tip: it's always useful to reduce typing where you can because the more you type the more errors can sneak in. gad1:gad7 is better than gad1, gad2, gad3.... 
+
+ 
+#### Mean of repeated measures
+
+Sometimes we have several measurements of the same thing (e.g., height measured 3 times, reaction time across trials). It is unlikely you will want to run three statistical models (and even if you did, how would you reconcile different results?) so we will want to reduce these 3 measures into a single observation. 
+
+One way of during this is computing the average of the three scores, which we can also do with mutuate
+
+```{r mutate mean}
+
+# compute mean of h1, h2 and h3 
+df <- df %>%
+  mutate(mean_height = (h1 + h2 + h3) / 3) # new variable is called mean_height
+
+# check the df 
+names(df)
+
+```
+
+NB – obviously like we learnt in previous weeks we will fit an issue if there are NAs in the dataset and in this code we haven't told R how to handle these NAs so it will come up with an error. So we can use this slightly fancier instead 
+
+```{r mutate mean NA }
+# compute mean of height removing NAs 
+df <- df %>%
+  mutate(mean_height = rowMeans(across(h1:h3), na.rm = TRUE))
+
+# check the df 
+names(df)
+```
+
+This one handles the NA (tells R to remove them) and also computes the mean across h1 to h3 without typing all of them out (which is important if you’re computing the mean across a bunch of variables).  
+
+#### Recoding numbers into meaningful labels
+
+Datasets often contain numeric codes rather than words
+
+  -	`1` = man, `2` = women
+  -	`0` = control, `1` = intervention1, `2` = intervention2 
+  -	`1-5` Likert scales rather than "strongly agree" etc 
+
+Numbers are convenient for computers but terrible for humans reading output. It can make it much harder to interpret your results with this, and you may forget your coding scheme later on, making it hard to reproduce your work. So we can use mutate to convert numeric codes into words. 
+
+```{r mutuate gender}
+
+# make a new variable gender based on the old gender_code 
+df <- df %>%
+  mutate(
+    gender = case_when(
+      gender_code == 1 ~ "man", # if gender_Code 1 then make it man 
+      gender_code == 2 ~ "woman", # if gender_Code 2 then make it woman 
+      gender_code == 3 ~ "non-binary", # if gender_Code 3 then make it non-binary 
+      TRUE ~ NA_character_
+    )
+  )
+```
+
+To break this longer code down: 
+
+  - `case_when()`, each line is: `condition ~ value_if_condition_is_true` then make it either man, woman or non-binary. 
+  - The final line:  `TRUE ~ NA`: “For all remaining cases that didn’t match any rule above → assign `NA`
+  
+####  Collapsing Small Categories
+
+Sometimes, once you have collected your data you see that in a factor, some levels have very small sample sizes. For instance, imagine this variable:
+
+| Education | n  |
+|-----------|----|
+| GCSE      | 4  |
+| A-level   | 5  |
+| UG        | 82 |
+| PG        | 91 |
+
+
+Running statistics with tiny groups (n=4, n=5) is unstable, violates assumptions and is hard to interpret. The solution to this is to collapse categories (e.g. GCSE and A-level can be combined to a single level)
+
+We can do this in the practice df by combining levels in the Likert scale. Likert scales are often scored 1-5, representing 1 strong disagree, 2 = disagree, 3 neither agree or disagree, 4 = agree and 5 = strongly agree. 
+
+But five levels is a lot ot handle, and you may have low repsonses in 1 (strongly disagree) and 5 (strongly agree) so what we want to do is:
+
+  1)	Combine 1 and 2 to = disagree 
+  2)	Combine 4 and 5 to = agree 
+  3)	Keep 3 as = neither 
+
+So 5 levels has become 3, which is much easier to handle and can improve statistical power: 
+
+```{r combine levels}
+
+# make a new variable 
+df <- df %>%
+  mutate(
+    likred = case_when( 
+      lik1 %in% c(1, 2) ~ "disagree", # saying 1 & 2 is disagree
+      lik1 %in% c(4, 5) ~ "agree", # saying 4 & 5 is agree 
+      lik1 == "3" ~ "neither" # 3 = neither 
+    )
+  )
+
+# check new variable levels
+levels(df$likred) 
+
+# recode as a factor 
+df$likred <- as.factor(df$likred)
+
+# re check levels 
+levels(df$likred) 
+
+```
+
+So what happened here was that R did not automatically make this new variable into a factor with levels. So we had to force it to change the type which we learnt in week 3. 
+
+## Rounding numbers
+One last important transformation you might want to do to your data is round the numbers to a specific number of decimal points. 
+
+This is useful because lots of decimal points can be hard to digest and also gives a false sense of precision. We often round numbers to 2 decimal points and p-values to 3. 
+
+With mutate we can just do this with: 
+
+```{r mutate round}
+# look at mark
+df$mark
+
+# re-save mark with 2 decimal points 
+df <- df %>%
+  mutate(mark = round(mark, 2)) # round is the function, mark the variable 
+# and 2 the number of decimal points 
+
+# chech the variable 
+df$mark
+```
+
+
+So to summarise the key ideas about mutate: 
+
+  - `mutate()` always keeps the same number of rows
+  - it is used for creating or transforming variables
+  - calculations are done row-by-row
+  - the original data remain untouched unless you save the result
+
+### `summarise()` – summarising data (duh!)
+
+While mutate adds information to every row, summarise() reduces many rows into a single value.
+So we can understand `summarise(`)` = “turn data into summary statistics”
+
+This is how we calculate:
+
+  - means
+  - totals
+  - counts
+  - minimums / maximums
+  - standard deviations
+
+```{r sum mark}
+#Basic example of key summaries 
+df %>%
+  summarise( # opening bracket 
+    mean_mark = mean(mark), # 1st line 
+    max_mark  = max(mark), # 2nd line 
+    n_students = n() # last line 
+  ) # closing bracket 
+
+```
+
+The result is one row containing the summary statistics. This has a bunch of real-life uses:
+
+  - reporting average test scores
+  - counting participants per condition
+  - describing datasets for methods sections
+  - checking data quality (missing values, ranges)
+
+As above, this hasn't saved this information. So you would have to keep re-running it. If you wanted to save it and - highly recommended - save this table to your computer files to use in your report/dissertation then you will need to: 
+
+```{r sum attendance}
+
+# calling the new object 'meansum' or the summary of mean 
+meansum <- df %>%
+  summarise(
+    mean_att = mean(attendance), # mean of mark 
+    max_att  = max(attendance), # max of mark 
+    min_att  = min(attendance), # max of mark 
+    sd_att  = sd(attendance) # max of mark 
+  )
+
+# Note - to add more lines I just added a , and then started a new line. 
+# the last line has no c, and then has the closing bracket 
+
+# view the saved table 
+print(meansum)
+
+# save it to your outputs folder 
+
+write.csv(meansum, "outputs/meansum.csv") 
+
+# again if you have **Out**puts remember to change the code to captalise the folder name. 
+
+```
+
+So now you have summarised one of your variables, saved this as a new object which you can save to your computer as a table for use in communicating your results! 
+
+**Common summary functions include:**
+
+  - mean(mark)      # average
+  - median(mark)    # middle value when ordered smallest to largest 
+  - sd(mark)        # standard deviation
+  - min(mark)       # lowest
+  - max(mark)       # highest
+  - n()             # number of rows
+
+> **Question 4.4**: commute all of these summary statistics on the transformed variable you made earlier `mean_height` and save to your outputs folder. 
+
+
+### `group_by()` - doing things within groups 
+
+On its own, `summarise()` gives one answer for the whole dataset. Usually we want answers per group (e.g. psychology versus anthropology versus sociology students). This is what `group_by()` does.
+
+`group_by()` = “do the next step separately for each category”
+
+So we can re-compute the mean, but now by student group (A, B and C) which is another variable in our dataset: 
+
+```{r sum by group}
+
+# make a new table for the average and sample size for each group
+
+meanbygroup <- df %>%
+  group_by(group) %>%
+  summarise(
+    mean_mark = mean(mark),
+    median_mark = median(mark),
+    n = n()
+  )
+
+# view the saved table 
+print(meanbygroup)
+
+# save it to your outputs folder 
+
+write.csv(meanbygroup, "outputs/meanbygroup.csv") 
+```
+
+Now we get one row per group (A, B & C) instead of one row overall. So: 
+  - `group_by(group)` splits the data into invisible mini-datasets
+  - `summarise()` runs inside each mini-dataset just like before
+  - the results are combined back together
+
+
+> **Question 4.5**: which group has the highest mean mark? Which group has the largest sample size?
+
+> **Exercise 4.1**: do you rememember what A, B and C stand-for (i.e. which is anth, psych and sociology)? Use mutate to re-label these variables with the correct, and more informative names and then re-save the table. 
+
+You can also group by two (or more) groups if you want: 
+
+```{r group by 2}
+
+# compute mean, SD and n for group&gender 
+grogendersum <- df %>%
+  group_by(group, gender) %>%
+  summarise(
+    mean_mark = mean(mark),
+    sd_mark = sd(mark),
+    n = n()
+            )
+
+# view the saved table 
+print(grogendersum)
+
+# save it to your outputs folder 
+
+write.csv(grogendersum, "outputs/grogendersum.csv") 
+
+```
+
+This calculates means for every possible combination of group and gender (e.g. a man in psychology, or a non-binary individual in sociology)! 
+
+**Common mistakes with summarise** 
+
+  - Expecting summarise to keep all rows → it always collapses the data.
+  - Forgetting group_by before summarise → you get one overall mean instead of per group.
+  - Using mutate when you really want summarise → mutate repeats values instead of reducing them
+
 ## Wide and long data
+## Missing data (NAs)
 
 # Data Visualisation in R: Week 5
 ## Summarising data
