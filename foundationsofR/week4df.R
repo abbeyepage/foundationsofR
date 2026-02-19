@@ -1,3 +1,4 @@
+#### TIDY VERSE VERBS DF ######
 set.seed(1617)   # reproducible
 
 df <- data.frame(
@@ -46,3 +47,44 @@ head(df)
 
 write_csv(df, "data/tidyversedf.csv")
 
+### NA dataframes #### 
+
+set.seed(1617)
+
+DF <- data.frame(
+  id = 1:20,
+  
+  # Some demographics with missingness
+  gender = c(1,2,1,NA,2,3,1,2,NA,1, 2,1,3,2,NA,1,2,1,3,2),
+  
+  # Exam style variables
+  mark = c(65,72,NA,55,81,77,68,NA,90,62,
+           70,NA,58,66,74,80,NA,69,73,60),
+  
+  attendance = c(80,82,85,NA,78,90,88,84,NA,79,
+                 81,83,87,86,82,NA,80,85,84,88),
+  
+  # Three height measures with occasional missing
+  h1 = c(170,168,NA,165,172,169,167,NA,171,168,
+         170,166,168,NA,169,167,172,168,170,169),
+  
+  h2 = c(171,167,168,166,NA,170,166,169,170,168,
+         NA,167,169,170,168,166,171,167,NA,168),
+  
+  h3 = c(169,NA,167,165,171,168,NA,170,169,167,
+         168,166,170,169,167,NA,170,168,169,167),
+  
+  # GAD-7 style items (1–4 Likert) with some skips
+  gad1 = c(2,3,NA,1,2,3,2,NA,4,2, 3,2,1,2,NA,3,2,2,3,1),
+  gad2 = c(3,2,1,NA,2,3,2,2,4,NA, 3,2,1,2,3,2,NA,2,3,1),
+  gad3 = c(2,3,2,1,NA,3,2,2,4,2,  NA,2,1,2,3,2,2,NA,3,1),
+  gad4 = c(2,3,2,1,2,NA,2,2,4,2,  3,NA,1,2,3,2,2,2,NA,1),
+  gad5 = c(2,3,2,1,2,3,NA,2,4,2,  3,2,1,NA,3,2,2,2,3,1),
+  gad6 = c(2,3,2,1,2,3,2,NA,4,2,  3,2,1,2,NA,2,2,2,3,1),
+  gad7 = c(2,3,2,1,2,3,2,2,NA,2,  3,2,1,2,3,NA,2,2,3,1)
+)
+
+# View it
+head(DF)
+
+write_csv(DF, "data/NAdf.csv")

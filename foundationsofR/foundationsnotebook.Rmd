@@ -464,11 +464,12 @@ Good organisation makes it easier to:
 > **Exercise 2.1** 
 Create a folder structure for this module on your computer. 
 
-> Call the first folder "PY1719", with sub-folders for "analysis", "methods" and "skills". In the **skills folder** include the following folders: 
+> Call the first folder "PY1617", with sub-folders for "analysis", "methods" and "skills". In the **skills folder** include the following folders: 
   1)	Data
   2)	Scripts 
   3)	Outputs 
 
+You will save your R project into the Skills folder later! 
 
 ## Object based computing
 
@@ -626,6 +627,7 @@ You have created a dataset with one observation!
 2) What happens if you restart RStudio and type age again?
 3) Why does this show the importance of scripts?
 
+*NB for reflections you don't need to write anything - just think about it!*
 
 ## Understanding the R environment 
 
@@ -714,9 +716,9 @@ We are now going to make use of your folder structure you made earlier to save o
   3.	In browse select your skills component folder you made earlier 
   4.	Call your project ‘foundations’ 
   
-  NB - R saves the project in its own folder, you can delete this and just copy and paste the 'foundations' project into your 'Skills' folder. 
+  *NB - R saves the project in its own folder, you can delete this and just copy and paste the 'foundations' project into your 'Skills' folder.* 
 
-![*Figure 2.2 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name, choose a good subdirectory for its home and click Create Project. From R4DS.*](projects.png)
+![*Figure 2.2 To create new project: (top) first click New Directory, then (middle) click New Project, then (bottom) fill in the directory (project) name (foundation), choose a good subdirectory for its home (Skills) and click Create Project. From R4DS.*](projects.png)
 
 
 **Now, quit RStudio**. Inspect the folder associated with your project — notice the `.Rproj` file. Double-click that file to re-open the project. Notice you get back to where you left off: it’s the same working directory and command history, and all the files you were working on are still open. 
@@ -731,8 +733,7 @@ Basically, now **R will default to save everything, and import everything from y
 
 RStudio shows your current working directory at the top of the console:
 
-![*Figure 2.3 Image of your working directory location at the top of your console. From R4DS.*](workingdir.png)
-
+![*Figure 2.3 Image of your working directory location at the top of your console. Yours won't say r4ds - it should say 'foundations' From R4DS.*](workingdir.png)
 
 And you can print this out in R code by running `getwd()`
 
@@ -815,7 +816,9 @@ We will be using CSV files in this component as a rule.
 ```{r read}
 
 # import (read) a dataframe 
-mydata <- read.csv("data/mydata.csv") # note that if you called your folder 'Data'
+mydata <- read.csv("data/mydata.csv") 
+
+# note that if you called your folder 'Data'
 # you will need to use the capitalised Data, not my 'data'. 
 
 # you are telling r what to call the  # dataset (mydata) and you are telling R 
@@ -1008,6 +1011,8 @@ head(mydata)
 
 Note that I have started numbering the sections, again this is just good practice for when you start having really long processing and analysis scripts to help you work out where you are. 
 
+Every week you should now start a new R Script with this structure. 
+
 ### Using # and ## for the RStudio document outline
 
 RStudio provides a document outline / drop-down menu (at the bottom right of the script pane) that allows you to jump between sections of a script. This becomes increasingly useful the longer your script gets. You can click on it to quickly move between different sections - kind of like a table of contents. 
@@ -1032,7 +1037,7 @@ Example:
 
 ```
 
-These  headers will appear in the RStudio drop-down menu, allowing you to quickly navigate large scripts.
+These headers will appear in the RStudio drop-down menu, allowing you to quickly navigate large scripts.
 
 > Good practice: Use top-level headers (#) sparingly for major stages of your workflow, and sub-headers (##, ###) for detail.
 
@@ -1045,7 +1050,7 @@ e.g.
 
 RStudio sees this as a section with no name, so it shows up as “<untitled>”.
 
-### Activity 3.1: Create a new R script for this weeks material and structure it as follows (copying the code section about for the first three sections:
+### Activity 3.1: Create a new R script for this weeks material and structure it as follows (copying the code section above for the first three sections):
 
   - A header with title and date with 1) set up for packages and data 
   - Add in the following structure: 
@@ -1061,7 +1066,7 @@ RStudio sees this as a section with no name, so it shows up as “<untitled>”.
 
 ![**Figure 3.2 The subheadings starting to be filled up as you work through the next section.**](subheadings.png)
 
-Finally make sure you save it to a folder in your R project, with a sensible name. 
+Finally make sure you save it to a the 'scripts' folder in your R project, with a sensible name (e.g. Week 3). 
 
 ## Data types
 
@@ -1099,20 +1104,20 @@ class(log_example)
 
 Although numeric and integer values often behave similarly, they are stored differently in memory. Factors will be discussed in more detail later once we have covered vectors, as they are especially important for statistical modelling.
 
-> **Exercise 3.1**: create four variables of the correct types for the following variable names: name[“Alex”], score[“72.65”], age [30] and passed [TRUE/FALSE]
+> **Exercise 3.1**: create four variables of the correct types for the following variable names: name <- “Alex”, score <- “72.65”, age <- 30 and passed <- TRUE 
 
 > **Exercise 3.2**: using the class() fuction to check the data type. Are any wrong ? Comment in your script using # if any are wrong.    
 
 ### Coercion between types
 
-You can coerce values into different types. R automatically reads an interger (whole number) as numeric (as we saw above!). So you have to tell it. You can either add an L at the end or change it’s class: 
+You can coerce values into different types. R automatically reads an integer (whole number) as numeric (as we saw above!). So you have to tell it. You can either add an L at the end or change it’s class: 
 
 ```{r, coerce to interger}
 # Using L
 int_example1 <- 10L
 class(int_example1) # r now knows this is a integer
 
-# Forcing it by changing the class 
+# Forcing int_example by changing the class 
 int_example2  <- as.integer(int_example)
 class(int_example2) 
 
@@ -1148,7 +1153,6 @@ vec1
 vec2 
 
 ```
-
 
 Two vectors can also be joined into the same vector using the `c()` command. The two smaller vectors will appear in the new one in the order you specify:
 
@@ -1301,7 +1305,7 @@ Factors can also be comprised of numbers. Sometimes, in data entry, rather than 
 To make a `gender` factor please do the following steps: 
 
  - Make a new object called `gender` based on a vector of 15 integers 
- - The observations should be a combination of 1 for men, 2 for women and 3 for non-binary. You can pick the distribution of numbers 
+ - The observations should be a combination of 1 for men, 2 for women and 3 for non-binary. You can pick the distribution of numbers (e.g. 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3..... etc....)
  - Check it's class. Is it numeric or character? 
  - Force it to be a factor. 
  - Check it's class again. What is it now? 
@@ -1348,7 +1352,7 @@ This week we will discuss how to explore an imported data frame, how to change t
 
 Before any data analysis, it is good to know the details about the dataset you are using, e.g. number of variables, sample size, etc.
 
-We will use the built-in iris dataset.
+To start learning about dataframes we are going to use a simple dataframe - Fisher's Iris flower dataset. The data set consists of 50 samples from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals, in centimetres.
 
 ```{r head }
 # Look at the top of the dataset
@@ -1400,12 +1404,12 @@ In R, we often want to compare values in our data. R provides several comparison
 
 | Operator | Meaning                     | Example                  |
 |----------|-----------------------------|--------------------------|
-| `<`      | Less than                   | `5 < 10` returns `TRUE` |
-| `>`      | Greater than                | `5 > 10` returns `FALSE`|
-| `<=`     | Less than or equal to       | `5 <= 5` returns `TRUE` |
+| `<`      | Less than                   | `5 < 10` returns `TRUE`  |
+| `>`      | Greater than                | `5 > 10` returns `FALSE` |
+| `<=`     | Less than or equal to       | `5 <= 5` returns `TRUE`  |
 | `>=`     | Greater than or equal to    | `5 >= 10` returns `FALSE`|
-| `==`     | Equal to                    | `5 == 5` returns `TRUE` |
-| `!=`     | Not equal to                | `5 != 5` returns `FALSE`|
+| `==`     | Equal to                    | `5 == 5` returns `TRUE`  |
+| `!=`     | Not equal to                | `5 != 5` returns `FALSE` |
 
 > In R, the command `!` always indicates logical negation: i.e. the opposite (!= 5 means show me everything that isn’t 5 in the dataset). 
 
@@ -1495,9 +1499,9 @@ The pipe operator `%>%`, from the `dplyr` package, passes the output of one step
 
 It allows us to write sequences of operations in a readable, left-to-right way.
 
-- **Readable**: You can read it top-to-bottom, like a list of instructions.
-- **No temporary variables needed**: No need to create iris_subset first.
-- **Easy to extend**: You can add more steps at the end without changing the earlier code.
+  - **Readable**: You can read it top-to-bottom, like a list of instructions.
+  - **No temporary variables needed**: No need to create iris_subset first.
+  - **Easy to extend**: You can add more steps at the end without changing the earlier code.
 
 We will learn more about pipes next week and in future weeks as we start using them more! 
 
@@ -1557,11 +1561,9 @@ By the end of this week you should be able to:
   - Set reference levels for factors
   - Rename variables consistently
   - Round numbers appropriately
- - Handle missing values (`NA`) safely
+  - Handle missing values (`NA`) safely
 
-## What is tidy and clean data?
-
-### Tidy data
+## What is tidy data?
 
 A dataset is tidy when:
 
@@ -1578,7 +1580,7 @@ Example of tidy structure:
 
 Untidy data mixes measurements across columns or repeats variables across rows.
 
-### Clean data
+## What is clean data
 
 Even tidy data may not be clean. Clean data usually means:
 
@@ -1610,10 +1612,10 @@ When you run: library(tidyverse) R actually loads several packages:
 
 | Package  | Main purpose                         |
 |----------|--------------------------------------|
-| dplyr    | Data manipulation (select, filter, mutate, summarise) |
+| dplyr    | Data manipulation (Verbs)            |              
 | ggplot2  | Data visualisation                   |
 | readr    | Importing data                       |
-| tidyr    | Reshaping data (wide ↔ long)        |
+| tidyr    | Reshaping data (wide - long)         |
 | tibble   | Modern version of data frames        |
 | stringr  | Working with text                    |
 | forcats  | Working with factors                 |
@@ -1646,7 +1648,7 @@ So, for today we will practice some tidyverse verbs on a simulated  dataframe ab
 
 ```{r set up}
 # import the dataset from Brightspace 
-df <- read_csv("data/tidyversedf.csv")
+df <- read.csv("data/tidyversedf.csv")
 
 # check it
 names(df)
@@ -1713,7 +1715,7 @@ df %>%
   filter(group == "A" & mark >= 60)
 
 ```
- > Question 4.1: what is the number of rows now in the df? 
+ > **Question 4.1**: what is the number of rows now in the df? 
  
 You can also use the OR (`|`) when either or can be TRUE 
 
@@ -1765,7 +1767,7 @@ head(df_small)
 
 #### Removing columns
 
-Removing columns is just as easy with select() - you just use the minus sign: 
+Removing columns is just as easy with `select()` - you just use the minus sign: 
 
 ```{r}
 
@@ -1801,14 +1803,7 @@ In psychology we almost never analyse raw variables exactly as they were entered
 
 The tidyverse verb `mutate()` is the main tool for doing all of this - it creates new columns or change existing ones.
 
-You can think of:
-`Mutate()` = “add a new variable based on what is already there”
-
-It always:
-
-  - keeps the original data
-  - adds new variables at the end
-  - can use existing variables in calculations
+> You can think of `mutate()` = “add a new variable based on what is already there”
 
 Rather than editing the raw data in Excel, we create new variables inside R so the process is reproducible. We will now go through some key examples you will need to use in psychology.
 
@@ -1959,9 +1954,9 @@ We can do this in the practice df by combining levels in the Likert scale. Liker
 
 But five levels is a lot ot handle, and you may have low repsonses in 1 (strongly disagree) and 5 (strongly agree) so what we want to do is:
 
-  1)	Combine 1 and 2 to = disagree 
-  2)	Combine 4 and 5 to = agree 
-  3)	Keep 3 as = neither 
+  1)	Combine 1 and 2 to = `disagree` 
+  2)	Combine 4 and 5 to = `agree` 
+  3)	Keep 3 as = `neither` 
 
 So 5 levels has become 3, which is much easier to handle and can improve statistical power: 
 
@@ -1990,7 +1985,8 @@ levels(df$likred)
 
 So what happened here was that R did not automatically make this new variable into a factor with levels. So we had to force it to change the type which we learnt in week 3. 
 
-## Rounding numbers
+#### Rounding numbers
+
 One last important transformation you might want to do to your data is round the numbers to a specific number of decimal points. 
 
 This is useful because lots of decimal points can be hard to digest and also gives a false sense of precision. We often round numbers to 2 decimal points and p-values to 3. 
@@ -2018,10 +2014,11 @@ So to summarise the key ideas about mutate:
   - calculations are done row-by-row
   - the original data remain untouched unless you save the result
 
-### `summarise()` – summarising data (duh!)
+### `summarise()` – summarising data 
 
-While mutate adds information to every row, summarise() reduces many rows into a single value.
-So we can understand `summarise(`)` = “turn data into summary statistics”
+While mutate adds information to every row, `summarise()` reduces many rows into a single value.
+
+> So we can understand `summarise(`)` = “turn data into summary statistics”
 
 This is how we calculate:
 
@@ -2094,7 +2091,7 @@ So now you have summarised one of your variables, saved this as a new object whi
 
 On its own, `summarise()` gives one answer for the whole dataset. Usually we want answers per group (e.g. psychology versus anthropology versus sociology students). This is what `group_by()` does.
 
-`group_by()` = “do the next step separately for each category”
+> so `group_by()` is = “do the next step separately for each category”
 
 So we can re-compute the mean, but now by student group (A, B and C) which is another variable in our dataset: 
 
@@ -2126,8 +2123,6 @@ Now we get one row per group (A, B & C) instead of one row overall. So:
 
 > **Question 4.5**: which group has the highest mean mark? Which group has the largest sample size?
 
-> **Exercise 4.1**: do you rememember what A, B and C stand-for (i.e. which is anth, psych and sociology)? Use mutate to re-label these variables with the correct, and more informative names and then re-save the table. 
-
 You can also group by two (or more) groups if you want: 
 
 ```{r group by 2}
@@ -2157,14 +2152,742 @@ This calculates means for every possible combination of group and gender (e.g. a
   - Expecting summarise to keep all rows → it always collapses the data.
   - Forgetting group_by before summarise → you get one overall mean instead of per group.
   - Using mutate when you really want summarise → mutate repeats values instead of reducing them
+  
+### Activity 4.1: using tidyverse verbs 
+
+This activity will bring together a bunch of the verbs you just learnt about still using the `df` dataset. Specifically we're going to explore anxiety (the GAD-7 sum, labelled `total`) by degree (variable = `group`) and exam grade (variable = `mark`). Please follow these steps to answer the following questions: 
+
+  - **Step 1**: using `select()` select only the relevant variables (`total`, `group` & `mark`). Call the new dataframe `anxietydf`
+  - **Step 2**: relabel the variables as follows using `rename` (we did this last week in section 3.5)  
+    - Change name of `group` -> `degree` 
+    - Relabel the levels A, B and C of `degree` to psychology, anthropology and sociology, respectively, using `mutate()` 
+    - Change name of `total` -> `GAD7`
+  - **Step 3**: Using `mutate()` Convert GAD7 into a factor called `anxiety` with two levels based on scores < 10 -> "FALSE" and >= 10 -> "TRUE" 
+  - **Step 4**: Using `group_by()` and `summarise()` compute the mean exam mark (`mark`) by BOTH variables `anxiety` and `degree` 
+  
+> **Question 4.6**: Which combination of degree and anxiety has the lowest score in the dataset?  
 
 ## Wide and long data
+
+Real research data rarely arrive in the “perfect” format for analysis. The same information can be organised in at least two fundamentally different ways:
+
+  1) **Wide format** – one row per participant, repeated measures stored in multiple columns
+  2) **Long format** – one row per observation, with a variable that tells you which condition or time point it belongs to. 
+
+Neither format is “right” or “wrong”. They simply serve different purposes. You will need to work out what format your need your data in deepening on your purpose! 
+
+### Wide data 
+
+In *wide data* each person appears in ONLY one row, and each observation or data point collected on them has a seperate column. For instance, if you were measuring anxiety at three separate time points in the same participant it would like this: 
+
+| id | anxiety_t1 | anxiety_t2 | anxiety_t3 |
+|----|------------|------------|------------|
+| 1  | 12         | 10         | 8          |
+| 2  | 15         | 14         | 13         |
+
+It's called wide data because as you collect more and more data on a participant you can imagine the dataset getting wider and wider as more columns are filled up! 
+
+This format is: 
+
+  - easy for us to read as people 
+  - similar to how online surveys (Like Qualtrics) kick out data when you have asked participants a bunch of questions 
+  - convenient for commuting summary statistics (e.g. mean anxiety score)
+
+### Long data 
+
+In long data, each measurement will get its own row, so participants will be spread across many rows - making your data very long: 
+
+| id | time | anxiety |
+|----|------|---------|
+| 1  | t1   | 12      |
+| 1  | t2   | 10      |
+| 1  | t3   | 8       |
+| 2  | t1   | 15      |
+| 2  | t2   | 14      |
+| 2  | t3   | 13      |
+
+This structure is harder for us to read but is often expected in repeated measures models. For within-subject designs, where the same participant is measured more than once (paired t-test, repeated-measures ANOVA and linear mixed models) the analysis needs to kmnow 1) which row belongs to the same person and 2) which condition/time each score represents. This only is clear in the long format. 
+
+What this means is that when you have wide data, you might need to **pivot** it to a long format. 
+
+### Converting wide to long with `pivot_longer()` 
+
+Imagine we collected three height measurements per student as they grow over time: 
+
+```{r wide df}
+
+# make a wide dataframe:  
+
+df_wide <- data.frame(
+  id = 1:3, # 1 participants 
+  h1 = c(154, 159, 167), # first height for each participant  
+  h2 = c(165, 162, 179), # second height for each participant
+  h3 = c(171, 163, 181)  # third height for each participant
+)
+
+# view the dataframe 
+df_wide
+
+```
+
+So to make it long we need to pivot the table so you have one column which is `id`, one column as `height` and a new column which is `time` which is when each of these height measures are taken. 
+
+```{r pivot longer}
+
+# pivot df longer 
+
+df_long <- df_wide %>% # renames df based on the df_wide 
+  pivot_longer(
+    cols = c(h1, h2, h3), # these are the columns to reduce to one 
+    names_to = "time", # this takes the names of the original columns into 
+    # the new variable `time`  
+    values_to = "height" # the values of h1-h3 are in the new variable 'height
+  )
+
+# view the new dataset
+df_long
+
+```
+
+Now we have:
+  
+  - one column saying which height measure
+  - one column containing the actual values
+
+> **Question 4.6**: how many rows did the df_wide have? How many rows does the df_long have? 
+
+### Pivoting long to wide with `pivot_wider()` 
+
+Sometimes we need to do the opposite and change it from long format to wide. We can change the new df_long back to df_wide if we like: 
+
+```{r long df to wide}
+
+# pivot wider 
+df_wide2 <- df_long %>% # rename the df df_wide2 not to overwrite 
+  pivot_wider( # function 
+    names_from = time, # the variables labelled from 'time' column 
+    values_from = height # values from the height column 
+  )
+
+# view df to confirm 
+df_wide2
+
+
+```
+
+Now it is back to where it was originally. Something like this would be useful if your, like we did above, computing a total GAD-7 score from gad1-gad7. 
+
+### Activity 4.2: pivoting the tidyverse df
+
+Going back to the dataframe we were using for the tidyverse verbs, you will remember we had three variables measuring height. To pivot this from wide to long, follow these steps: 
+
+  1) **Step 1**: use `pivot_wider()` on `df` and rename to `dflong` 
+  2) **Step 2**: Name columns “measurement” in `names_to` 
+  3) **Step 3**: Pull the values of height into the `heights` column with `values_to` 
+  4) **Step 4**: View the new dataset and answer the following questions 
+  
+> **Question 4.7**: how many rows does this new long dataset have? 
+
+> **Question 4.8**: for the other variables (e.g. total, gender) how are they now recorded for each paritcipant? 
+
+  5) **Step 5**: convert this back to from long to wide again and check it matches the original structure. 
+  
+
+Key take-aways: 
+
+  - Wide = one row per person
+  - Long = one row per observation
+  - Repeated measures almost always require long
+  - `pivot_longer()` and `pivot_wider()` let you move flexibly between them
+  - Analyes might require you to switch format depending on task
+
+
 ## Missing data (NAs)
 
+In real research, datasets are almost never complete. Participants skip questions, equipment fails, files get corrupted or someone withdraws from a study. These gaps are called missing data, and in R they are stored as the special value: `NA`
+
+Missing data matter because:
+
+  - many statistical functions will not run if `NAs` are present
+  - means and correlations can be biased if NAs are recorded as `0`
+  - sample sizes may differ across variables
+  - different handling choices can change conclusions
+
+So part of data cleaning is deciding how to treat missing values in a transparent and principled way.
+
+### Where do missing data come from?
+
+In psychology, common reasons include:
+  
+  - Participant behaviour
+    - skipped sensitive questions
+    - survey fatigue near the end
+    - “prefer not to say”
+  - Study design
+    - participants only complete one condition
+    - branching logic in surveys
+  - Technical issues
+    - recording equipment fails
+    - online form not saved
+    - data entry mistakes
+    
+Understanding why data are missing helps decide what to do with them.
+
+### Missing values in R 
+
+R uses the special symbol `NA` (Not Available). It is not the same as:
+  
+  - `0`
+  - an empty cell
+  - the text `"NA"`
+  
+Let's practice this: 
+
+```{r cal with na }
+#calculation with NA return NA while 0 act normally:  
+
+# 5 add NA 
+5 + NA 
+
+# 5 add 0 
+5 + 0 
+
+# R won't calculate a mean with an NA as we know 
+mean(c(1, 2, NA, 4))
+
+# but it will with a 0 
+mean(c(1, 2, 0, 4))
+
+```
+This is R protecting you from accidentally ignoring missingness. If it didn't tell you 'NA' you wouldn't know some data was missing. 
+
+So the first thing we have to do is check for missing data
+
+### Finding missing data in a dataframe
+
+There are a few ways of checking for missingness in your dataset. For this activity we going to swap to a new dataset with NAs in it. Please download the NAdf data frame from Brightspace week 4 and save in your data folder (again remembering about capitalisation of Data versus data)
+
+  1. **Check the whole dataset**
+
+```{r is.na}
+# read new df 
+NAdf <- read.csv("data/NAdf.csv") 
+
+# ask R 'is there any NAs' in the df object? 
+is.na(NAdf)
+
+```
+
+This returns TRUE/FALSE for every cell. As our data frame is pretty large this is hard to digest! So let's look by column. 
+
+  2. **Count missing per variable**
+
+```{r sum NA over col}
+
+# Asks R to sum the number of NAs in each column in the dataset 
+
+colSums(is.na(NAdf))
+
+```
+
+This is more useful, we can see there are no missing values in ID, but between 3-4 in other variables. But of course we don't know how many relative to the total these represent, so we can also ask R to give us the proprotion of missingness for each variable: 
+
+  3. **Proportion missing**
+
+```{r % of NA}
+# Compute the proportion of missinging values for each column in the dataset 
+
+colMeans(is.na(NAdf))
+
+```
+
+So we can see that missingness is highest in the `mark` column with 20%, and lowest in `gad6 and gad7` with 10%. 
+
+Finally, we can ask R to compute summary statistics for us on the entire dataset (this is a good one to know when you first explore your data as brings lots of functions together)
+
+  4. **Quick overview**
+  
+```{r summary na}
+
+# produce summary stats for the entire df 
+summary(NAdf)
+
+# you can also do this variable by variable in the df using the $ 
+
+summary(NAdf$mark)
+
+```
+
+This function automatically produces the min, quartiles, median, mean, max and count of NAs (if present) for all variables in the dataset. It also handles mean() without having to use the argument na.rm like we did before. 
+
+### Removing missing data
+
+There are a couple of methods of handling missingness. 
+
+#### Option A – ignore `NAs` inside a function
+
+Most tidyverse functions have: `na.rm` = TRUE = “remove NAs before calculating” which we used before to compute the mean. 
+
+```{r na.rm}
+
+# compute the mean ignoring the NAs 
+mean(NAdf$mark, na.rm = TRUE)
+
+```
+
+This means you do not need to change the data at all, which is often preferred. 
+ 
+#### Option B – remove rows with any NA
+
+During data cleaning you can tell R to delete *ALL* rows with NAs in them. This is called **listwise deletion**. 
+
+```{r drop na}
+
+# delete all rows with NA 
+df_clean <- NAdf %>% # make a new re-named df 
+  drop_na() # function is drop_na 
+
+# NB this is a case when it's really important to not overwrite your data! 
+
+# check it's length now (number of rows) compared to before 
+
+nrow(NAdf)
+nrow(df_clean)
+
+```
+
+So, because we are deleting the ENTIRE row *when there is at least one NA* we have gone down from 20 observations (rows) to 3! This is a massive loss of data which is an issue. Especially if the missingless is systematic (e.g. a specific type of participant was more likely not to respond to a question). This can cause bias in your data. 
+
+### Option C – remove NAs only for specific variables
+
+It may be the case that you don't mind about NAs in all variables. Some variables aren't used in analysis for instance, so it would be silly to remove the entire observation. In this case you can tell R you only want to delete observations with NAs in specific variables (like mark and attendance)
+
+```{r drop na by col}
+
+# re-make the clean df with NA removed from 2 variables 
+df_clean <- NAdf %>%
+  drop_na(mark, attendance)
+
+# check it's length now (number of rows) compared to before 
+nrow(df_clean)
+
+```
+
+The rationale behind these decisions, and when and why we would want to do them we will discuss in future more advanced statistics causes. The consequences of your decisions matter depending on how random or not the missingness is. 
+
+You will learn more about this in statistics modules, but briefly to finish this section. 
+
+  1) **MCAR – Missing Completely At Random**
+    - totally unrelated to anything
+    - e.g., random internet dropout
+
+  2) **MAR – Missing At Random**
+    - related to other variables
+    - e.g., younger participants skip income
+
+  3) **MNAR – Missing Not At Random**
+    - related to the value itself
+    - e.g., highly anxious people avoid anxiety items
+    - More probelmatic! 
+
+The more systematic the missingness, the more careful we must be.
+
+### Why shouldn't we swap NAs for 0's? 
+
+A very common mistake in data cleaning is: “I have missing values → I’ll just change them to 0 so R can run the analysis.”
+This is almost always statistically wrong and conceptually dangerous.
+
+> NA is not the same as 0!
+
+  - NA means “we do not know the value.”
+  - 0 means “the value is genuinely zero.”
+
+These are completely different statements! 
+
+For example, take our GAD-7 scores in the NAdf. If we have two people, person A skipped the question because they were rushing and it was accidental, the other person didn't answer it because they had high anxiety. As a person collecting this data, you don't know the 'true situation' so NA correctly represents the situation as 'unknown'. If you re-code both to 0 you would risk making them both 'no anxiety' when this is only true of one participant, not both.  
+
+
+| Person | True situation                    | What NA means | What 0 would mean          |
+|--------|-----------------------------------|---------------|----------------------------|
+| A      | Didn’t answer item due to rushing | Unknown       | “Perfect mental health”    |
+| B      | Skipped question due to anxiety   | Unknown       | “Perfect mental health”    |
+
+> By converting NA → 0 you are inventing extremely positive scores that were never observed.
+
+#### 0 bias means down, NAs don't
+
+Imagine you have 3 scores, and one missing value. If handled correctly the mean is: 
+
+```{r mean with na}
+# Imagine 3 real scores and one missing
+scores <- c(12, 14, 16, NA)
+
+mean(scores, na.rm = TRUE)
+
+```
+
+but if you changed that last value to a 0 then it becomes a completely different value, and tells a very different story about the sample.
+
+```{r mean with 0}
+mean(c(12, 14, 16, 0))
+
+```
+
+This actually happens in science and leads big papers being retracted. For those interested have a look at [Beheim et al. (2021) Nature article](https://www.nature.com/articles/s41586-021-03655-4). This is research on big gods and social complexity. 
+
+The original dataset contained many missing observations for if small scale societies believed in big gods or not. The analysis didn't handle them correctly, coding them as 0 - big gods were absent - rather than NAs. This artifically: 
+
+  - inflated the numbers of societies with 'no big gods' 
+  - strengthened the relationship between religion and social complexity but incorrectly. 
+  
+When the authors re-anaylsed the data treating NAs correctly the original published findings no longer held and the paper was retracted! 
+
+> So don't change NAs to 0! 
+
+
 # Data Visualisation in R: Week 5
-## Summarising data
-## Introduction to ggplot2
-## Interpreting plots
+## Plotting with ggplot2
+
+There are a number of packages to make graphs but ggplot2 is the most versatile and widely used. Let's make sure its installed and loaded. 
+
+```{r install ggplot2}
+library(ggplot2)
+```
+
+### Exploration of the Iris dataset 
+
+We are interested in understanding the **relationship between Sepal length and Petal length - are they correlated? Is this a negative or positive correlation?** 
+
+The best way to look at this is in a scatterplot with all the data points plotted by sepal length (on the x axis, bottom) and by petal length (on the y axis, left)
+
+```{r scatter}
+# Scatterplot using ggplot 
+
+ggplot(data = iris) + # the + means R is waiting for more info 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length)) 
+```
+You have a scatterplot! 
+
+In the above code `ggplot()` is the function which calls the plot (specifically the coordinate system you add layers to), and the object is the iris dataframe. This is folloed by a second function `geom_point()` which calls the *dots* making the plot a scatter plot. its like saying, I want a plot, and then I want this plot to be a scatterplot. 
+
+FYI, as we will soon find out there are tons of geom_ functions dependent on the type of plot you want to make. As were are interested in the relationship between two continuous variables a scatterplot makes sense. 
+
+After the functions comes the *arguments* - the content of the brackets. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = iris)` creates an empty graph (if you didn't add the layer you would have blank panel). You can try this: 
+
+```{r just ggplot}
+# just run the ggplot without the scatterplot layer 
+
+ggplot(data = iris) 
+```
+You have nothing! 
+
+The `gemo_point(mapping = aes())` argument defines how variables in your dataset are plotted. The mapping argument is always paired with `aes()`, and the `x` and `y` arguments of `aes()` specify which variables to map to the x (sepal.length) and y (petal length) axes. This is what is required to see something in your plot. You are basically saying: 
+
+1: I want a plot please based on the iris data  -> `ggplot(data = iris)` 
+2: I want this plot to be a scatterplot with points -> `gemo_point()`
+3: I want this plot to be of sepal length (X) and petal length (y) -> `(mapping = aes(x = Sepal.Length, y = Petal.Length))`
+
+That's it! You can change this template by change the **data, geom_function or mapping variables** to create a wide range of graphics using different data. 
+
+You can see that ggplot2 is a lot about layering. You make a basic plot and then you add features to help you better understand it. So let's take this plot further. It looks like there is a positive relationship between sepal and petal length, *however there is a bunch of data points in the far left corner which this does hold for - why is this? how can we explore this further?* 
+
+### Adding aesthetics 
+
+To better visualise our data we can use aesthetics by adding a third variable to the mapping argument (the bit in the `aes()`). An aesthetic is a visual property of the objects in your plot, which includes colour, size and shape of the data points. You are able to change these elements, both globally (i.e., for all points on the graph) and per group (i.e., different colours are attributed to different plant species). 
+
+Here we can use colour to map aesthetics in your plot to the variables in the iris dataset - let's do species to see if that helps us understand the data better. 
+
+```{r species by colour}
+
+# Add in a colour = Species into the argument 
+ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, colour = Species)) 
+
+#  note colour can be spelt both in UK and US English! 
+```
+The colour = `Species` argument has coloured the dots either red, green or blue depending on the species label. This is called scaling. Ggplot has also automatically given you a legend on the right-hand side to explain which species is which colour.  
+
+Note that the text has remained the same but I have just added in the colour argument at the end of the `aes()` brackets. This is using the variable `Species` from the dataset to colour the data points depending on their species label. 
+
+Now we can see that the linear relationship between sepal and petal length holds true for `versicolor` and `viriginica` but not for `setosa`!  The red points are flat. 
+
+Let's now try other aesthetics like the shape type or the shape size 
+
+```{r shape and size}
+
+# include shape = Species and size = Species 
+ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                           color = Species, shape = Species, size = Species))
+
+# can keep adding arguments into the aes()
+```
+
+So now we have added in size and shape arguments. Each of the different species are associated with different sizes of points and different shapes. R is giving us a warning that size is not advised for a discrete variable because it is an unordered variable. 
+
+Basically, the issue is that bigger points makes you think some species are bigger than others. This isn't the case so it's confusing and doesn't help understanding the data - I would remove this. 
+
+Also note that all three of these aesthetics have been included in the legend!   
+
+So instead of changing the size we could try changing the transparency of the points using the alpha argument. 
+
+
+```{r alpha}
+
+# Add alpha = Species to the plot 
+
+ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                           color = Species, shape = Species, alpha = Species))
+```
+
+Now setosa points are hardly visible - not really useful. This is just to show you can change all these elements, but much is not necessarily better and plots should be easy to understand! Plots should communicate something useful about the data. Again, I would just remove this. 
+
+You can also set the aesthetic properties of your geom manually just outside the aes(). 
+
+For example, we can make all of the points in our plot pink, all the shapes circles or all the points larger. When you do this the global aesthetic change will overwrite anything in the mapping argument -  
+
+```{r global changes}
+
+# colour - all pink 
+  ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                           shape = Species), colour = "salmon") 
+
+# shape
+ ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                           shape = Species), shape = 16)  
+ # 16 = small circles. 
+ # Note that this has overrode the shape = species in the mapping argument. 
+ 
+# size  
+  ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                           shape = Species), size = 3)  
+  
+  # bigger number = bigger points
+```
+  
+There is an amazing range of colours you can use in r: See [Colours in R quick reference](https://sape.inf.usi.ch/quick-reference/ggplot2/colour) for colour names (replace the "salmon" above).
+
+R has 25 built-in shapes which are identified by numbers. Shapes change, as do their colour and fill. You can see the different colours to call in the argument here 
+
+![*Figure 5.1 Shape types and their numbers. From cookbook for R*](shapetypes.png)
+
+You can see further information here in the online version of cookbook for R. See: [Shapes and Line Types in R](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/)
+
+Because these changes to the plot are happening outside of the aes() they do not convey any information about the variable so generally less informative (but pretty!) 
+
+### Adding layers to your plot 
+
+From the selection of plots above I think the most useful is the first one with the colours denoted by species. Often scatter graphs come with lines to show the trends in the data. This can be done using a different *geom_function* 
+
+`geom` are geometrical objects used to represent data and ggplot has over 40 of them. So the one you pick depends on the data type you want to represent and graph you want to make. So to add a line to a your existing scatterplot you need to use `geom_smooth()`, which is a smooth line fitted to the data.
+
+You can see why it's called a layer, because you just keep adding `geom_` to each other as you build up your plot. 
+
+
+```{r at line}
+  # Add a line with 95% confidence intervals
+  ggplot(data = iris) + 
+    geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                             color = Species)) +  # same as above AND....
+    geom_smooth(mapping = aes(x = Sepal.Length, y = Petal.Length), colour = "salmon") 
+
+# adds smoothed line between sepal and petal length which is Salmon colour 
+
+```
+
+So we have added a smooth line with a 95% confidence region (as R tells you above by the info icon), and using the global aesthetic made it salmon coloured. Nice. But, if we know the relationship between sepal length and petal length is dependent on the species, it is probably better to have a line for each of these species. We do this in exactly the same way as we changed the aesthetics on the points *by adding a third condition into the mapping argument*. 
+
+```{r at lines by species}
+# line for each of the species
+  ggplot(data = iris) + 
+    geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                             color = Species)) +  # same as above AND 
+    geom_smooth(mapping = aes(x = Sepal.Length, y = Petal.Length, colour = Species)) 
+
+# line is now by species as the colour = Species is in the aes() 
+```
+
+So now you can see a smoothed fit curve for each of the species. So this shows how you can add on layers to the basic graphic and how each geom_function can be changed using the mapping function. 
+
+It is important to note that you cannot use the same arguments for all the geom types. For instance, you can't change the line 'shape' like a data point, but you can change the linetype, and make that specific to each species. 
+
+![*Figure 5.2 line types and their numbers. From cookbook for R*](linetypes.png)
+
+
+```{r line by species}
+# line for each of the species
+  ggplot(data = iris) + 
+    geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                             color = Species)) +  # same as above and the ADD 
+    geom_smooth(mapping = aes(x = Sepal.Length, y = Petal.Length,
+                              colour = Species, linetype = Species)) 
+
+# change the linetype by species 
+```
+
+This feature doesn't add much to our current plot because we changed the colour, but very useful if the plot was black and white as we have solid and dashed lines. 
+
+Finally, you can change the line types between a smooth curve or a regression line, and whether it has 95% CI or not. 
+
+```{r}
+# linear regression lines with 95% CI
+  ggplot(data = iris) + 
+    geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                             color = Species)) + 
+    geom_smooth(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                              colour = Species), method =lm) 
+
+# add linear regression line with the argument method=lm 
+#  95% confidence intervals are included as default
+```
+
+We can now see each speices has its own colour and three regression (line of best fit) lines which is included in the legend. 
+
+We can also turn off the 95% CI if we want (but normnally we want them)
+
+```{r remove SE}
+# linear regression lines without 95% CI
+  ggplot(data = iris) + 
+    geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                             color = Species)) +  
+    geom_smooth(mapping = aes(x = Sepal.Length, y = Petal.Length, 
+                              colour = Species), method =lm, se=FALSE) 
+
+# SE=FLASE removes the 95% CI 
+```
+
+
+### Streamlining your code 
+
+Our code is working well, we can see the trends for the three species clearly. However, it's a bit long winded - more space to go wrong, especially if we add in more layers. 
+
+For instance, if you want to change the x and y variable you need to do this in both lines of code. 
+
+It is always good to make your code as efficient as possible. We don't need to repeat the mapping for both geom_functions if we state it in the ggplot() function, ggplot2 then treats these mappings as global mappings and applies it to both geom in the graph. 
+
+This saves use from repeating 
+
+
+```{r global mappings}
+# move the x and y to the ggplot function 
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings for that layer only. This makes it possible to display different aesthetics in different layers. This means that you don't have the use the same aesthetics for all the gemo functions.
+
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) + 
+  # global mapping is now up here
+  geom_point(mapping = aes(colour = Species, shape = Species)) +  
+  # local mappings to the points 
+  geom_smooth(mapping = aes(colour = Species, linetype = Species)) 
+  # local mappings to the line 
+```
+
+### Facetting your plots 
+
+The last element we will talk about now to add to your plot are facets because they are really useful and not complex to do. They are just another layer to add to the plot if you have categorical variable. Facets basically makes sub-plots that each display one subset of your data. 
+
+The first argument of `facet_wrap()` should be a formula, which you create with ~ followed by a discrete variable name. 
+
+```{r facet wrap}
+
+# facet wrap by species 
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) + 
+  geom_point(mapping = aes(colour = Species, shape = Species)) + 
+  geom_smooth(mapping = aes(colour = Species)) +
+   facet_wrap(~ Species, nrow = 1) # nrow is how many rows you want. 
+```
+
+Now that it is faceted the species legend isn't really helpful. So let's remove it. 
+
+```{r remove legend}
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) + 
+  geom_point(mapping = aes(colour = Species, shape = Species), show.legend = FALSE) + 
+  geom_smooth(mapping = aes(colour = Species), show.legend = FALSE) + 
+  # note you need to remove from all mappings
+   facet_wrap(~ Species, nrow = 1) 
+```
+
+### Changing axis ticks 
+
+Looking at the plot I would say it's a bit annoying that the ticks on the y axis (the numbers) are only every 2, I think they should be every 1 for consistency with the y.
+
+To do this we just add another layer with the + 
+
+```{r change ticks}
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) + 
+  geom_point(mapping = aes(colour = Species, shape = Species), show.legend = FALSE) + 
+  geom_smooth(mapping = aes(colour = Species), show.legend = FALSE) + 
+   facet_wrap(~ Species, nrow = 1)  + 
+    coord_cartesian(ylim=c(1, 7)) + # this zooms into the space between 1-7 
+     scale_y_continuous(breaks=seq(1, 7, 1))  # Ticks from 1-7, every 1
+
+```
+
+### Text on plots 
+
+Finally, I think it would be nice if we didn't have the . between Sepal and length and Petal and length. So we need to change the text on the axes. 
+
+Again you just need to add the ylab (label for the y axis) and xlab (label for the x axis) functions to the existing plot. 
+
+```{r change labels}
+
+# Change the axis labels 
+ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) + 
+  geom_point(mapping = aes(colour = Species, shape = Species), show.legend = FALSE) + 
+  geom_smooth(mapping = aes(colour = Species), show.legend = FALSE) + 
+   facet_wrap(~ Species, nrow = 1)  + 
+    coord_cartesian(ylim=c(1, 7)) + 
+     scale_y_continuous(breaks=seq(1, 7, 1)) + 
+      ylab("Petal Length (cm)") +  # rename the y axis 
+        xlab("Sepal Length (cm)") # rename the x axis 
+```
+
+I'm pretty happy with this! This is how we build graphs - we start simple and then build in elements to best visualise the data. 
+
+### Exercises 5.1:  
+
+> **A)** Plot the relationship between sepal length and petal length (as above) but this time map petal width on to colour. How do the aesthetics behaviour differently for a continuous variable (like width)? Write a one sentence summary of the plot.
+
+> **B)** What is wrong with this code? Why are the points not blue?
+
+```{r}
+ggplot(data = iris) + 
+  geom_point(mapping = aes(x = Sepal.Length, y = Petal.Length, color = "blue"))
+```
+
+> **C)** Make a scatterplot between Petal.Length and Species. Does this still look like a Scatterplot. Try geom_boxplot. 
+
+> **D)** Make a scatter plot between sepal and petal width. Add in aesthetics to better visualise the data. Write a one sentence summary of the plot.  
+
+
+#### Problem shooting 
+
+It is really common to run a line of code and it doesn't work. Normally it is a misplaced character, or an unclosed bracket. Check that every ( has a ) and every " has a ".  
+
+Captials also matter in R - note that Sepal.Length will work but sepal.length will not! 
+
+Sometimes you will run the code and nothing happens. Check the left-hand of your console: if its a +, it means that R doesn’t think you have typed a complete expression and its waiting for you to finish it. In this case, its usually easy to start from scratch again by pressing ESCAPE to abort processing the current command.
+
+One common problem when creating ggplot2 graphics is to put the + in the wrong place: it has to come at the end of the line, not the start. 
+
+If you’re still stuck, try the help. You can get help about any R function by running ?function_name in the console, or selecting the function name and pressing F1 in RStudio. Don’t worry if the help doesn’t seem that helpful - instead skip down to the examples and look for code that matches what you’re trying to do.
+
+If that doesn’t help, carefully read the error message. Sometimes the answer will be buried there! But when you’re new to R, the answer might be in the error message but you don’t yet know how to understand it. Another great tool is Google: try googling the error message, as it’s likely someone else has had the same problem, and has gotten help online.
+
+#### Further resources for plotting 
+
+See: [Cheatsheet for ggplot2](https://www.rstudio.com/resources/cheatsheets/)
+
+See: [Cookbook for R Graphics ](http://www.cookbook-r.com/Graphs/)
+
 
 # Conditional Programming: Week 6 
 ## Logical values
