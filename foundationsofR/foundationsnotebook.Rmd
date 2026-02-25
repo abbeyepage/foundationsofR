@@ -84,8 +84,8 @@ This component runs across **ten teaching weeks**, starting from the very basics
 
 Teaching is shared across the module:
 
-  1) **Weeks 1–5** are taught by Dr Abigail Page and focus on foundational R skills, data handling, and visualisation
-  2) **Weeks 7–10** are taught by Dr James Winters and focus on programming concepts and simulation
+  1) **Weeks 1–7** are taught by Dr Abigail Page and focus on foundational R skills, data handling, and visualisation
+  2) **Weeks 8–10** are taught by Dr James Winters and focus on programming concepts and simulation
 
 By the end of the component, you will be able to use R confidently as a tool for working with data in academic, research and workplace contexts.
 
@@ -148,6 +148,7 @@ Throughout this module, we will refer to the **data science cycle (Figure 1.1)**
 We can think of this as a cycle because you don't do the steps only once, but you loop back and forth. 
 
 The first step in any data analysis is importing your data into R. This usually involves loading data from a file into a data frame. Without access to your data within R, you cannot perform any analysis.
+
 Once your data is imported, it’s important to tidy it. Tidy data has a consistent structure where each column represents a variable and each row represents an observation and each cell represents a value (Figure 1.2). This organization makes it easier to work with the data, allowing you to focus on analysis rather than data cleanup.
 
 ![*Figure 1.2 Variables, observations and values from R4DS textbook*](tidy-1.png)
@@ -163,6 +164,7 @@ With clean and well-structured data, you can begin generating insights through v
 Finally, communication is essential. The insights you derive from analysis - whether through visualisations, models or summaries — are only useful if you can clearly explain them to others.
 
 Throughout the process, programming supports every step. While you don’t need to be a programming expert, stronger programming skills allow you to automate tasks, work more efficiently and tackle new problems more effectively.
+
 These tools cover most of what you’ll need in a data science project. 
 
 This R component focuses primarily on the **foundational stages of this cycle: importing, tidying and visualising data**. These are the skills that everything else depends on.
@@ -246,28 +248,11 @@ Over time, you will build familiarity with common patterns and solutions.
 
 Before you can start using R, you need to install **both R and RStudio**.
 
-### Installing R
-
-1. Go to: https://cran.r-project.org  
-2. Select your operating system (Windows, macOS, or Linux)  
-3. Download and install the **latest version** of R  
-
-> Always install R **before** installing RStudio.
-
----
-
-### Installing RStudio
-
 1. Go to: https://www.rstudio.com/products/rstudio/download/  
-2. Download **RStudio Desktop (free version)**  
-3. Install the latest version for your operating system  
+2. Scroll down and on the left you will see the link to download R, and to the right the link to download RStudio 
+3. First download and install the latest version of R for your operating system, then RStudio
 
-Once installed, you will **open RStudio**, not R itself.  
-
-Opening RStudio automatically starts R in the background.
-
-Finally you will need to download Rtools from Cran: https://cran.r-project.org/bin/windows/Rtools/. 
-> Make sure this is installed before moving on. 
+Once installed, you will **open RStudio**, not R itself. Opening RStudio automatically starts R in the background.
 
 ---
 
@@ -353,9 +338,9 @@ x <- 500
 
 ```
 
-> **Question**: when you select "x" and press enter what is the output? 
+> **Question 1.1**: when you select "x" and press enter what is the output? 
 
-> **Activity**: practice with different numbers and letters
+> **Activity 1.1**: practice with different numbers and letters
 
 In the top right corner of the console you will see a **brush** icon. If you click on it, it clears your console environment. Do this now. 
 
@@ -1253,6 +1238,30 @@ My_vector2
 
 # Data in R part 2: Week 4
 
+This week we will be contining to work on data in R, focusing on factors and data frames.   Before you get started, remember to make a new R script with the following set-up at the start: 
+
+```{r}
+# ============================================================
+# Script: week4_FoundationsofR -----------------------------------
+# Purpose: Data in R part 2 
+# Author: Your Name
+# Date: 2026-02-15
+# ============================================================
+
+
+# 1.0 Setup ------------------------------------------------------
+
+## 1.1 Packages   ------------------------------------------------
+library(tidyverse)
+
+## 1.2 Data import ------------------------------------------------
+iris_data <- iris # if working  from a pre installed dataset like Iris  
+
+### 1.2.1 Data inspection --------------------------------------------
+head(iris_data) 
+```
+
+
 ## Text vectors and factors
 
 Vectors can be also made up of `strings` (i.e. words) instead of numbers. We simply have to enclose the characters/strings by quotation marks like in the following example:
@@ -1302,7 +1311,7 @@ nlevels(blood)
 
 Factors can also be comprised of numbers. Sometimes, in data entry, rather than write 'man', 'woman' or 'non-binary' researchers will code these observations to '1', '2' and '3'. Some people just prefer this in data process and analysis. In this case, you just need to tell R that these numbers need to be handled as a factor. 
 
-### Activity 3.2: Making a factor 
+### Activity 4.2: Making a factor 
 
 To make a `gender` factor please do the following steps: 
 
@@ -1378,7 +1387,7 @@ nrow(iris) # e.g. observations
 
 All these functions allow you to quickly understand the size and structure of the dataset.
 
-> **Question 3.1**: How many observations does the iris dataset contain? How many variables? 
+> **Question 4.1**: How many observations does the iris dataset contain? How many variables? 
 
 To look at individual columns or variables you can use the `$` sign. The object before the `$` is the data frame (e.g. `iris`) and the object after is the variable name in the dataset (e.g. `Sepal.Length`) 
 
@@ -1440,8 +1449,7 @@ Clear and consistent variable names make your code easier to read and prevent er
 The dplyr package provides a convenient `rename()` function we are going to use
 
 ```{r renaming}
-# load the dplyr package 
-library(dplyr)
+# note this requires tidyverse package dplyr
 
 # Rename Sepal.Length to sepal_len
 Iris2 <- iris %>%
@@ -1507,13 +1515,14 @@ It allows us to write sequences of operations in a readable, left-to-right way.
 
 We will learn more about pipes next week and in future weeks as we start using them more! 
 
-#  Data Manipulation in R: Week 5
+#  Data Manipulation: Week 5
 
-This week we move from organising data to actively manipulating it. Real datasets are rarely ready for analysis: variables need to be recoded, summaries created, formats changed and missing data handled.
+This week we move from organising data to actively manipulating it. Real datasets are rarely ready for analysis: variables need to be recoded, summaries created and missing data handled.
 
 ## Overview: Why do we need data manipulation?
 
 In an ideal world, every dataset would arrive perfectly organised, with clear variable names, no missing values, and exactly the structure needed for analysis. In reality, this almost never happens.
+
 Data manipulation refers to all the steps we take to reshape, clean and transform raw data into a form that can actually answer our research questions. It sits between importing data and analysing data.
 
 ### Raw data are rarely analysis-ready
@@ -1525,7 +1534,6 @@ Real datasets often contain problems such as:
   - Categories with confusing labels (e.g. `1 = male`, `2 = female`, `3 = other`)
   - Missing values coded as `-99` or blank cells
   - Five response categories where two have only one participant (small sample sizes because there are too many categories)
-  - Separate files for different time points or conditions
 
 Before we can run even a simple analysis, like calculating a mean or making a plot, these issues must be resolved.
 
@@ -1536,7 +1544,6 @@ Typical manipulation tasks include:
   -	Creating new variables from existing ones
   - Recoding categories into clearer labels
   - Combining several items into a scale score
-  - Reshaping data from wide to long format
   - Handling missing values correctly
   - Producing summaries by group
 
@@ -1593,12 +1600,7 @@ Even tidy data may not be clean. Clean data usually means:
 
 ## The tidyverse: transforming variables and datasets
 
-The tidyverse is not a single package but a collection of packages designed to work together for data science in R. The core idea is that data analysis should be:
-
-  - readable like plain language
-  - consistent across different tasks
-  - based on tidy, well-structured data
-  - easy to combine into step-by-step workflows
+The tidyverse is not a single package but a collection of packages designed to work together for data science in R. 
 
 Instead of learning dozens of unrelated functions with different rules, the tidyverse gives you a unified grammar for working with data frames. Most of what we do—cleaning data, creating variables, calculating summaries—can be expressed using a small set of verbs that behave in predictable ways.
 
@@ -1622,7 +1624,7 @@ When you run: library(tidyverse) R actually loads several packages:
 | stringr  | Working with text                    |
 | forcats  | Working with factors                 |
 
-For now we will be working with the dplyr, ggplot2 and tidyr packages. 
+For now we will be working with the dplyr & ggplot2 packages. 
 
 ### Thinking in “verbs”
 The tidyverse provides a set of functions (often called verbs) designed specifically for working with data frames. Each verb does one clear job, and verbs can be combined using pipes to create readable workflows.
@@ -1646,7 +1648,7 @@ We talked about pipes a bit last week, but going to re-cap now as fundamental in
 
 Together these verbs allow you to express almost any data manipulation in plain, logical steps. Today we will be covering all but arrange(). 
 
-So, for today we will practice some tidyverse verbs on a simulated  dataframe about student scores.  Please download the dataframe from week 4 Brightspace material. 
+So, for today we will practice some tidyverse verbs on a simulated  dataframe about student scores.  Please download the dataframe from Brightspace.  
 
 ```{r set up}
 # import the dataset from Brightspace 
@@ -1717,7 +1719,7 @@ df %>%
   filter(group == "A" & mark >= 60)
 
 ```
- > **Question 4.1**: what is the number of rows now in the df? 
+ > **Question 5.1**: what is the number of rows now in the df? 
  
 You can also use the OR (`|`) when either or can be TRUE 
 
@@ -1837,9 +1839,9 @@ This creates two new columns:
   - mark_percent – the original mark divided by 100-
   - passed – `TRUE/FALSE` depending on the mark being above 40 (pass) or not (Fail). 
 
-> **Question 4.2** - what do you need to do to save these new variables in the df? Do this now. 
+> **Question 5.2** - what do you need to do to save these new variables in the df? Do this now. 
 
-> **Question 4.3** - How do you check the class of the two new variables you made? What are they? 
+> **Question 5.3** - How do you check the class of the two new variables you made? What are they? 
 
 #### Creating Psychometric Scale Scores
 
@@ -1868,7 +1870,7 @@ names(df)
 
 ```
 
-> **Question 4.4** - is `total` the best name for this new variable? Why not? 
+> **Question 5.4** - is `total` the best name for this new variable? Why not? 
 
 What this code does: 
 
@@ -2086,7 +2088,7 @@ So now you have summarised one of your variables, saved this as a new object whi
   - max(mark)       # highest
   - n()             # number of rows
 
-> **Question 4.4**: commute all of these summary statistics on the transformed variable you made earlier `mean_height` and save to your outputs folder. 
+> **Question 5.4**: commute all of these summary statistics on the transformed variable you made earlier `mean_height` and save to your outputs folder. 
 
 
 ### `group_by()` - doing things within groups 
@@ -2123,7 +2125,7 @@ Now we get one row per group (A, B & C) instead of one row overall. So:
   - the results are combined back together
 
 
-> **Question 4.5**: which group has the highest mean mark? Which group has the largest sample size?
+> **Question 5.5**: which group has the highest mean mark? Which group has the largest sample size?
 
 You can also group by two (or more) groups if you want: 
 
@@ -2167,142 +2169,13 @@ This activity will bring together a bunch of the verbs you just learnt about sti
   - **Step 3**: Using `mutate()` Convert GAD7 into a factor called `anxiety` with two levels based on scores < 10 -> "FALSE" and >= 10 -> "TRUE" 
   - **Step 4**: Using `group_by()` and `summarise()` compute the mean exam mark (`mark`) by BOTH variables `anxiety` and `degree` 
   
-> **Question 4.6**: Which combination of degree and anxiety has the lowest score in the dataset?  
+> **Question 5.6**: Which combination of degree and anxiety has the lowest score in the dataset?  
 
-## Wide and long data
+#  Data visualisation and dealing with NAs: Week 8
 
-Real research data rarely arrive in the “perfect” format for analysis. The same information can be organised in at least two fundamentally different ways:
+This week we will be reviewing data visualisation and how to deal with NAs in R. Prior to plotting and summarising your data you should have NAs dealt with. Once you completed this weeks material you will have all the skills to be able to complete the assessment for this component. 
 
-  1) **Wide format** – one row per participant, repeated measures stored in multiple columns
-  2) **Long format** – one row per observation, with a variable that tells you which condition or time point it belongs to. 
-
-Neither format is “right” or “wrong”. They simply serve different purposes. You will need to work out what format your need your data in deepening on your purpose! 
-
-### Wide data 
-
-In *wide data* each person appears in ONLY one row, and each observation or data point collected on them has a seperate column. For instance, if you were measuring anxiety at three separate time points in the same participant it would like this: 
-
-| id | anxiety_t1 | anxiety_t2 | anxiety_t3 |
-|----|------------|------------|------------|
-| 1  | 12         | 10         | 8          |
-| 2  | 15         | 14         | 13         |
-
-It's called wide data because as you collect more and more data on a participant you can imagine the dataset getting wider and wider as more columns are filled up! 
-
-This format is: 
-
-  - easy for us to read as people 
-  - similar to how online surveys (Like Qualtrics) kick out data when you have asked participants a bunch of questions 
-  - convenient for commuting summary statistics (e.g. mean anxiety score)
-
-### Long data 
-
-In long data, each measurement will get its own row, so participants will be spread across many rows - making your data very long: 
-
-| id | time | anxiety |
-|----|------|---------|
-| 1  | t1   | 12      |
-| 1  | t2   | 10      |
-| 1  | t3   | 8       |
-| 2  | t1   | 15      |
-| 2  | t2   | 14      |
-| 2  | t3   | 13      |
-
-This structure is harder for us to read but is often expected in repeated measures models. For within-subject designs, where the same participant is measured more than once (paired t-test, repeated-measures ANOVA and linear mixed models) the analysis needs to kmnow 1) which row belongs to the same person and 2) which condition/time each score represents. This only is clear in the long format. 
-
-What this means is that when you have wide data, you might need to **pivot** it to a long format. 
-
-### Converting wide to long with `pivot_longer()` 
-
-Imagine we collected three height measurements per student as they grow over time: 
-
-```{r wide df}
-
-# make a wide dataframe:  
-
-df_wide <- data.frame(
-  id = 1:3, # 1 participants 
-  h1 = c(154, 159, 167), # first height for each participant  
-  h2 = c(165, 162, 179), # second height for each participant
-  h3 = c(171, 163, 181)  # third height for each participant
-)
-
-# view the dataframe 
-df_wide
-
-```
-
-So to make it long we need to pivot the table so you have one column which is `id`, one column as `height` and a new column which is `time` which is when each of these height measures are taken. 
-
-```{r pivot longer}
-
-# pivot df longer 
-
-df_long <- df_wide %>% # renames df based on the df_wide 
-  pivot_longer(
-    cols = c(h1, h2, h3), # these are the columns to reduce to one 
-    names_to = "time", # this takes the names of the original columns into 
-    # the new variable `time`  
-    values_to = "height" # the values of h1-h3 are in the new variable 'height
-  )
-
-# view the new dataset
-df_long
-
-```
-
-Now we have:
-  
-  - one column saying which height measure
-  - one column containing the actual values
-
-> **Question 4.6**: how many rows did the df_wide have? How many rows does the df_long have? 
-
-### Pivoting long to wide with `pivot_wider()` 
-
-Sometimes we need to do the opposite and change it from long format to wide. We can change the new df_long back to df_wide if we like: 
-
-```{r long df to wide}
-
-# pivot wider 
-df_wide2 <- df_long %>% # rename the df df_wide2 not to overwrite 
-  pivot_wider( # function 
-    names_from = time, # the variables labelled from 'time' column 
-    values_from = height # values from the height column 
-  )
-
-# view df to confirm 
-df_wide2
-
-
-```
-
-Now it is back to where it was originally. Something like this would be useful if your, like we did above, computing a total GAD-7 score from gad1-gad7. 
-
-### Activity 4.2: pivoting the tidyverse df
-
-Going back to the dataframe we were using for the tidyverse verbs, you will remember we had three variables measuring height. To pivot this from wide to long, follow these steps: 
-
-  1) **Step 1**: use `pivot_wider()` on `df` and rename to `dflong` 
-  2) **Step 2**: Name columns “measurement” in `names_to` 
-  3) **Step 3**: Pull the values of height into the `heights` column with `values_to` 
-  4) **Step 4**: View the new dataset and answer the following questions 
-  
-> **Question 4.7**: how many rows does this new long dataset have? 
-
-> **Question 4.8**: for the other variables (e.g. total, gender) how are they now recorded for each paritcipant? 
-
-  5) **Step 5**: convert this back to from long to wide again and check it matches the original structure. 
-  
-
-Key take-aways: 
-
-  - Wide = one row per person
-  - Long = one row per observation
-  - Repeated measures almost always require long
-  - `pivot_longer()` and `pivot_wider()` let you move flexibly between them
-  - Analyes might require you to switch format depending on task
-
+----- 
 
 ## Missing data (NAs)
 
@@ -2321,14 +2194,14 @@ So part of data cleaning is deciding how to treat missing values in a transparen
 
 In psychology, common reasons include:
   
-  - Participant behaviour
+  - **Participant behaviour**
     - skipped sensitive questions
     - survey fatigue near the end
     - “prefer not to say”
-  - Study design
+  - **Study design**
     - participants only complete one condition
     - branching logic in surveys
-  - Technical issues
+  - **Technical issues**
     - recording equipment fails
     - online form not saved
     - data entry mistakes
@@ -2537,7 +2410,7 @@ mean(c(12, 14, 16, 0))
 
 This actually happens in science and leads big papers being retracted. For those interested have a look at [Beheim et al. (2021) Nature article](https://www.nature.com/articles/s41586-021-03655-4). This is research on big gods and social complexity. 
 
-The original dataset contained many missing observations for if small scale societies believed in big gods or not. The analysis didn't handle them correctly, coding them as 0 - big gods were absent - rather than NAs. This artifically: 
+The original dataset contained many missing observations for if small scale societies believed in big gods or not. The analysis didn't handle them correctly, coding them as 0 - big gods were absent - rather than NAs. This artificially: 
 
   - inflated the numbers of societies with 'no big gods' 
   - strengthened the relationship between religion and social complexity but incorrectly. 
@@ -2546,9 +2419,7 @@ When the authors re-anaylsed the data treating NAs correctly the original publis
 
 > So don't change NAs to 0! 
 
-
-# Data Visualisation in R: Week 6
-## Plotting with ggplot2
+## Data viz: plotting with ggplot2
 
 There are a number of packages to make graphs but ggplot2 is the most versatile and widely used. Let's make sure its installed and loaded. 
 
@@ -2675,7 +2546,7 @@ There is an amazing range of colours you can use in r: See [Colours in R quick r
 
 R has 25 built-in shapes which are identified by numbers. Shapes change, as do their colour and fill. You can see the different colours to call in the argument here 
 
-![*Figure 5.1 Shape types and their numbers. From cookbook for R*](shapetypes.png)
+![*Figure 6.1 Shape types and their numbers. From cookbook for R*](shapetypes.png)
 
 You can see further information here in the online version of cookbook for R. See: [Shapes and Line Types in R](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/)
 
@@ -2717,7 +2588,7 @@ So now you can see a smoothed fit curve for each of the species. So this shows h
 
 It is important to note that you cannot use the same arguments for all the geom types. For instance, you can't change the line 'shape' like a data point, but you can change the linetype, and make that specific to each species. 
 
-![*Figure 5.2 line types and their numbers. From cookbook for R*](linetypes.png)
+![*Figure 6.2 line types and their numbers. From cookbook for R*](linetypes.png)
 
 
 ```{r line by species}
@@ -2854,7 +2725,7 @@ ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) +
 
 I'm pretty happy with this! This is how we build graphs - we start simple and then build in elements to best visualise the data. 
 
-### Exercises 5.1:  
+### Exercises 6.1:  
 
 > **A)** Plot the relationship between sepal length and petal length (as above) but this time map petal width on to colour. How do the aesthetics behaviour differently for a continuous variable (like width)? Write a one sentence summary of the plot.
 
@@ -2891,22 +2762,14 @@ See: [Cheatsheet for ggplot2](https://www.rstudio.com/resources/cheatsheets/)
 See: [Cookbook for R Graphics ](http://www.cookbook-r.com/Graphs/)
 
 
-# Conditional Programming: Week 7 
+# Conditional Programming: Week 9 
 ## Logical values
 ## if and else statements
 
-# Pipes and Loops: Week 8
+# Pipes and Loops: Week 10
 ## Pipes (%>%)
 ## for loops
 ## Repeating operations
 
-# Writing Functions from scratch: Week 9
-## Why write functions?
-## Function structure
-## Writing your first function
 
-# Simulating Data: Week 10  
-## Why simulate data?
-## Generating random data
-## A simple simulation example
 
