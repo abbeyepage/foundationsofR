@@ -941,7 +941,7 @@ library(tidyverse)
 
 The tidyverse is actually a group of core packages. You can seem them listed above. We will be making use of dplyr, ggplot2 and readr in the coming weeks. 
 
-# Data in R: Week 3
+# Data in R part 1: Week 3
 
 This week builds on the workflow foundations from Week 2. We will focus on **how to write good scripts** and introduce the **core data structures** used in R. These skills are central to working efficiently, reproducibly and confidently with real data.
 
@@ -1251,7 +1251,9 @@ My_vector2 <- my_vector[-2]  # what about now?
 My_vector2
 ```
 
-### Text vectors and factors
+# Data in R part 2: Week 4
+
+## Text vectors and factors
 
 Vectors can be also made up of `strings` (i.e. words) instead of numbers. We simply have to enclose the characters/strings by quotation marks like in the following example:
 
@@ -1505,7 +1507,7 @@ It allows us to write sequences of operations in a readable, left-to-right way.
 
 We will learn more about pipes next week and in future weeks as we start using them more! 
 
-#  Data Manipulation in R: Week 4
+#  Data Manipulation in R: Week 5
 
 This week we move from organising data to actively manipulating it. Real datasets are rarely ready for analysis: variables need to be recoded, summaries created, formats changed and missing data handled.
 
@@ -2545,7 +2547,7 @@ When the authors re-anaylsed the data treating NAs correctly the original publis
 > So don't change NAs to 0! 
 
 
-# Data Visualisation in R: Week 5
+# Data Visualisation in R: Week 6
 ## Plotting with ggplot2
 
 There are a number of packages to make graphs but ggplot2 is the most versatile and widely used. Let's make sure its installed and loaded. 
@@ -2889,21 +2891,21 @@ See: [Cheatsheet for ggplot2](https://www.rstudio.com/resources/cheatsheets/)
 See: [Cookbook for R Graphics ](http://www.cookbook-r.com/Graphs/)
 
 
-# Conditional Programming: Week 6 
+# Conditional Programming: Week 7 
 ## Logical values
 ## if and else statements
 
-# Pipes and Loops: Week 7
+# Pipes and Loops: Week 8
 ## Pipes (%>%)
 ## for loops
 ## Repeating operations
 
-# Writing Functions from scratch: Week 8
+# Writing Functions from scratch: Week 9
 ## Why write functions?
 ## Function structure
 ## Writing your first function
 
-# Simulating Data: Week 9 
+# Simulating Data: Week 10  
 ## Why simulate data?
 ## Generating random data
 ## A simple simulation example
