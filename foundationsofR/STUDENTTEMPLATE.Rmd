@@ -46,7 +46,7 @@ output:
 
 ```{r setup, include=FALSE}
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE) # DON'T TOUCH THIS. 
 
 # Load required packages
 library(tidyverse) 
