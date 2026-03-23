@@ -1,0 +1,141 @@
+Seriousness,Help_Seeking,Blame,ED_Recognition,Diagnosis_Assigned,Gender,Age,Ethnicity,Education_Level,ED_Personal ,ED_CloseOther,ED_Training ,Body_Condition
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Low self-esteem,Male,19,Other (Arab or any others),Some University but no degree,No,No,No,3
+Agree,Probably Yes,Disagree,Not Sure,Depression,Male,18,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,Yes,No,4
+Agree,Probably Yes,Disagree,Definitely Yes,Anorexia nervosa,Male,18,Other (Arab or any others),Vocational or Similar,No,No,No,1
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,Yes,No,Yes,4
+Strongly Disagree,Probably Not,Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,Yes,Yes,3
+Agree,Probably Yes,Disagree,Probably Yes,Anxiety,Female,20,Black/African/Caribbean,Completed Secondary School,No,Yes,No,4
+Neither Agree nor Disagree,Probably Not,Neither Agree Nor Disagree,Not Sure,Stress,Female,20,Other (Arab or any others),Completed Secondary School,No,No,No,3
+Neither Agree nor Disagree,Definitely Yes,Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,25,White,Some University but no degree,Yes,Yes,No,2
+Agree,Definitely Yes,Disagree,Not Sure,Low self-esteem,Female,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,Yes,Yes,2
+Strongly Agree,Definitely Yes,Strongly Disagree,Definitely Yes,Anorexia nervosa,Female,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,Yes,No,No,3
+Strongly Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,25,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,Yes,Prefer not to say,No,1
+Strongly Agree,Definitely Yes,Strongly Disagree,Definitely Yes,Anorexia nervosa,Female,19,Mixed two or more ethnic groups,Some University but no degree,No,Yes,No,1
+Neither Agree nor Disagree,Not Sure,Neither Agree Nor Disagree,Not Sure,Not sure,Female,25,Black/African/Caribbean,Some University but no degree,No,Yes,No,4
+Neither Agree nor Disagree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Anorexia nervosa,Female,38,White,University Bachelors Degree,Yes,Yes,Yes,3
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Stress,Male,61,Black/African/Caribbean,Some University but no degree,No,No,No,3
+Agree,Definitely Yes,Agree,Probably Yes,Anorexia nervosa,Male,35,Black/African/Caribbean,University Bachelors Degree,No,No,No,1
+Disagree,Probably Not,Disagree,Probably Not,Low self-esteem,Male,55,Other (Arab or any others),"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,No,2
+Agree,Definitely Yes,Agree,Not Sure,Low self-esteem,Female,23,Black/African/Caribbean,Prefer not to say,No,Yes,No,2
+Agree,Definitely Yes,Disagree,Definitely Yes,A physical health issue,Male,28,Black/African/Caribbean,University Bachelors Degree,Yes,Yes,No,4
+Agree,Definitely Yes,Agree,Definitely Yes,An eating disorder (not anorexia/bulimia),,,Black/African/Caribbean,University Bachelors Degree,Yes,Yes,Yes,1
+Agree,Definitely Yes,Agree,Probably Yes,Stress,Female,21,Black/African/Caribbean,Completed Secondary School,No,No,No,2
+Strongly Disagree,Not Sure,Neither Agree Nor Disagree,Probably Yes,Yo-yo dieting,Male,30,"White,Black/African/Caribbean",Some Primary,Yes,No,No,4
+Strongly Agree,Definitely Yes,Agree,Definitely Yes,Poor diet,Male,32,Black/African/Caribbean,University Bachelors Degree,No,No,Yes,4
+Agree,Definitely Yes,Disagree,Not Sure,Anxiety,Male,31,Black/African/Caribbean,University Bachelors Degree,No,No,Yes,1
+Strongly Disagree,Probably Yes,Agree,Probably Yes,Not sure,Female,28,Black/African/Caribbean,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",Yes,No,No,1
+Agree,Definitely Yes,Disagree,Definitely Yes,Anorexia nervosa,Female,20,Other (Arab or any others),University Bachelors Degree,No,No,No,3
+Agree,Definitely Yes,Disagree,Probably Yes,Stress,Female,22,Black/African/Caribbean,University Bachelors Degree,No,No,No,2
+Agree,Probably Yes,Strongly Disagree,Probably Yes,Not sure,Female,20,Black/African/Caribbean,Completed Secondary School,Yes,No,No,1
+Strongly Agree,Definitely Yes,Strongly Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,34,White,University Bachelors Degree,Yes,Yes,No,2
+Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,Anxiety,Female,35,Other (Arab or any others),University Bachelors Degree,No,Yes,No,3
+Agree,Definitely Yes,Strongly Disagree,Probably Yes,Anxiety,Male,64,White,University Bachelors Degree,No,No,No,2
+Disagree,Probably Yes,Disagree,Not Sure,Low self-esteem,Male,20,Black/African/Caribbean,Some University but no degree,No,No,No,1
+Agree,Definitely Yes,Strongly Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,26,White,University Bachelors Degree,Yes,Yes,No,3
+Strongly Disagree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,27,Black/African/Caribbean,University Bachelors Degree,No,No,No,4
+Agree,Probably Yes,Disagree,Probably Yes,Anxiety,Male,55,Other (Arab or any others),"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,No,3
+Agree,Probably Yes,Agree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,24,Other (Arab or any others),University Bachelors Degree,No,Yes,No,4
+Agree,Probably Yes,Strongly Disagree,Not Sure,Depression,Female,60,White,Some University but no degree,No,Yes,No,2
+Disagree,Not Sure,Agree,Probably Yes,Bulimia nervosa,Female,37,White,Some University but no degree,No,No,No,3
+Agree,Probably Yes,Disagree,Not Sure,Low self-esteem,Female,25,Other (Arab or any others),"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,Yes,No,4
+Agree,Probably Yes,Disagree,Definitely Yes,Low self-esteem,Male,75,Other (Arab or any others),"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,No,3
+Strongly Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,31,Other (Arab or any others),University Bachelors Degree,No,Yes,No,1
+Agree,Probably Yes,Disagree,Probably Yes,Depression,Female,64,White,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,Yes,No,4
+Disagree,Probably Not,Disagree,Probably Not,Stress,Female,38,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,No,No,2
+Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Male,34,Other (Arab or any others),University Bachelors Degree,Yes,Yes,No,1
+Strongly Agree,Definitely Yes,Strongly Disagree,Definitely Yes,Anxiety,Female,33,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)","Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",Yes,Yes,No,4
+Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,23,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,No,No,2
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Not sure,Female,18,Mixed two or more ethnic groups,Some University but no degree,Prefer not to say,Prefer not to say,No,3
+Disagree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,29,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,Yes,No,3
+Agree,Probably Yes,Agree,Not Sure,Stress,Female,,Black/African/Caribbean,Some University but no degree,Yes,Yes,No,4
+Strongly Disagree,Probably Yes,Strongly Disagree,Definitely Yes,A physical health issue,Female,55,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Prefer not to say,No,No,No,4
+Strongly Disagree,Probably Not,Neither Agree Nor Disagree,Not Sure,Low self-esteem,Female,18,Black/African/Caribbean,University Bachelors Degree,No,Yes,Prefer not to say,2
+Disagree,Probably Not,Neither Agree Nor Disagree,Probably Not,Not sure,Non-binary,18,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,Yes,No,3
+Neither Agree nor Disagree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Prefer not to say,50,Prefer not to say,Prefer not to say,No,No,No,1
+Strongly Agree,Definitely Yes,Neither Agree Nor Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,41,White,Vocational or Similar,No,Yes,No,2
+Strongly Agree,Definitely Yes,Strongly Disagree,Probably Yes,Low self-esteem,Male,40,Black/African/Caribbean,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,Yes,No,3
+Strongly Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,59,White,Completed Secondary School,No,Yes,No,1
+Agree,Probably Yes,Neither Agree Nor Disagree,Definitely Yes,Anorexia nervosa,Female,22,Other (Arab or any others),Some University but no degree,No,Yes,No,2
+Disagree,Probably Yes,Neither Agree Nor Disagree,Definitely Not,A physical health issue,Male,31,Black/African/Caribbean,University Bachelors Degree,No,No,No,4
+Agree,Definitely Yes,Strongly Disagree,Probably Yes,Anorexia nervosa,Female,24,Mixed two or more ethnic groups,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,Yes,Yes,3
+Agree,Definitely Yes,Agree,Not Sure,Low self-esteem,Female,51,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,No,Yes,2
+Agree,Probably Yes,Strongly Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,22,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,Yes,No,No,4
+Agree,Definitely Yes,Strongly Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,22,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)","Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,Yes,3
+Agree,Probably Yes,Disagree,Definitely Yes,Anorexia nervosa,Female,24,Other (Arab or any others),University Bachelors Degree,No,No,No,2
+Agree,Definitely Yes,Disagree,Probably Yes,Poor diet,Female,18,"White,Mixed two or more ethnic groups",Some University but no degree,No,No,Prefer not to say,4
+Agree,Probably Yes,Strongly Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,24,White,University Bachelors Degree,Yes,Yes,Yes,1
+Agree,Definitely Yes,Strongly Disagree,Probably Yes,Anorexia nervosa,Female,37,Other (Arab or any others),"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,Yes,Yes,3
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Male,32,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,No,No,4
+Neither Agree nor Disagree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,51,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)","Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",Yes,No,No,2
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Anorexia nervosa,Male,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,No,No,2
+Strongly Agree,Definitely Yes,Strongly Disagree,Definitely Yes,Not sure,Male,20,White,Some University but no degree,No,Yes,Yes,1
+Strongly Disagree,Definitely Yes,Disagree,Definitely Yes,Low self-esteem,Female,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,No,No,3
+Strongly Disagree,Definitely Yes,Disagree,Probably Yes,Low self-esteem,Female,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,No,No,4
+Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,30,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Prefer not to say,No,No,Yes,3
+Agree,Probably Yes,Neither Agree Nor Disagree,Not Sure,Low self-esteem,Female,20,Mixed two or more ethnic groups,Some University but no degree,No,No,Yes,4
+Disagree,Probably Not,Disagree,Probably Not,Not sure,Male,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,No,No,4
+Agree,Probably Yes,Strongly Disagree,Not Sure,Low self-esteem,Female,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some Secondary,No,Yes,No,2
+Agree,Probably Yes,Disagree,Probably Yes,Anorexia nervosa,Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,No,Yes,1
+Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,Binge eating,Female,44,Prefer not to say,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,No,4
+Strongly Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,Not sure,Male,20,White,Some University but no degree,No,No,Yes,1
+Disagree,Probably Yes,Disagree,Probably Yes,Yo-yo dieting,Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Vocational or Similar,Yes,Yes,Yes,2
+Strongly Disagree,Probably Not,Disagree,Not Sure,Not sure,Female,20,Black/African/Caribbean,Completed Secondary School,No,No,No,3
+Strongly Disagree,Probably Not,Disagree,Probably Yes,Low self-esteem,Female,19,White,Completed Secondary School,Yes,No,No,2
+Agree,Definitely Yes,Disagree,Definitely Yes,Low self-esteem,Female,20,Black/African/Caribbean,Vocational or Similar,No,No,Yes,1
+Agree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,Yes,No,No,4
+Neither Agree nor Disagree,Probably Yes,Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,33,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)","Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",Yes,No,No,2
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Anorexia nervosa,Female,20,White,Some University but no degree,No,Yes,Yes,4
+Disagree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Male,23,Black/African/Caribbean,Completed Secondary School,No,No,Yes,3
+Agree,Probably Yes,Disagree,Definitely Yes,Low self-esteem,Male,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,Yes,No,3
+Disagree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,A physical health issue,Male,23,Black/African/Caribbean,University Bachelors Degree,No,No,No,3
+Neither Agree nor Disagree,Probably Yes,Disagree,Probably Yes,Poor diet,Female,21,Black/African/Caribbean,Completed Secondary School,Prefer not to say,Prefer not to say,Yes,1
+Strongly Agree,Probably Yes,Strongly Disagree,Definitely Yes,Low self-esteem,Female,22,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,Yes,Yes,No,4
+Neither Agree nor Disagree,Not Sure,Neither Agree Nor Disagree,Probably Yes,Poor diet,Male,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Vocational or Similar,No,No,No,2
+Neither Agree nor Disagree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Stress,Female,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,Yes,No,3
+Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,Stress,Female,26,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)","Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,No,4
+Agree,Probably Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,22,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,No,Yes,1
+Agree,Definitely Yes,Disagree,Probably Yes,Bulimia nervosa,Male,19,White,Completed Secondary School,No,No,Prefer not to say,1
+Disagree,Probably Yes,Disagree,Probably Not,Anxiety,Male,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,No,Yes,4
+Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,Poor diet,Female,19,White,Some University but no degree,No,No,Yes,2
+Strongly Agree,Probably Yes,Disagree,Definitely Yes,Low self-esteem,Female,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,Yes,No,No,3
+Agree,Definitely Yes,Neither Agree Nor Disagree,Definitely Yes,Anorexia nervosa,Female,19,White,Some University but no degree,No,Yes,Prefer not to say,1
+Disagree,Probably Yes,Disagree,Definitely Yes,Anorexia nervosa,Male,21,Mixed two or more ethnic groups,Some University but no degree,Yes,Yes,Yes,3
+Disagree,Probably Yes,Disagree,Definitely Yes,Anorexia nervosa,Male,21,Mixed two or more ethnic groups,Some University but no degree,Yes,Yes,Yes,2
+Strongly Agree,Definitely Yes,Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,20,White,Some University but no degree,Yes,Yes,No,3
+Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,21,Black/African/Caribbean,Some University but no degree,Yes,No,No,2
+Strongly Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,21,Black/African/Caribbean,Some University but no degree,Yes,No,No,4
+Agree,Probably Yes,Disagree,Not Sure,Not sure,Female,20,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Vocational or Similar,No,Yes,No,1
+Agree,Probably Yes,Strongly Disagree,Probably Yes,Low self-esteem,Female,24,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,Yes,Yes,Yes,2
+Agree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,Yes,Yes,Yes,4
+Disagree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Low self-esteem,Female,20,Black/African/Caribbean,Vocational or Similar,No,No,Yes,3
+Agree,Definitely Yes,Disagree,Probably Yes,Low self-esteem,Female,19,Black/African/Caribbean,Completed Secondary School,No,No,Yes,3
+Agree,Probably Not,Agree,Probably Not,Stress,Male,21,White,Some University but no degree,No,No,Yes,4
+Neither Agree nor Disagree,Probably Yes,Disagree,Definitely Yes,Low self-esteem,Female,20,Other (Arab or any others),Some University but no degree,No,No,No,1
+Agree,Definitely Yes,Strongly Disagree,Definitely Yes,Anorexia nervosa,Female,45,White,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",Yes,Yes,No,2
+Agree,Probably Yes,Disagree,Not Sure,Low self-esteem,Male,48,White,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,No,No,4
+Agree,Probably Yes,Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Male,69,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)","Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",Yes,Yes,No,3
+Disagree,Probably Not,Neither Agree Nor Disagree,Probably Not,Poor diet,Male,19,White,Completed Secondary School,No,Yes,No,4
+Strongly Disagree,Probably Yes,Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Male,23,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,Yes,No,Yes,3
+Agree,Definitely Yes,Neither Agree Nor Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Male,21,Black/African/Caribbean,Some University but no degree,No,No,No,2
+Strongly Agree,Definitely Yes,Disagree,Probably Yes,Low self-esteem,Female,22,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,Yes,No,No,1
+Neither Agree nor Disagree,Probably Not,Agree,Probably Not,Not sure,Male,20,White,Some University but no degree,No,No,No,3
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Not sure,Female,19,Black/African/Caribbean,Completed Secondary School,No,No,No,1
+Agree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,19,White,Some University but no degree,Yes,No,No,2
+Strongly Agree,Definitely Yes,Strongly Disagree,Probably Yes,Anorexia nervosa,Female,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,Yes,Yes,Yes,3
+Strongly Disagree,Definitely Not,Strongly Disagree,Definitely Not,Not sure,Female,20,Other (Arab or any others),Some University but no degree,No,Yes,No,2
+Disagree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,20,White,Some University but no degree,Yes,Yes,No,4
+Agree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,19,"White,Mixed two or more ethnic groups",Some University but no degree,Yes,Yes,Yes,1
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Anorexia nervosa,Male,35,White,University Bachelors Degree,No,No,No,2
+Agree,Probably Yes,Neither Agree Nor Disagree,Probably Yes,Low self-esteem,Female,34,White,University Bachelors Degree,No,Yes,Yes,3
+Neither Agree nor Disagree,Probably Not,Neither Agree Nor Disagree,Not Sure,Not sure,Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,No,No,2
+Neither Agree nor Disagree,Probably Yes,Neither Agree Nor Disagree,Not Sure,Not sure,Female,19,Black/African/Caribbean,Some University but no degree,No,No,No,2
+Agree,Probably Yes,Disagree,Probably Yes,Low self-esteem,Female,21,White,Some University but no degree,No,Yes,Prefer not to say,4
+Agree,Probably Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,19,Mixed two or more ethnic groups,Some University but no degree,Yes,Yes,No,3
+Strongly Agree,Definitely Yes,Strongly Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,19,Mixed two or more ethnic groups,Some University but no degree,No,Yes,No,1
+Neither Agree nor Disagree,Not Sure,Neither Agree Nor Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Male,21,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Completed Secondary School,No,Yes,No,2
+Neither Agree nor Disagree,Not Sure,Disagree,Probably Not,Anorexia nervosa,Female,21,Black/African/Caribbean,Some Secondary,No,No,No,3
+Strongly Agree,Definitely Yes,Agree,Definitely Yes,An eating disorder (not anorexia/bulimia),Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",Some University but no degree,No,No,No,1
+Disagree,Not Sure,Agree,Probably Not,An eating disorder (not anorexia/bulimia),Female,19,"Asian (Indian, Pakistani, Bangladeshi, Chinese, any other Asian background)",University Bachelors Degree,No,No,No,4
+Strongly Disagree,Definitely Yes,Strongly Disagree,Probably Yes,An eating disorder (not anorexia/bulimia),Female,33,White,"Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS)",No,Yes,No,4
+Agree,Probably Yes,Strongly Disagree,Definitely Yes,Anorexia nervosa,Female,20,Other (Arab or any others),Some University but no degree,No,Yes,No,2
+Neither Agree nor Disagree,Definitely Yes,Disagree,Definitely Yes,An eating disorder (not anorexia/bulimia),Male,20,Mixed two or more ethnic groups,Some University but no degree,No,No,Yes,3

@@ -5,10 +5,10 @@ poster_width: "36in"
 font_family: "Rasa"
 
 author:
-  - name: "Student Name" 
+  - name: "Abigail E. Page" 
     affil: 1
     main: true
-    email: "student@brunel.ac.uk"
+    email: "abigail.page@brunel.ac.uk"
 
 affiliation:
   - num: 1
@@ -49,96 +49,94 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 
 # load required dats 
-dev_data <- read_csv("dev_data.csv")
+df <- read.csv("dev_data.csv")
 ```
-<br>
 
 # Introduction
-Children’s ability to regulate emotions improves as they grow, but the pace and patterns of this development vary.
-This study examines how emotional regulation scores differ across age groups in a sample of children aged 5–12.
-Results show that older children demonstrate stronger emotional control, highlighting developmental trends in self-regulation.
+Children’s ability to regulate emotions improves as they grow, but the pace and patterns of this development vary. This study examines how emotional regulation scores differ across age groups in a sample of children aged 5–12. We expect older children to be able to regulate their emotions better than younger children. 
 
-<br>
 
 # Methods
 ## Participants and Data
-Data were collected from a sample of children aged 60–150 months, each of whom completed an emotional regulation assessment. The dataset included children’s age in months and an emotional regulation score. Any missing values were removed prior to analysis.
+Data were collected from a sample of children aged 60-150 months, each of whom completed an emotional regulation assessment in an online survey alongside demographic data. The dataset included children’s age in months and an emotional regulation score.
 
 ## Data Preparation
 Age in months was converted into years (including decimal points) to make results easier to interpret. After conversion, the dataset was cleaned by removing any remaining missing values.
 
 ```{r, echo=TRUE, background="#f0f0f0", size="large"}
 
-hello <- "Hello" 
+# emotional_regulation is too long name. rename it. 
+df <- df %>%
+  rename( # function rename 
+    emoreg = emotional_regulation) 
+# variable now called 'emoreg' 
 
-# new variable 
-# data tidy - remove NAs 
+# mutate the months variable into age 
+df <- df %>%
+  mutate(age = (months/12)) 
+# age is the new variable which is months
+# variable divided by 12 
+
+# Check for missing values in key variables
+colSums(is.na(df[, c("age", "emoreg")]))
+
+# There are one missing in age and 2 in emoreg
+# Remove missing values ONLY for relevant variables
+
+df_clean <- df %>%
+  drop_na(age, emoreg)
 
 ```
 
 ## Descriptive Statistics
-Descriptive statistics were computed for both variables. These were summarized in a table and histograms.
+Descriptive statistics (means and SD) were computed for both independent and dependent variables. These were summarised in a table and histograms.
 
 ## Linear Regression 
-A simple linear regression was conducted to examine whether age predicted emotional regulation. A scatterplot with 95% confidence intervals were included to provide a measure of uncertainty around this prediction. Model assumptions were assessed using standard diagnostic plots.
-
-The linear regression equation predicting emotional regulation from age is:
-
-$$
-{Y} = \beta_0 + \beta_1 * X
-$$
-
-Where:  
-- \(Y\) = predicted emotional regulation score  
-- \(\beta_0\) = intercept  
-- \(\beta_1\) = slope for age  
-- \(X\) = age in years
+A simple linear regression was conducted to examine whether age predicted emotional regulation. A scatterplot with 95% confidence intervals were included. Model assumptions were assessed using a Q-Q plot to explore the normality of residuals.
 
 <br>
 
 # Results
 The dataset included 20 children aged 5–12 years (mean age = 8.25 years, SD = 2.38). Emotional regulation scores ranged from 3.5 to 12.0, with a mean of 8.44 (SD = 2.10).
 
+**Table 1. Summary Statistics for Age and Emotional Regulation**
+
 ```{r, echo=FALSE}
 # Summary table of the two main variables
-dev_data %>%
+df_clean %>%
   summarise(
     Mean_Age = mean(age),
     SD_Age = sd(age),
-    Mean_ER = mean(emotional_regulation),
-    SD_ER = sd(emotional_regulation),
-  ) %>%
-  knitr::kable(
-    digits = 2,
-    caption = "Descriptive statistics"
-  )
+    Mean_ER = mean(emoreg),
+    SD_ER = sd(emoreg),
+  ) 
 ```
 
 
 ```{r, echo=FALSE, fig.width=11, fig.height=5}
 # ⃣ Density plot of Age
-ggplot(dev_data, aes(x = age)) +
+ggplot(df_clean, aes(x = age)) +
   geom_density(fill = "#008080", alpha = 0.7) +
-  labs(x = "Age (years)", y = "Density", title = "Figure 1: Distribution of Age") +
+  labs(x = "Age (years)", y = "Density", title = "Figure 1: Distribution of age") +
   theme_minimal(base_size = 14)
 
 # ⃣ Density plot of Emotional Regulation
-ggplot(dev_data, aes(x = emotional_regulation)) +
+ggplot(df_clean, aes(x = emoreg)) +
   geom_density(fill = "#cc0000", alpha = 0.7) +
-  labs(x = "Figure 2: Emotional Regulation Score", y = "Density", title = "Distribution of Emotional Regulation") +
+  labs(x = "Emotional regulation score", y = "Density", title = "Figure 2: Distribution of emotional regulation") +
   theme_minimal(base_size = 14)
 ```
 
 Density plots of the two variables show that age was approximately normally distributed, while emotional regulation scores were slightly positively skewed, with most children scoring between 6 and 10.
 
-A simple linear regression was conducted to examine whether age predicts emotional regulation in children aged 5–12. The model was significant, F(1, 18) = 28.71, p < .001, and explained a substantial portion of the variance in emotional regulation, R² = .61. Age was a significant positive predictor of emotional regulation, B = 0.80, SE = 0.15, t = 5.36, p < .001, indicating that older children tended to have higher emotional regulation scores.
+A simple linear regression was conducted to examine whether age predicts emotional regulation in children aged 5-12. The model was significant, F(1, 18) = 28.71, p < .001, and explained a substantial portion of the variance in emotional regulation, R² = 0.61. Age was a significant positive predictor of emotional regulation, B = 0.80, SE = 0.15, p < .001, indicating that older children tended to have higher emotional regulation scores.
 
 ```{r, echo=FALSE}
 # Fit linear regression model
-model <- lm(emotional_regulation ~ age, data = dev_data)
+model <- lm(emoreg ~ age, data = df_clean)
 
 # Create a simple coefficients table and round numbers
-coef_table <- as.data.frame(round(summary(model)$coefficients, 2))
+coef_table <- as.data.frame(round(summary(model)$coefficients, 3))
 
 # Show the table
 coef_table
@@ -148,7 +146,7 @@ coef_table
 
 ```{r, echo=FALSE, fig.width=11, fig.height=5, message=FALSE, warning=FALSE}
 # Scatter plot of Age vs Emotional Regulation
-ggplot(dev_data, aes(x = age, y = emotional_regulation)) +
+ggplot(df_clean, aes(x = age, y = emoreg)) +
   geom_point(color = "#0b4545", size = 3, alpha = 0.7) +
   geom_smooth(method = "lm", color = "#008080", se = TRUE) +
   labs(x = "Age (years)", y = "Emotional Regulation Score",
@@ -156,13 +154,7 @@ ggplot(dev_data, aes(x = age, y = emotional_regulation)) +
   theme_minimal(base_size = 14)
 ```
 
-At the mean age of 8.25 years, the predicted emotional regulation score is:
-
-$$
-Y = 1.517 + 0.8389 * 8.25 = 8.44
-$$
-
-Residuals were checked for normality and constant variance. Q–Q plots showed approximate normality, and residuals versus fitted values indicated homoscedasticity.
+Residuals were checked for normality and Q-Q plots showed approximate normality.
 
 ```{r, echo=FALSE, fig.width=11, fig.height=5}
 qqnorm(residuals(model))
@@ -172,6 +164,4 @@ qqline(residuals(model), col = "#008080", lwd = 2)
 
 # Conclusion 
 
-This study demonstrates that emotional regulation improves with age in children aged 5–12.
-Older children showed stronger self-regulation compared to younger children, consistent with typical developmental trends.
-These findings highlight the importance of supporting emotional skills in early childhood to promote healthy development.
+This study demonstrates that emotional regulation improves with age in children aged 5-12. Older children showed stronger self-regulation compared to younger children, consistent with typical developmental trends. These findings highlight the importance of supporting emotional skills in early childhood to promote healthy development. 

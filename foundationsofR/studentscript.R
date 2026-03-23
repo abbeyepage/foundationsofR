@@ -1,3 +1,6 @@
+# import data 
+
+mydata <- read_csv("data/ABIGAIL_PAGE.csv")
 
 # Rename variables to make them easier to use
 df <- mydata %>%

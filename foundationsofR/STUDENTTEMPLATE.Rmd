@@ -53,7 +53,7 @@ library(tidyverse)
 # INCLUDE ANY OTHER PACKAGES YOU REQUIRE
 
 # load required data 
-mydata <- read_csv("data/mydata.csv") # WILL BE PROVIDED TO YOU WITH THIS NAME.
+mydata <- read.csv("data/mydata.csv") # WILL BE PROVIDED TO YOU WITH THIS NAME.
 # SAVE IT IN THE 'DATA' FOLDER OF YOUR WORKING DIRECTORY FOR THIS CODE TO WORK 
 
 ```
@@ -87,12 +87,13 @@ WHAT DESCRIPTIVE STATS DID YOU COMPUTE? WHAT PLOTS DID YOU DECIDE WHERE BEST?
 
 ## Linear Regression 
 EXPLAIN THE LINEAR REGRESSION, CHECKING MODEL ASSUMPTIONS HOW YOU REPORTED IT AND ANY VISUALISATION OF IT.
-YOU MAY PROVIDE THE EQUATION HERE.
 
 <br>
 
 # Results
 ONE SENTENCE ABOUT THE DESCRIPTIVE STATS SUMMARYING THE TABLE BELOW. 
+
+**Table 1. Summary Statistics for Age and Emotional Regulation**
 
 ```{r, echo=FALSE}
 # Summary table of the  main variables 
@@ -100,7 +101,7 @@ ONE SENTENCE ABOUT THE DESCRIPTIVE STATS SUMMARYING THE TABLE BELOW.
 
 
 ```{r, echo=FALSE, fig.width=11, fig.height=5}
-# PLOTS OF THE DESCRIPTIVE STATS 
+# HISTOGRAMS OF THE DESCRIPTIVE STATS 
 
 ```
 
@@ -112,9 +113,10 @@ ONE - TWO SENTENCE SUMMARY OF THE PLOTS AND IMPLICATIONS.
 # Fit linear regression model
 
 # Create a simple coefficients table (you might want to round numbers!) 
+coef_table <- as.data.frame(round(summary(model)$coefficients, 3))
 
 # Show the table
-
+coef_table 
 
 ```
 

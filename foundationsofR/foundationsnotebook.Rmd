@@ -84,8 +84,8 @@ This component runs across **ten teaching weeks**, starting from the very basics
 
 Teaching is shared across the module:
 
-  1) **Weeks 1–7** are taught by Dr Abigail Page and focus on foundational R skills, data handling, and visualisation
-  2) **Weeks 8–10** are taught by Dr James Winters and focus on programming concepts and simulation
+  1) **Weeks 1-7** are taught by Dr Abigail Page and focus on foundational R skills, data handling, and visualisation
+  2) **Weeks 8-10** are taught by Dr James Winters and focus on programming concepts and simulation
 
 By the end of the component, you will be able to use R confidently as a tool for working with data in academic, research and workplace contexts.
 
@@ -2456,17 +2456,32 @@ You have nothing!
 
 The `gemo_point(mapping = aes())` argument defines how variables in your dataset are plotted. The mapping argument is always paired with `aes()`, and the `x` and `y` arguments of `aes()` specify which variables to map to the x (sepal.length) and y (petal length) axes. This is what is required to see something in your plot. You are basically saying: 
 
-1: I want a plot please based on the iris data  -> `ggplot(data = iris)` 
-2: I want this plot to be a scatterplot with points -> `gemo_point()`
-3: I want this plot to be of sepal length (X) and petal length (y) -> `(mapping = aes(x = Sepal.Length, y = Petal.Length))`
+  1) I want a plot please based on the iris data  -> `ggplot(data = iris)` 
+  2) I want this plot to be a scatterplot with points -> `gemo_point()`
+  3) I want this plot to be of sepal length (X) and petal length (y) -> `(mapping = aes(x =    Sepal.Length, y = Petal.Length))`
 
 That's it! You can change this template by change the **data, geom_function or mapping variables** to create a wide range of graphics using different data. 
 
 You can see that ggplot2 is a lot about layering. You make a basic plot and then you add features to help you better understand it. So let's take this plot further. It looks like there is a positive relationship between sepal and petal length, *however there is a bunch of data points in the far left corner which this does hold for - why is this? how can we explore this further?* 
 
+### Plotting single variables in a histogram 
+
+For your assessment you will need to make a histgram which is just a different function (`gemo_histogram()`) within ggplot to plot a histogram rather than a scatter plot. 
+
+This is a bit different to the scatter graph in that it has no y-axis as you are only visualising the distribution of a single variable 
+
+```{r hisogram}
+
+# Histogram of sepal legnth 
+ggplot(data = iris) +
+  geom_histogram(mapping = aes(x = Sepal.Length))
+
+```
+
+
 ### Adding aesthetics 
 
-To better visualise our data we can use aesthetics by adding a third variable to the mapping argument (the bit in the `aes()`). An aesthetic is a visual property of the objects in your plot, which includes colour, size and shape of the data points. You are able to change these elements, both globally (i.e., for all points on the graph) and per group (i.e., different colours are attributed to different plant species). 
+Returning to scatterplots.... To better visualise our data we can use aesthetics by adding a third variable to the mapping argument (the bit in the `aes()`). An aesthetic is a visual property of the objects in your plot, which includes colour, size and shape of the data points. You are able to change these elements, both globally (i.e., for all points on the graph) and per group (i.e., different colours are attributed to different plant species). 
 
 Here we can use colour to map aesthetics in your plot to the variables in the iris dataset - let's do species to see if that helps us understand the data better. 
 
@@ -2724,6 +2739,32 @@ ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Petal.Length)) +
 ```
 
 I'm pretty happy with this! This is how we build graphs - we start simple and then build in elements to best visualise the data. 
+
+### Histograms and desnity plot
+
+For your assessment (poster) you will need to know how to make a histogram or density plot to visualise the distribution of the independent and dependent variables. 
+
+When you just want to plot a single variable (rather than the relationship between two) you only need to put the x variable into the aes() (e.g.  `aes(x = age)`). You can call a density plot with `geom_density()` and a histogram with `geom_histogram()` 
+
+See the examples below for sepal length and petal length 
+
+```{r density and histogram}
+
+# Density plot for sepal legnth 
+ggplot(iris, aes(x = Sepal.Length)) + # calls only sepal length 
+  geom_density(fill = "orange", alpha = 0.7) + # make it orange 
+  labs(x = "Sepal length", y = "Density") + # label axis 
+  theme_minimal(base_size = 26) # pre-sized for poster 
+
+# Histogram for petal length 
+ggplot(iris, aes(x = Petal.Length)) +
+  geom_histogram(fill = "pink") +
+  labs(x = "Petal length", y = "Count") +
+  theme_minimal(base_size = 26)
+```
+
+The bit of code which says `theme_minimal(base_size = 26)` just pre-sets the plots to a specific size which will be useful to you to use in your poster to ensure the plot takes up enough space in the poster column. 
+
 
 ### Exercises 6.1:  
 

@@ -1,0 +1,139 @@
+---
+title: "" # DO NOT EDIT THESE AT ALL 
+author: "" # DO NOT EDIT THESE AT ALL 
+date: "" # DO NOT EDIT THESE AT ALL 
+output: 
+  pagedown::html_paged:
+    self_contained: true
+    css:
+      - poster_columns.css
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE) # DO NOT EDIT 
+
+# PACKAGES - need to be installed first - don't edit 
+library(tidyverse) 
+library(knitr) 
+library(readr)
+
+# CHANGE THESE 
+poster_title <- "TITLE"
+poster_author <- "YOUR NAME, YOUR EMAIL@brunel.ac.uk"
+poster_affiliation <- "Department of Psychology, Brunel University of London"
+
+# load required data
+df <- read_csv("ABIGAIL_PAGE.csv") # WILL BE PROVIDED TO YOU WITH YOUR NAME.
+# SAVE IT IN THE 'POSTER' FOLDER IN YOUR WORKING DIRECTORY FOR THIS CODE TO WORK 
+# SAVE IT WITH THIS FOLE, THE CSS FILE AND THE SAVEASPDF FILE
+```
+
+
+<div class="poster-wrapper"> <div class="poster-header"> <div class="poster-title">`r poster_title`</div> <div class="poster-meta"> <strong>Author:</strong> `r poster_author`<br> <strong>Affiliation:</strong> `r poster_affiliation` 
+
+</div> <div class="main-finding"> *WRITE YOUR MAIN FINDING HERE IN ONE SENTENCE*
+
+</div> </div> <div class="poster-columns"> <div class="poster-column"> <div class="panel"> <h2>Introduction</h2>
+
+*THREE SENTENCE SUMMARY OF THE RESEARCH TOPIC, QUESTION, AIMS AND HYPOTHESIS - KEEP IT SIMPLE AND SHORT - ALL INFORMATION AVAILABLE IN THE INFO SHEET* 
+
+</div> <div class="panel"> <h2>Methods</h2> <h3>Participants and Data</h3>
+
+*WHO WAS THE PARTICIPANTS, WHAT VARIABLES DID YOU GET IN YOUR DATASET. WHERE THERE NAs? *
+
+<br>
+<h3>Data Preparation</h3>
+
+*HOW DID YOU TIDY THE DATA (CHANGE NAMES, HANDLE MISSINGNESS)? HOW DID YOU TRANSFORM THE DATA (MAKE NEW VARIABLES?)*
+
+<br>
+
+```{r, echo=TRUE, background="#f0f0f0", size="large"}
+
+# THIS CODE CHUNK WILL BE SHOWN IN THE POSTER AS EVIDENCE OF YOUR CODING. MAKE SURE IT IS CLEAR AND WELL COMMENTED. 
+# INLCUDE CODE FOR WHAT YOU DID TO TRANSFORM/TIDY THE DATA PRIOR TO ANALYSIS (E.G. RENAME VARIABLES/MAKE A NEW VARIABLE).
+
+# THIS IS THE ONLY CODE CHUNK WE WANT IN THE POSTER (PLEASE SEE EXAMPLE POSTER) 
+
+# DELETE THESE COMMENTS AFTERWARDS AS THEY WILL SHOW IN YOUR POSTER IF NOT! 
+```
+
+<br>
+<h3>Descriptive and Inferential Statistics</h3>
+
+*WHAT DESCRIPTIVE STATS DID YOU COMPUTE? WHAT PLOTS DID YOU DECIDE WHERE BEST? * 
+*EXPLAIN THE LINEAR REGRESSION, CHECKING MODEL ASSUMPTIONS HOW YOU REPORTED IT AND ANY VISUALISATION OF IT.*
+
+</div> </div> <div class="poster-column"> <div class="panel"> <h2>Descriptive Results</h2>
+
+*ONE SENTENCE ABOUT THE DESCRIPTIVE STATS SUMMARYING THE TABLE BELOW. * 
+
+<br>
+
+
+```{r, echo=FALSE}
+# Summary table of the two main variables
+sumtable <- 
+
+# THIS MAKES THE TABLE NICE FOR THE POSTER - DON'T TOUCH THIS CODE AS IT WILL AUTOMATICALLY PRINT 
+# THE TABLE YOU CALLED 'SUMTABLE' ABOVE  
+knitr::kable(sumtable, caption = "TABLE TITLE")
+```
+
+
+
+*ONE - TWO SENTENCE SUMMARY OF THE PLOTS AND IMPLICATIONS. * 
+
+<br>
+**Figure 1. NAME OF FIGURE 1**
+
+```{r, echo=FALSE, fig.width=13, fig.height=13}
+# GGPLOT histogram / density plot 
+```
+
+<br>
+**Figure 2. NAME OF FIGURE 2**
+
+```{r, echo=FALSE, fig.width=13, fig.height=13}
+# ⃣ Density plot of Emotional Regulation
+# GGPLOT histogram / density plot 
+```
+
+
+</div> </div> <div class="poster-column"> <div class="panel"> <h2>Regression Results</h2>
+
+*2-3 SENTENCE SUMMARY OF THE LINEAR REGRESSION RESULTS WITH INTERPRETION FOLLOWING APA 7th GUIDELINES. * 
+
+```{r, echo=FALSE}
+# Fit linear regression model which is saved as model
+model <- 
+
+#  CODE TO MAKE THE TABLES - DO NOT TOUCH THIS BELOW 
+  
+# Create a simple coefficients table and round numbers - assume the model is saved 
+  # as 'model' 
+coef_table <- as.data.frame(round(summary(model)$coefficients, 3))
+# Show the table with a title - assume the table is saved as 'coef_table'
+knitr::kable(coef_table, caption = "Linear regression model results")
+
+```
+
+<br>
+**Figure 3. Scatter plot for the relationship between age and emotional regulation**
+
+```{r, echo=FALSE, fig.width=13, fig.height=10, message=FALSE, warning=FALSE}
+# Scatter plot of x and y 
+# PLOT TO VISUALISE THE RELATIONSHIP BETWEEN MAIN VARIABLES TO SUPPORT YOU 
+# LINEAR REGRESSION. 
+
+```
+
+*CONFIRM YOU DID THE MODEL ASSUMPTION CHECKS AND IF THERE WERE ISSUES OR NOT. IF SPACE (OPTIONAL) INCLUDE AN PLOT/OUTPUT OF THE ASSUMPTION CHECKS. BUT YOU MIGHT WANT TO FOCUS ON THE ABOVE RESULTS IN THE LIMITED SPACE. * 
+
+<br>
+
+</div> <div class="panel"> <h2>Conclusion</h2>
+
+*THREE LINE SUMMARY OF YOUR FINDINGS AND IMPLICATIONS* 
+
+

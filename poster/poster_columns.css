@@ -1,0 +1,176 @@
+@page {
+  size: 1189mm 841mm;
+  margin: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 1189mm;
+  height: 841mm;
+  background: white;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f1f1f;
+  overflow: hidden;
+}
+
+/* Hide automatic R Markdown title block */
+.title, .author, .date, header, h1.title, p.author, p.date {
+  display: none !important;
+}
+
+body {
+  font-size: 38px;
+  line-height: 1.48;
+}
+
+.poster-wrapper {
+  box-sizing: border-box;
+  width: 1187mm;
+  height: 839mm;
+  padding: 10mm;
+  overflow: hidden;
+}
+
+.poster-header {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 88mm;
+  background: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
+  color: white;
+  border-radius: 12mm;
+  padding: 8mm 11mm;
+  margin-bottom: 5mm;
+  overflow: hidden;
+}
+
+.poster-title {
+  font-size: 78pt;
+  font-weight: 700;
+  line-height: 1.02;
+  margin-bottom: 2.5mm;
+}
+
+.poster-meta {
+  font-size: 36pt;
+  line-height: 1.14;
+  margin-bottom: 3mm;
+}
+
+.main-finding {
+  background: rgba(255,255,255,0.16);
+  border-left: 6mm solid #bb3e03;
+  border-radius: 8mm;
+  padding: 4mm 6mm;
+  font-size: 35pt;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+/* 3-column flex layout */
+.poster-columns {
+  display: flex;
+  gap: 5mm;
+  align-items: flex-start;
+  height: calc(100% - 93mm);
+}
+
+.poster-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+  min-width: 0;
+}
+
+/* Panels fit content */
+.panel {
+  flex: 0 0 auto;
+  background: white;
+  border: 1.1mm solid #d9e6e6;
+  border-radius: 8mm;
+  padding: 5.5mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.panel h2 {
+  font-size: 48pt;
+  color: #005f73;
+  border-bottom: 2.5mm solid #0a9396;
+  padding-bottom: 1.5mm;
+  margin-top: 0;
+  margin-bottom: 2.5mm;
+  line-height: 1.02;
+}
+
+.panel h3 {
+  font-size: 34pt;
+  color: #0a9396;
+  margin-top: 2.5mm;
+  margin-bottom: 1.2mm;
+  line-height: 1.08;
+}
+
+p, li {
+  font-size: 31pt;
+  line-height: 1.30;
+  margin-top: 0;
+  margin-bottom: 1.8mm;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #f5f7f9;
+  border: 1px solid #d8dde3;
+  border-radius: 5mm;
+  padding: 2.5mm;
+  font-size: 18pt;
+  line-height: 1.14;
+  overflow: hidden;
+  margin-bottom: 2mm;
+}
+
+code {
+  font-size: 18pt;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 22pt;
+  margin-bottom: 2mm;
+}
+
+table caption {
+  font-size: 36pt;
+  font-weight: 700;
+  caption-side: top;
+  text-align: left;
+  margin-bottom: 2mm;
+}
+
+th, td {
+  border: 1px solid #cfd8dc;
+  padding: 1.6mm;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #e6f4f1;
+}
+
+img {
+  max-width: 100%;
+  max-height: 200mm;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.small-note {
+  font-size: 18pt;
+  color: #555555;
+}
